@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
 class FleetPage extends Component {
     state = {
@@ -18,34 +13,43 @@ class FleetPage extends Component {
     };
 
     handleSubmit = () => {
-        console.log(this.state);
+        if (this.state.fleet.groupname === '' || this.state.fleet.password === '') {
+            alert('Fleet name and password are required!');
+        } else if (this.state.newFleet === true) {
+            console.log('adding fleet', this.state);
+            
+            this.props.dispatch({
+                type: 'NEW_FLEET',
+                payload: this.state.fleet
+            });
+        } else {
+            console.log('joining fleet', this.state);
+            this.props.dispatch({
+                type: 'JOIN_FLEET',
+                payload: this.state.fleet
+            });
+        }
+    } 
 
-        // if (this.state.groupname && this.state.password) {
-        //     this.props.dispatch({
-        //         type: 'NEW_FLEET',
-        //         payload: {
-        //             groupname: this.state.groupname,
-        //             password: this.state.password,
-        //         },
-        //     });
-        // } else {
-        //     alert('Enter a new fleet name and password to create a fleet, or an existing name and password to join a fleet');
-        // }
-    } // end login
-
-    handleInputChangeFor = propertyName => (event) => {
+    handleInputChangeFor = (event, input) => {
         this.setState({
             fleet: {
-                [propertyName]: event.target.value,
+                ...this.state.fleet,
+                [input]: event.target.value,
             }
         });
     }
 
     toggleFleet = () => {
         this.setState({
-            newFleet: !this.state.newFleet
+            newFleet: !this.state.newFleet,
+            fleet: {
+                groupname: '',
+                password: ''
+            }
         })
         console.log(this.state);
+        
     }
 
     render() {
@@ -65,15 +69,15 @@ class FleetPage extends Component {
                 <TextField
                     id="fleetName"
                     label="Fleet Name"
-                    onChange={this.handleInputChangeFor('groupname')}
-                    margin="normal"
+                    value={this.state.fleet.groupname}
+                    onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
                     variant="outlined"
                 />
                 <TextField
                     id="password"
                     label="Password"
-                    onChange={this.handleInputChangeFor('password')}
-                    margin="normal"
+                    value={this.state.fleet.password}
+                    onChange={(event) => this.handleInputChangeFor(event, 'password')}
                     variant="outlined"
                 />
                 <br />
