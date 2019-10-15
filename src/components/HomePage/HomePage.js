@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import FleetPage from '../FleetPage/FleetPage';
+
 // import Tab1 from './Tab1';
 // import Tab2 from './Tab2';
 // import Tab3 from './Tab3';
@@ -54,9 +56,7 @@ function a11yProps(index) {
   };
 }
 
-
-
-const HomePage = () => {
+const HomePage = ({ user }) => {
   const [value, setValue] = React.useState(0);
   const styles = {
     tabs: {
@@ -68,23 +68,27 @@ const HomePage = () => {
   };
 
   return (
+
     <div>
-      <AppBar position="static" style={styles.tabs}>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-          <Tab label="Open Tasks" {...a11yProps(0)} />
-          <Tab label="My Tasks" {...a11yProps(1)} />
-          <Tab label="All Tasks" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        Tab1
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Tab2
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Tab3
-      </TabPanel>
+      {user.group_id === 0 ? <div><FleetPage /></div> :
+        <div>
+          <AppBar position="static" style={styles.tabs}>
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+              <Tab label="Open Tasks" {...a11yProps(0)} />
+              <Tab label="My Tasks" {...a11yProps(1)} />
+              <Tab label="All Tasks" {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+            Tab1
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Tab2
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Tab3
+          </TabPanel>
+        </div>}
     </div>
   );
 }
