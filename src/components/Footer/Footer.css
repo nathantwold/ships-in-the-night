@@ -1,3 +1,18 @@
 footer {
+    position: fixed;
+    font-size: 12px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
     margin-top: 80px;
+    background-color: seagreen;
+    color: #24321c;
+}
+
+.logOut {
+    float: right;
+    background-color: springgreen;
+    border: 1px solid seagreen;
+    font-size: 10px;
 }

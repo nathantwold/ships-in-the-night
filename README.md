@@ -94,7 +94,7 @@ This code is also heavily commented. We recommend reading through the comments, 
   * Nav/Nav
   * AboutPage/AboutPage
   * InfoPage/InfoPage
-  * UserPage/UserPage
+  * HomePage/HomePage
   * LoginPage/LoginPage
   * RegisterPage/RegisterPage
   * LogOutButton/LogOutButton

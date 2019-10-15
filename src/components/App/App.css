@@ -9,12 +9,13 @@ body {
 }
 
 form {
+    text-align: center;
     background-color: #dbd5d5;
-    width: 30%;
+    width: 60%;
     height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 input {
