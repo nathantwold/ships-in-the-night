@@ -1,18 +1,20 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* createFleet() {
+function* createFleet(action) {
     try {
-        const response = yield axios.post('/api/fleet');
-        yield put({ type: '', payload: response.data });
+        yield console.log(action.payload);
+        const response = yield axios.post('/api/fleet', action.payload);
+        yield console.log(response.data.id);
+        yield axios.put(`/api/fleet/${action.payload.currentUser}`, response.data);
     } catch (error) {
         console.log('User get request failed', error);
     }
 }
 
-function* joinFleet() {
+function* joinFleet(action) {
     try {
-
+        yield axios.put('/api/fleet', action.payload)
     } catch (error) {
         console.log('User get request failed', error);
     }

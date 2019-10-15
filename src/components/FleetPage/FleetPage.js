@@ -8,6 +8,7 @@ class FleetPage extends Component {
         fleet: {
             groupname: '',
             password: '',
+            currentUser: this.props.id
         },
         newFleet: true
     };
