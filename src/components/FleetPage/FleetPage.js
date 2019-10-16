@@ -5,6 +5,12 @@ import TextField from '@material-ui/core/TextField';
 
 class FleetPage extends Component {
 
+    // componentDidUpdate(preProps) {
+    //     if (this.props.user !== preProps.user) {
+    //         this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
+    //     }
+    // }
+
     state = {
         fleet: {
             groupname: '',
@@ -35,7 +41,6 @@ class FleetPage extends Component {
                 payload: this.state.fleet
             })
         }
-        this.props.dispatch({ type: 'GET_OPEN_TASKS' })
     }
 
     handleInputChangeFor = (event, input) => {
@@ -82,6 +87,7 @@ class FleetPage extends Component {
                 <TextField
                     id="password"
                     label="Password"
+                    type="password"
                     value={this.state.fleet.password}
                     onChange={(event) => this.handleInputChangeFor(event, 'password')}
                     variant="outlined"

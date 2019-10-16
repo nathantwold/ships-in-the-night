@@ -12,6 +12,12 @@ class OpenTasks extends Component {
         this.getOpenTasks();
     }
 
+    componentDidUpdate(preProps) {
+        if (this.props.user !== preProps.user) {
+            this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
+        }
+      }
+
     getOpenTasks = () => {
         this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
     }

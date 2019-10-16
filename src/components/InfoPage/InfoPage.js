@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { Component } from "react";
+import { connect } from 'react-redux';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
 
-const InfoPage = () => (
-  <div>
-    <p>
-      Info Page
-    </p>
-  </div>
-);
 
-export default InfoPage;
+class InfoPage extends Component {
+  click = () => {
+    console.log(this.props.user);
+  }
+
+  render() {
+    return (
+      <div>
+        <h5>In Info</h5>
+        <button onClick={this.click}>
+          click
+        </button>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(InfoPage);

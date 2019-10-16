@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -27,12 +28,6 @@ import AllTasks from '../Tasks/AllTasks';
 //     <p>Your ID is: {props.user.id}</p>
 //   </div>
 // );
-
-// function componentDidUpdate(preProps) {
-//   if (this.props.reduxStore.user !== preProps.reduxStore.user) {
-//       this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
-//   }
-// }
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,12 +60,14 @@ function a11yProps(index) {
 }
 
 const HomePage = ({ user }) => {
+
   const [value, setValue] = React.useState(0);
   const styles = {
     tabs: {
       backgroundColor: "green",
     }
   }
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
