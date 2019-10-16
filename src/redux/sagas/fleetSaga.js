@@ -4,9 +4,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* createFleet(action) {
     try {
         yield console.log(action.payload);
-        const response = yield axios.post('/api/fleet', action.payload);
-        yield console.log(response.data.id);
-        yield axios.put(`/api/fleet/${action.payload.currentUser}`, response.data);
+        
+        const response = yield axios.post('/api/fleet/create', action.payload);
+        yield console.log(response.data);
+        yield axios.put(`/api/fleet/create/${action.payload.currentUser}`, response.data);
     } catch (error) {
         console.log('User get request failed', error);
     }
@@ -14,9 +15,11 @@ function* createFleet(action) {
 
 function* joinFleet(action) {
     try {
-        yield axios.put('/api/fleet', action.payload)
+        const response = yield axios.put('/api/fleet/join', action.payload)
+        yield console.log(action.payload, response.data)
+        // yield axios.put(`/api/fleet/join/${action.payload.currentUser}`, action.payload)
     } catch (error) {
-        console.log('User get request failed', error);
+        console.log('User join request failed', error);
     }
 }
 

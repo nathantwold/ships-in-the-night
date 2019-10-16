@@ -12,22 +12,34 @@ router.get('/', (req, res) => {
 /**
  * POST route to create new fleet
  */
-router.post('/', (req, res, next) => {  
+router.post('/create', (req, res, next) => {  
     const groupname = req.body.groupname;
     const password = req.body.password;
-    const queryText = `INSERT INTO "public"."groups"("name", "password") VALUES($1, $2) RETURNING "public"."groups".id;`;
+    const queryText = `INSERT INTO "public"."groups"("name", "password") VALUES($1, $2) RETURNING "public"."groups".name;`;
     pool.query(queryText, [groupname, password])
       .then((result) => res.send(result.rows[0]))
+      // .then(() => console.log())  // can I move the below put route here?
       .catch(() => res.sendStatus(500));
   });
 
 /**
- * PUT route 
+ * PUT route for tagging fleet id to user-admin on fleet creation
  */
-router.put('/:id', (req, res) => {
-    console.log(req.body, req.params);
-    const queryText = `UPDATE "public"."users" SET "group_id"=$1, "admin_level"=1 WHERE "id"=$2`
-    pool.query(queryText, [req.body.id, req.params.id])
+router.put('/create/:id', (req, res) => {
+    console.log('in create: ', req.body, req.params);
+    const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=1 WHERE "id"=$2`
+    pool.query(queryText, [req.body.name, req.params.id])
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500))
+});
+
+/**
+ * PUT route for tagging fleet id to user on fleet join
+ */
+router.put('/join', (req, res) => {
+    console.log('in join: ', req.body); 
+    const queryText = `UPDATE "public"."users" SET "groupname"=$1 WHERE "id"=$2`
+    pool.query(queryText, [req.body.groupname, req.body.currentUser])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500))
 });

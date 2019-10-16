@@ -8,27 +8,33 @@ class FleetPage extends Component {
         fleet: {
             groupname: '',
             password: '',
-            currentUser: this.props.id
-        },
-        newFleet: true
+            currentUser: this.props.id,
+            newFleet: true
+        }
     };
 
-    handleSubmit = () => {
+    // alert if fields are empty on submit
+    checkFields = () => {
         if (this.state.fleet.groupname === '' || this.state.fleet.password === '') {
             alert('Fleet name and password are required!');
-        } else if (this.state.newFleet === true) {
-            console.log('adding fleet', this.state);
-            
+        } else {
+            this.handleSubmit();
+        }
+    }
+
+    handleSubmit = () => {
+        if (this.state.fleet.newFleet === true) {
+            console.log('adding fleet: ', this.state.fleet);
             this.props.dispatch({
                 type: 'NEW_FLEET',
                 payload: this.state.fleet
-            });
+            })
         } else {
-            console.log('joining fleet', this.state);
+            console.log('joining fleet: ', this.state.fleet);
             this.props.dispatch({
                 type: 'JOIN_FLEET',
                 payload: this.state.fleet
-            });
+            })
         }
     } 
 
@@ -43,10 +49,11 @@ class FleetPage extends Component {
 
     toggleFleet = () => {
         this.setState({
-            newFleet: !this.state.newFleet,
             fleet: {
                 groupname: '',
-                password: ''
+                password: '',
+                currentUser: this.props.id,
+                newFleet: !this.state.fleet.newFleet,
             }
         })
         console.log(this.state);
@@ -60,7 +67,7 @@ class FleetPage extends Component {
 
         return (
             <div style={style}>
-                {this.state.newFleet === true ?
+                {this.state.fleet.newFleet === true ?
                     <Button onClick={this.toggleFleet} size="small" variant="outlined">Join a fleet</Button> :
                     <Button onClick={this.toggleFleet} size="small" variant="outlined">Create a new fleet</Button>
                 }
@@ -82,9 +89,9 @@ class FleetPage extends Component {
                     variant="outlined"
                 />
                 <br />
-                {this.state.newFleet === true ?
-                    <Button onClick={this.handleSubmit} variant="outlined">Create!</Button> :
-                    <Button onClick={this.handleSubmit} variant="outlined">Join!</Button>
+                {this.state.fleet.newFleet === true ?
+                    <Button onClick={this.checkFields} variant="outlined">Create!</Button> :
+                    <Button onClick={this.checkFields} variant="outlined">Join!</Button>
                 }
             </div>
         )

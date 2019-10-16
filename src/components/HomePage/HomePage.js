@@ -70,7 +70,7 @@ const HomePage = ({ user }) => {
   return (
 
     <div>
-      {user.group_id === 0 ? <div><FleetPage id={user.id}/></div> :
+      {user.groupname === '0' ? <div><FleetPage id={user.id}/></div> :
         <div>
           <AppBar position="static" style={styles.tabs}>
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
