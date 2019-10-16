@@ -4,11 +4,12 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 class FleetPage extends Component {
+
     state = {
         fleet: {
             groupname: '',
             password: '',
-            currentUser: this.props.id,
+            currentUser: this.props.user.id,
             newFleet: true
         }
     };
@@ -24,19 +25,18 @@ class FleetPage extends Component {
 
     handleSubmit = () => {
         if (this.state.fleet.newFleet === true) {
-            console.log('adding fleet: ', this.state.fleet);
             this.props.dispatch({
                 type: 'NEW_FLEET',
                 payload: this.state.fleet
             })
         } else {
-            console.log('joining fleet: ', this.state.fleet);
             this.props.dispatch({
                 type: 'JOIN_FLEET',
                 payload: this.state.fleet
             })
         }
-    } 
+        this.props.dispatch({ type: 'GET_OPEN_TASKS' })
+    }
 
     handleInputChangeFor = (event, input) => {
         this.setState({
@@ -52,12 +52,10 @@ class FleetPage extends Component {
             fleet: {
                 groupname: '',
                 password: '',
-                currentUser: this.props.id,
+                currentUser: this.props.user.id,
                 newFleet: !this.state.fleet.newFleet,
             }
         })
-        console.log(this.state);
-        
     }
 
     render() {
@@ -98,9 +96,8 @@ class FleetPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    user: state.user,
+const mapStateToProps = reduxStore => ({
+    reduxStore,
 });
 
-// this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(FleetPage);

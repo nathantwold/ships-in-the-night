@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import FleetPage from '../FleetPage/FleetPage';
+import OpenTasks from '../Tasks/OpenTasks';
+import MyTasks from '../Tasks/MyTasks';
+import AllTasks from '../Tasks/AllTasks';
 
-// import Tab1 from './Tab1';
 // import Tab2 from './Tab2';
 // import Tab3 from './Tab3';
 // import Tab4 from './Tab4';
@@ -25,6 +27,12 @@ import FleetPage from '../FleetPage/FleetPage';
 //     <p>Your ID is: {props.user.id}</p>
 //   </div>
 // );
+
+// function componentDidUpdate(preProps) {
+//   if (this.props.reduxStore.user !== preProps.reduxStore.user) {
+//       this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
+//   }
+// }
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,9 +76,8 @@ const HomePage = ({ user }) => {
   };
 
   return (
-
     <div>
-      {user.groupname === '0' ? <div><FleetPage id={user.id}/></div> :
+      {user.groupname === '0' ? <div><FleetPage user={user} /></div> :
         <div>
           <AppBar position="static" style={styles.tabs}>
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
@@ -80,13 +87,13 @@ const HomePage = ({ user }) => {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            Tab1
+            <OpenTasks user={user}/>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Tab2
+            <MyTasks user={user}/>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Tab3
+            <AllTasks user={user}/>
           </TabPanel>
         </div>}
     </div>
