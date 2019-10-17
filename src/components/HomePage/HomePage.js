@@ -1,20 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { AppBar, Tabs, Tab, Typography, Box, Button } from '@material-ui/core';
 
 import OpenTasks from '../Tasks/OpenTasks';
 import MyTasks from '../Tasks/MyTasks';
 import AllTasks from '../Tasks/AllTasks';
-
-// import Tab2 from './Tab2';
-// import Tab3 from './Tab3';
-// import Tab4 from './Tab4';
+import NewTask from '../Tasks/NewTask';
 
 // this could also be written with destructuring parameters as:
 // const HomePage = ({ user }) => (
@@ -83,6 +76,9 @@ const HomePage = ({ user }) => {
                 <Tab label="All Tasks" {...a11yProps(2)} />
               </Tabs>
             </AppBar>
+            <Link to="/newtask">
+              <h6>Add Task</h6>
+            </Link>
             <TabPanel value={value} index={0}>
               <OpenTasks user={user} />
             </TabPanel>
@@ -94,6 +90,8 @@ const HomePage = ({ user }) => {
             </TabPanel>
           </div>
         }
+        <div>
+        </div>
       </div>
     </Router>
   );

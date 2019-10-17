@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 
 class AllTasks extends Component {
-
-    addTask = () => {
-        console.log('add task');
-    }
 
     componentDidMount() {
         this.getOpenTasks();
@@ -24,9 +19,6 @@ class AllTasks extends Component {
                         <li>{item.title}{item.detail}</li>
                     </div>
                 ))}
-                <div>
-                    <Button variant="outlined" onClick={this.addTask}>Add New</Button>
-                </div>
             </div>
         )
     }

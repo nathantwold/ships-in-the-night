@@ -35,9 +35,12 @@ router.get('/alltasks', (req, res) => {
 /**
  * POST route 
  */
-// router.post('/', (req, res, next) => {
-
-// });
+router.post('/', (req, res, next) => {
+    console.log(req.body);
+    
+    // const queryText =`INSERT INTO "public"."tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
+    // pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail])
+});
 
 /**
  * PUT route for tagging fleet id to user on fleet join

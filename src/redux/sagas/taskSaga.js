@@ -31,10 +31,20 @@ function* getAllTasks(action) {
     }
 }
 
+function* addTask(action) {
+    try {
+        yield axios.post('/api/task', action.payload);
+    }catch (error) {
+        alert('There was an error adding task. Please try again later.')
+        console.log('error in ADD_TASK: ', error);
+    }
+}
+
 function* taskSaga() {
     yield takeLatest('GET_OPEN_TASKS', getOpenTasks);
     yield takeLatest('GET_MY_TASKS', getMyTasks);
-    yield takeLatest('GET_ALL_TASKS', getAllTasks);    
+    yield takeLatest('GET_ALL_TASKS', getAllTasks);  
+    yield takeLatest('ADD_TASK', addTask)  ;
 }
 
 export default taskSaga;
