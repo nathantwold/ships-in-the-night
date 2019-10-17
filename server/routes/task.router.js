@@ -9,7 +9,7 @@ router.get('/opentasks', (req, res) => {
     const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname = $1 AND "tasks".complete = false;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
-        .catch(error => { res.sendStatus(500) })
+        .catch(error => res.sendStatus(500))
 });
 
 /**
@@ -19,7 +19,7 @@ router.get('/mytasks', (req, res) => {
     const queryText = `SELECT * FROM "tasks" WHERE "tasks".user_id = $1 AND "tasks".complete = false;`;
     pool.query(queryText, [req.user.id])
         .then((result) => res.send(result.rows))
-        .catch(error => { res.sendStatus(500) })
+        .catch(error => res.sendStatus(500))
 });
 
 /**
@@ -29,17 +29,17 @@ router.get('/alltasks', (req, res) => {
     const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname = $1;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
-        .catch(error => { res.sendStatus(500) })
+        .catch(error => res.sendStatus(500))
 });
 
 /**
  * POST route 
  */
 router.post('/', (req, res, next) => {
-    console.log(req.body);
-    
-    // const queryText =`INSERT INTO "public"."tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
-    // pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail])
+    const queryText = `INSERT INTO "public"."tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
+    pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail])
+        .then(() => res.sendStatus(201))
+        .catch(error => res.sendStatus(500))
 });
 
 /**

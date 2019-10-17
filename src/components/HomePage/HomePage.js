@@ -7,7 +7,6 @@ import { AppBar, Tabs, Tab, Typography, Box, Button } from '@material-ui/core';
 import OpenTasks from '../Tasks/OpenTasks';
 import MyTasks from '../Tasks/MyTasks';
 import AllTasks from '../Tasks/AllTasks';
-import NewTask from '../Tasks/NewTask';
 
 // this could also be written with destructuring parameters as:
 // const HomePage = ({ user }) => (
@@ -70,7 +69,7 @@ const HomePage = ({ user }) => {
         {user.groupname === "0" ? <Redirect exact to="/fleet" /> :
           <div>
             <AppBar position="static" style={styles.tabs}>
-              <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+              <Tabs value={value} color="primary" onChange={handleChange} aria-label="simple tabs example" centered>
                 <Tab label="Open Tasks" {...a11yProps(0)} />
                 <Tab label="My Tasks" {...a11yProps(1)} />
                 <Tab label="All Tasks" {...a11yProps(2)} />
@@ -90,8 +89,6 @@ const HomePage = ({ user }) => {
             </TabPanel>
           </div>
         }
-        <div>
-        </div>
       </div>
     </Router>
   );

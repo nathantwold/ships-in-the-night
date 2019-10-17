@@ -41,10 +41,11 @@ function* addTask(action) {
 }
 
 function* taskSaga() {
+    yield takeLatest('GET_TASKS', getOpenTasks, getMyTasks, getAllTasks)
     yield takeLatest('GET_OPEN_TASKS', getOpenTasks);
     yield takeLatest('GET_MY_TASKS', getMyTasks);
     yield takeLatest('GET_ALL_TASKS', getAllTasks);  
-    yield takeLatest('ADD_TASK', addTask)  ;
+    yield takeLatest('ADD_TASK', addTask);
 }
 
 export default taskSaga;
