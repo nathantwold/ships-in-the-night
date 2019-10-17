@@ -8,7 +8,6 @@ class FleetPage extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_USER' })
-        alert('Create or join a fleet to get started!')
         console.log(this.props.user);
     }
 
@@ -36,13 +35,13 @@ class FleetPage extends Component {
                 type: 'NEW_FLEET',
                 payload: this.state.fleet
             })
-            this.props.history.push('/home') // delay this until db is updated with groupname???
+            this.props.history.push('/home')
         } else {
             this.props.dispatch({
                 type: 'JOIN_FLEET',
                 payload: this.state.fleet
             })
-            this.props.history.push('/home') // delay this until db is updated with groupname???
+            this.props.history.push('/home')
         }
     }
 

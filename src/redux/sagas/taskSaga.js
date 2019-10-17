@@ -34,6 +34,9 @@ function* getAllTasks(action) {
 function* addTask(action) {
     try {
         yield axios.post('/api/task', action.payload);
+        yield getOpenTasks();
+        yield getMyTasks();
+        yield getAllTasks();
     }catch (error) {
         alert('There was an error adding task. Please try again later.')
         console.log('error in ADD_TASK: ', error);

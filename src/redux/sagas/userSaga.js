@@ -24,8 +24,28 @@ function* fetchUser() {
   }
 }
 
+function* createFleet(action) {
+  try {
+      const response = yield axios.post('/api/fleet/create', action.payload);
+      yield axios.put(`/api/fleet/create/${action.payload.currentUser}`, response.data);
+  } catch (error) {
+      console.log('Fleet create request failed', error);
+      alert('Please choose a different fleet name.')
+  }
+}
+
+function* joinFleet(action) {
+  try {
+      yield axios.put('/api/fleet/join', action.payload);
+  } catch (error) {
+      console.log('Fleet join request failed', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('NEW_FLEET', createFleet);
+  yield takeLatest('JOIN_FLEET', joinFleet);
 }
 
 export default userSaga;

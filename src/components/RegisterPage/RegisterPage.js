@@ -18,6 +18,7 @@ class RegisterPage extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push('/fleet')
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }

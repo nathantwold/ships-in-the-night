@@ -47,19 +47,19 @@ class OpenTasks extends Component {
     render() {
         return (
             <div>
-                {/* {this.props.reduxStore.tasks.openTaskReducer.map(item => ( */}
-                    <div key='1' style={styles.div}>
-                        <Button onClick={() => console.log('click')}
+                {this.props.reduxStore.tasks.openTaskReducer.map(item => (
+                    <div key={item.id} style={styles.div}>
+                        <Button onClick={() => console.log('click task')}
                             style={styles.paperCenter} variant="contained">
-                            Pick up laundry
+                            {item.title}
                         </Button>
-                        <Button onClick={() => console.log('click')}
+                        <Button onClick={() => console.log('click complete')}
                             style={styles.paperRight} variant="contained">
-                            Complete
+                            Complete?
                             <CheckCircleIcon />
                         </Button>
                     </div>
-                {/* ))} */}
+                ))}
             </div>
         )
     }
