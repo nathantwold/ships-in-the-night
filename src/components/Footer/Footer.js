@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -11,6 +12,7 @@ const Footer = () => (
   <footer>
     &copy; 2019 Ships in the Night
     <LogOutButton className="logOut" />
+    <Link to="/fleet" className="fleetView">Fleet</Link>
   </footer>
 );
 

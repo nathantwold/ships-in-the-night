@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import FleetPage from '../FleetPage/FleetPage';
 import OpenTasks from '../Tasks/OpenTasks';
 import MyTasks from '../Tasks/MyTasks';
 import AllTasks from '../Tasks/AllTasks';
@@ -67,33 +66,36 @@ const HomePage = ({ user }) => {
       backgroundColor: "green",
     }
   }
-  
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div>
-      {user.groupname === '0' ? <div><FleetPage user={user} /></div> :
-        <div>
-          <AppBar position="static" style={styles.tabs}>
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-              <Tab label="Open Tasks" {...a11yProps(0)} />
-              <Tab label="My Tasks" {...a11yProps(1)} />
-              <Tab label="All Tasks" {...a11yProps(2)} />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0}>
-            <OpenTasks user={user}/>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <MyTasks user={user}/>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <AllTasks user={user}/>
-          </TabPanel>
-        </div>}
-    </div>
+    <Router>
+      <div>
+        {user.groupname === "0" ? <Redirect exact to="/fleet" /> :
+          <div>
+            <AppBar position="static" style={styles.tabs}>
+              <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+                <Tab label="Open Tasks" {...a11yProps(0)} />
+                <Tab label="My Tasks" {...a11yProps(1)} />
+                <Tab label="All Tasks" {...a11yProps(2)} />
+              </Tabs>
+            </AppBar>
+            <TabPanel value={value} index={0}>
+              <OpenTasks user={user} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <MyTasks user={user} />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <AllTasks user={user} />
+            </TabPanel>
+          </div>
+        }
+      </div>
+    </Router>
   );
 }
 

@@ -37,7 +37,7 @@ router.put('/create/:id', (req, res) => {
  */
 router.put('/join', (req, res) => {
     console.log('in join: ', req.body); 
-    const queryText = `UPDATE "public"."users" SET "groupname"=$1 WHERE "id"=$2`
+    const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=0 WHERE "id"=$2`
     pool.query(queryText, [req.body.groupname, req.body.currentUser])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500))
