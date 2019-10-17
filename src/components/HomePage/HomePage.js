@@ -75,9 +75,6 @@ const HomePage = ({ user }) => {
                 <Tab label="All Tasks" {...a11yProps(2)} />
               </Tabs>
             </AppBar>
-            <Link to="/newtask">
-              <h6>Add Task</h6>
-            </Link>
             <TabPanel value={value} index={0}>
               <OpenTasks user={user} />
             </TabPanel>
@@ -87,6 +84,9 @@ const HomePage = ({ user }) => {
             <TabPanel value={value} index={2}>
               <AllTasks user={user} />
             </TabPanel>
+            <Link to="/newtask">
+              <h6>Add Task</h6>
+            </Link>
           </div>
         }
       </div>
