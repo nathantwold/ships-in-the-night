@@ -22,7 +22,7 @@ router.post('/create', (req, res, next) => {
   });
 
 /**
- * PUT route for tagging fleet id to user-admin on fleet creation
+ * PUT route for tagging fleet creator as admin
  */
 router.put('/create/:id', (req, res) => {
     console.log('in create: ', req.body, req.params);

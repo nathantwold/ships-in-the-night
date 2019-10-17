@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route to display open tasks
  */
 router.get('/opentasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname = $1 AND "tasks".complete = false;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "groupname" = $1 AND "complete" = false AND "user_id" = 0;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
@@ -16,7 +16,7 @@ router.get('/opentasks', (req, res) => {
  * GET route to display my tasks
  */
 router.get('/mytasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "tasks".user_id = $1 AND "tasks".complete = false;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "user_id" = $1 AND "complete" = false;`;
     pool.query(queryText, [req.user.id])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
