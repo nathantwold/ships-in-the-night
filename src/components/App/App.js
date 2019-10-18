@@ -13,7 +13,6 @@ import InfoPage from '../InfoPage/InfoPage';
 import FleetPage from '../FleetPage/FleetPage';
 import NewTask from '../Tasks/NewTask';
 import TaskDetail from '../Tasks/TaskDetail';
-import EditTask from '../Tasks/EditTask';
 
 import './App.css';
 
@@ -63,11 +62,6 @@ class App extends Component {
               exact
               path="/newtask"
               component={NewTask}
-            />
-            <ProtectedRoute
-              exact
-              path="/edittask/:id"
-              component={EditTask}
             />
             <ProtectedRoute
               exact
