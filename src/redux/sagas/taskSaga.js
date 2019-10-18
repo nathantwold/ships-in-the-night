@@ -80,7 +80,6 @@ function* deleteTask(action) {
 
 function* editTask(action) {
     try {
-        console.log(action.payload);
         axios.put('api/task/edit', action.payload);
         yield getOpenTasks(action);
         yield getMyTasks(action);
@@ -88,6 +87,18 @@ function* editTask(action) {
     } catch (error) {
         alert('There was an error updating task. Please try again later.');
         console.log('error in EDIT_TASK: ', error);
+    }
+}
+
+function* claimTask(action) {
+    try {
+        axios.put('api/task/claim', action.payload);
+        yield getOpenTasks(action);
+        yield getMyTasks(action);
+        yield getAllTasks(action);
+    } catch (error) {
+        alert('There was an error claiming task. Please try again later.');
+        console.log('error in CLAIM_TASK: ', error);
     }
 }
 
@@ -101,6 +112,7 @@ function* taskSaga() {
     yield takeLatest('GET_DETAIL', getDetail);
     yield takeLatest('DELETE_TASK', deleteTask);
     yield takeLatest('EDIT_TASK', editTask);
+    yield takeLatest('CLAIM_TASK', claimTask);
 }
 
 export default taskSaga;

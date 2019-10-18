@@ -66,8 +66,18 @@ router.put('/complete', (req, res) => {
  * PUT route for editing tasks
  */
 router.put('/edit', (req, res) => {
-    const queryText = `UPDATE "tasks" SET "title" = $1, "detail" = $2 WHERE "id" = $3 ;`;
+    const queryText = `UPDATE "tasks" SET "title" = $1, "detail" = $2 WHERE "id" = $3;`;
     pool.query(queryText, [req.body.title, req.body.detail, req.body.id])
+        .then(() => res.sendStatus(201))
+        .catch(error => res.sendStatus(500))
+});
+
+/**
+ * PUT route for claiming tasks
+ */
+router.put('/claim', (req, res) => {
+    const queryText = `UPDATE "tasks" SET "username" = $1 WHERE "id" = $2;`;
+    pool.query(queryText, [req.body.username, req.body.id])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
 });

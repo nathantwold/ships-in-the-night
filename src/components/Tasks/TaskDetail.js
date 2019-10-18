@@ -12,6 +12,7 @@ class TaskDetail extends Component {
         title: '',
         detail: '',
         id: '',
+        username: '',
     }
 
     style = {
@@ -40,6 +41,7 @@ class TaskDetail extends Component {
                 title: item.title,
                 detail: item.detail,
                 id: item.id,
+                username: this.props.reduxStore.user.username,
             })
         })
     }
@@ -50,9 +52,9 @@ class TaskDetail extends Component {
     }
 
     handleClaim = (item) => {
-        console.log('In own: ', item);
-
-        // this.props.history.push('/home')
+        console.log('In own: ', this.state);
+        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
+        this.props.history.push('/home')
     }
 
     handleComplete = (item) => {
@@ -98,10 +100,6 @@ class TaskDetail extends Component {
                         <div key={item.id}>
                             <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
                             <h5>Currently claimed by: {item.username}</h5>
-                            <Button variant="contained" onClick={() => { this.handleClaim(item) }}>Claim</Button>
-                            <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
-                            <Button variant="contained" onClick={() => { this.handleDelete(item) }}>Delete</Button>
-                            <Button variant="contained" onClick={this.handleBack}>Back</Button>
                             <TextField
                                 defaultValue={item.title}
                                 style={this.style.textField}
@@ -122,6 +120,12 @@ class TaskDetail extends Component {
                             <Button style={this.style.textField} variant="contained" onClick={this.checkFields}>
                                 Done!
                             </Button>
+                            <div>
+                                <Button variant="contained" onClick={() => { this.handleClaim(item) }}>Claim</Button>
+                                <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
+                                <Button variant="contained" onClick={() => { this.handleDelete(item) }}>Delete</Button>
+                                <Button variant="contained" onClick={this.handleBack}>Back</Button>
+                            </div>
                         </div>
                     ))}
                 </div>
