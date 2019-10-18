@@ -10,6 +10,7 @@ const styles = {
         flexDirection: 'wrap',
         width: '100%',
         padding: '1px',
+        margin: '5px'
     },
     paperLeft: {
         height: '35px',
@@ -53,7 +54,7 @@ class OpenTasks extends Component {
                             style={styles.paperCenter} variant="contained">
                             {item.title}
                         </Button>
-                        <Button onClick={() => console.log('click complete')}
+                        <Button onClick={() => {this.handleComplete(item.id)}}
                             style={styles.paperRight} variant="contained">
                             Complete?
                             <CheckCircleIcon />
