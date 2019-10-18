@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
@@ -51,28 +51,26 @@ class OpenTasks extends Component {
     }
 
     showDetail = (id) => {
-        this.props.history.push(`/detail/${id}`)
+        this.props.history.push('/detail/' + id);
     }
 
     render() {
         return (
-            <Router>
-                <div>
-                    {this.props.reduxStore.tasks.openTaskReducer.map(item => (
-                        <div key={item.id} style={styles.div}>
-                            <Button onClick={() => { this.showDetail(item.id) }}
-                                style={styles.paperCenter} variant="contained">
-                                {item.title}
-                            </Button>
-                            <Button onClick={() => { this.handleComplete(item) }}
-                                style={styles.paperRight} variant="contained">
-                                Complete?
+            <div>
+                {this.props.reduxStore.tasks.openTaskReducer.map(item => (
+                    <div key={item.id} style={styles.div}>
+                        <Button onClick={() => { this.showDetail(item.id) }}
+                            style={styles.paperCenter} variant="contained">
+                            {item.title}
+                        </Button>
+                        <Button onClick={() => { this.handleComplete(item) }}
+                            style={styles.paperRight} variant="contained">
+                            Complete?
                             <CheckCircleIcon />
-                            </Button>
-                        </div>
-                    ))}
-                </div>
-            </Router>
+                        </Button>
+                    </div>
+                ))}
+            </div>
         )
     }
 }
@@ -81,4 +79,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore,
 });
 
-export default connect(mapStateToProps)(OpenTasks);
+export default connect(mapStateToProps)(withRouter(OpenTasks));

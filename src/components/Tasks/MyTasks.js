@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
@@ -69,4 +70,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore,
 });
 
-export default connect(mapStateToProps)(MyTasks);
+export default connect(mapStateToProps)(withRouter(MyTasks));
