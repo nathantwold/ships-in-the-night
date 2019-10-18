@@ -33,6 +33,16 @@ router.get('/alltasks', (req, res) => {
 });
 
 /**
+ * GET route to display task detail
+ */
+router.get('/detail/:id', (req, res) => {
+    const queryText = `SELECT * FROM "tasks" WHERE "tasks".id = $1;`;
+    pool.query(queryText, [req.params.id])
+        .then((result) => res.send(result.rows))
+        .catch(error => res.sendStatus(500))
+});
+
+/**
  * POST route for new tasks
  */
 router.post('/', (req, res, next) => {

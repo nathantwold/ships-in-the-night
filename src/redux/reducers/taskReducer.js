@@ -27,8 +27,18 @@ const allTaskReducer = (state = [], action) => {
     }
 }
 
+const setDetailReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_DETAIL':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     openTaskReducer,
     myTaskReducer,
     allTaskReducer,
+    setDetailReducer,
 });

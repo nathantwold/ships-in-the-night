@@ -55,6 +55,17 @@ function* completeTask(action) {
     }
 }
 
+function* getDetail(action) {
+    try {
+        yield console.log(action.payload);
+        const response = yield axios.get('/api/task/detail/' + action.payload.id)
+        yield put({ type: 'SET_DETAIL', payload: response.data });
+    } catch (error) {
+        alert('There was an error getting task. Please try again later.');
+        console.log('error in GET_DETAIL: ', error);
+    }
+}
+
 function* taskSaga() {
     yield takeLatest('GET_TASKS', getOpenTasks, getMyTasks, getAllTasks)
     yield takeLatest('GET_OPEN_TASKS', getOpenTasks);
@@ -62,6 +73,7 @@ function* taskSaga() {
     yield takeLatest('GET_ALL_TASKS', getAllTasks);  
     yield takeLatest('ADD_TASK', addTask);
     yield takeLatest('COMPLETE_TASK', completeTask);
+    yield takeLatest('GET_DETAIL', getDetail);
 }
 
 export default taskSaga;

@@ -45,16 +45,24 @@ class MyTasks extends Component {
         this.props.dispatch({ type: 'GET_MY_TASKS', payload: this.props.user })
     }
 
+    handleComplete = (item) => {
+        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item })
+    }
+
+    showDetail = (id) => {
+        this.props.history.push('/detail/' + id);
+    }
+
     render() {
         return (
             <div>
             {this.props.reduxStore.tasks.myTaskReducer.map(item => (
                 <div key={item.id} style={styles.div}>
-                    <Button onClick={() => console.log('click task')}
+                    <Button onClick={() => { this.showDetail(item.id) }}
                         style={styles.paperCenter} variant="contained">
                         {item.title}
                     </Button>
-                    <Button onClick={() => console.log('click complete')}
+                    <Button onClick={() => { this.handleComplete(item) }}
                         style={styles.paperRight} variant="contained">
                         Complete?
                         <CheckCircleIcon />
