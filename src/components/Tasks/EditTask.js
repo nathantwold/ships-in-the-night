@@ -64,7 +64,7 @@ class NewTask extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
         this.props.history.push('/home')
-        alert('Success!  Your task has been created!');
+        alert('Success!  Your task has been updated!');
     }
 
     render() {

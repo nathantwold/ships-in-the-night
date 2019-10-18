@@ -69,6 +69,9 @@ function* deleteTask(action) {
     try {
         yield console.log(action.payload);
         yield axios.delete('/api/task/delete/' + action.payload.id);
+        yield getOpenTasks(action);
+        yield getMyTasks(action);
+        yield getAllTasks(action);
     } catch (error) {
         alert('There was an error deleting task. Please try again later.');
         console.log('error in DELETE_TASK: ', error);

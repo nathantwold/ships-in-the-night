@@ -44,16 +44,15 @@ class TaskDetail extends Component {
         return (
             <Router>
                 <div>
-                    {/* {JSON.stringify(this.props.reduxStore.tasks.setDetailReducer)} */}
                     {this.props.reduxStore.tasks.setDetailReducer.map(item => (
                         <div key={item.id}>
                             <h2>{item.title}</h2>
                             <h5>{item.detail}</h5>
                             <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
-                            <Button variant="contained" onClick={() => {this.handleOwn(item)}}>Claim</Button>
+                            <Button variant="contained" onClick={() => { this.handleOwn(item) }}>Claim</Button>
                             <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
-                            <Button variant="contained" onClick={() => {this.handleEdit(item)}}>Edit</Button>
-                            <Button variant="contained" onClick={() => {this.handleDelete(item)}}>Delete</Button>
+                            <Button variant="contained" onClick={() => { this.handleEdit(item) }}>Edit</Button>
+                            <Button variant="contained" onClick={() => { this.handleDelete(item) }}>Delete</Button>
                             <Button variant="contained" onClick={this.handleBack}>Back</Button>
                         </div>
                     ))}
