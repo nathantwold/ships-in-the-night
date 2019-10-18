@@ -33,7 +33,7 @@ router.get('/alltasks', (req, res) => {
 });
 
 /**
- * POST route 
+ * POST route for new tasks
  */
 router.post('/', (req, res, next) => {
     const queryText = `INSERT INTO "public"."tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
@@ -43,10 +43,14 @@ router.post('/', (req, res, next) => {
 });
 
 /**
- * PUT route for tagging fleet id to user on fleet join
+ * PUT route for marking tasks as complete
  */
-// router.put('/', (req, res) => {
-
-// });
+router.put('/complete', (req, res) => {
+    console.log(req.body);
+    const queryText = `UPDATE "public"."tasks" SET "complete" = TRUE WHERE "id" = $1;`;
+    pool.query(queryText, [req.body.id])
+        .then(() => res.sendStatus(201))
+        .catch(error => res.sendStatus(500))
+});
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { HashRouter as Router } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
@@ -45,23 +46,33 @@ class OpenTasks extends Component {
         this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
     }
 
+    handleComplete = (item) => {
+        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item })
+    }
+
+    showDetail = (id) => {
+        this.props.history.push(`/detail/${id}`)
+    }
+
     render() {
         return (
-            <div>
-                {this.props.reduxStore.tasks.openTaskReducer.map(item => (
-                    <div key={item.id} style={styles.div}>
-                        <Button onClick={() => console.log('click task')}
-                            style={styles.paperCenter} variant="contained">
-                            {item.title}
-                        </Button>
-                        <Button onClick={() => {this.handleComplete(item.id)}}
-                            style={styles.paperRight} variant="contained">
-                            Complete?
+            <Router>
+                <div>
+                    {this.props.reduxStore.tasks.openTaskReducer.map(item => (
+                        <div key={item.id} style={styles.div}>
+                            <Button onClick={() => { this.showDetail(item.id) }}
+                                style={styles.paperCenter} variant="contained">
+                                {item.title}
+                            </Button>
+                            <Button onClick={() => { this.handleComplete(item) }}
+                                style={styles.paperRight} variant="contained">
+                                Complete?
                             <CheckCircleIcon />
-                        </Button>
-                    </div>
-                ))}
-            </div>
+                            </Button>
+                        </div>
+                    ))}
+                </div>
+            </Router>
         )
     }
 }

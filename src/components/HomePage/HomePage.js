@@ -8,7 +8,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' })
-    console.log(this.props.user);
   }
 
   render() {

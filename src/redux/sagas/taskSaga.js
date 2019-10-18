@@ -37,9 +37,21 @@ function* addTask(action) {
         yield getOpenTasks(action);
         yield getMyTasks(action);
         yield getAllTasks(action);
-    }catch (error) {
+    } catch (error) {
         alert('There was an error adding task. Please try again later.')
         console.log('error in ADD_TASK: ', error);
+    }
+}
+
+function* completeTask(action) {
+    try {
+        yield axios.put('/api/task/complete', action.payload);
+        yield getOpenTasks(action);
+        yield getMyTasks(action);
+        yield getAllTasks(action);
+    } catch (error) {
+        alert('There was an error completing task. Please try again later.');
+        console.log('error in COMPLETE_TASK: ', error);
     }
 }
 
@@ -49,6 +61,7 @@ function* taskSaga() {
     yield takeLatest('GET_MY_TASKS', getMyTasks);
     yield takeLatest('GET_ALL_TASKS', getAllTasks);  
     yield takeLatest('ADD_TASK', addTask);
+    yield takeLatest('COMPLETE_TASK', completeTask);
 }
 
 export default taskSaga;

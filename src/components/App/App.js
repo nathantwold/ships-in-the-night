@@ -12,6 +12,7 @@ import HomePage from '../HomePage/HomePage';
 import InfoPage from '../InfoPage/InfoPage';
 import FleetPage from '../FleetPage/FleetPage';
 import NewTask from '../Tasks/NewTask';
+import TaskDetail from '../Tasks/TaskDetail';
 
 import './App.css';
 
@@ -61,6 +62,11 @@ class App extends Component {
               exact
               path="/newtask"
               component={NewTask}
+            />
+            <ProtectedRoute
+              exact
+              path="/detail/:id"
+              component={TaskDetail}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
