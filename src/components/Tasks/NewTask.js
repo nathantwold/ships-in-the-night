@@ -40,7 +40,7 @@ class NewTask extends Component {
             type: 'ADD_TASK',
             payload: this.state
         })
-        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.reduxStore.user })
+        // this.props.dispatch({ type: 'GET_TASKS', payload: this.props.reduxStore.user })
         this.props.history.push('/home')
         alert('Success!  Your task has been created!');
     }

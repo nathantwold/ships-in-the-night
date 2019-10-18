@@ -9,6 +9,7 @@ class NewTask extends Component {
         groupname: this.props.reduxStore.user.groupname,
         title: '',
         detail: '',
+        id: '',
     }
 
     componentDidMount = () => {
@@ -31,6 +32,7 @@ class NewTask extends Component {
                 groupname: this.props.reduxStore.user.groupname,
                 title: item.title,
                 detail: item.detail,
+                id: item.id,
             })
         })
     }
@@ -60,7 +62,9 @@ class NewTask extends Component {
     }
 
     handleSubmit = () => {
-        console.log(this.state);
+        this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
+        this.props.history.push('/home')
+        alert('Success!  Your task has been created!');
     }
 
     render() {
