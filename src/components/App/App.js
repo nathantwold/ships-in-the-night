@@ -14,11 +14,6 @@ import FleetPage from '../FleetPage/FleetPage';
 import NewTask from '../Tasks/NewTask';
 import TaskDetail from '../Tasks/TaskDetail';
 
-// import TaskView from '../Tasks/TaskView';
-// import OpenTasks from '../Tasks/OpenTasks';
-// import MyTasks from '../Tasks/MyTasks';
-// import AllTasks from '../Tasks/AllTasks';
-
 import './App.css';
 
 class App extends Component {
@@ -51,26 +46,6 @@ class App extends Component {
               path="/home"
               component={HomePage}
             />
-            {/* <ProtectedRoute
-              exact
-              path="/view"
-              component={TaskView}
-            />
-            <ProtectedRoute
-              exact
-              path="/opentasks"
-              component={OpenTasks}
-            />
-            <ProtectedRoute
-              exact
-              path="/mytasks"
-              component={MyTasks}
-            />
-            <ProtectedRoute
-              exact
-              path="/alltasks"
-              component={AllTasks}
-            /> */}
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute

@@ -18,12 +18,14 @@ class TaskDetail extends Component {
 
     ownTask = (item) => {
         console.log('In own: ', item);
-        
+
+        // this.props.history.push('/home')
     }
 
     completeTask = (item) => {
         console.log('In complete: ', item);
 
+        // this.props.history.push('/home')
     }
 
     editTask = (item) => {
@@ -33,7 +35,8 @@ class TaskDetail extends Component {
 
     deleteTask = (item) => {
         console.log('In delete: ', item);
-
+        this.props.dispatch({ type: 'DELETE_TASK', payload: item })
+        this.props.history.push('/home')
     }
 
     handleBack = () => {

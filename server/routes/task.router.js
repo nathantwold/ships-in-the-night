@@ -46,7 +46,7 @@ router.get('/detail/:id', (req, res) => {
  * POST route for new tasks
  */
 router.post('/', (req, res, next) => {
-    const queryText = `INSERT INTO "public"."tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
+    const queryText = `INSERT INTO "tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
     pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
@@ -57,10 +57,21 @@ router.post('/', (req, res, next) => {
  */
 router.put('/complete', (req, res) => {
     console.log(req.body);
-    const queryText = `UPDATE "public"."tasks" SET "complete" = TRUE WHERE "id" = $1;`;
+    const queryText = `UPDATE "tasks" SET "complete" = TRUE WHERE "id" = $1;`;
     pool.query(queryText, [req.body.id])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
 });
+
+/**
+ * DELETE route for deleting task
+ */
+router.delete('/delete/:id', (req, res) => {
+    console.log(req.params);
+    const queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id])
+    .then(() => res.sendStatus(201))
+    .catch(error => res.sendStatus(500))
+})
 
 module.exports = router;

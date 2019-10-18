@@ -66,6 +66,16 @@ function* getDetail(action) {
     }
 }
 
+function* deleteTask(action) {
+    try {
+        yield console.log(action.payload);
+        yield axios.delete('/api/task/delete/' + action.payload.id);
+    } catch (error) {
+        alert('There was an error deleting task. Please try again later.');
+        console.log('error in DELETE_TASK: ', error);
+    }
+}
+
 function* taskSaga() {
     yield takeLatest('GET_TASKS', getOpenTasks, getMyTasks, getAllTasks)
     yield takeLatest('GET_OPEN_TASKS', getOpenTasks);
@@ -74,6 +84,7 @@ function* taskSaga() {
     yield takeLatest('ADD_TASK', addTask);
     yield takeLatest('COMPLETE_TASK', completeTask);
     yield takeLatest('GET_DETAIL', getDetail);
+    yield takeLatest('DELETE_TASK', deleteTask);
 }
 
 export default taskSaga;

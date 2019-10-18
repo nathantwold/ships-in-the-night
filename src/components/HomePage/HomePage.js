@@ -7,7 +7,7 @@ import TaskView from '../Tasks/TaskView';
 class Home extends Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({ type: 'GET_TASKS' })
   }
 
   render() {
