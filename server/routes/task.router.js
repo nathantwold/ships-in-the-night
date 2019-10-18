@@ -56,7 +56,6 @@ router.post('/', (req, res, next) => {
  * PUT route for marking tasks as complete
  */
 router.put('/complete', (req, res) => {
-    console.log(req.body);
     const queryText = `UPDATE "tasks" SET "complete" = TRUE WHERE "id" = $1;`;
     pool.query(queryText, [req.body.id])
         .then(() => res.sendStatus(201))
@@ -67,7 +66,6 @@ router.put('/complete', (req, res) => {
  * DELETE route for deleting task
  */
 router.delete('/delete/:id', (req, res) => {
-    console.log(req.params);
     const queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
     pool.query(queryText, [req.params.id])
     .then(() => res.sendStatus(201))

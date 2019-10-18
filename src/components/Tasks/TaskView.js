@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
@@ -57,32 +57,29 @@ const TaskView = ({ user }) => {
     };
 
     return (
-        <div>
-            <AppBar position="static" style={styles.tabs}>
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-                    <Tab label="Open Tasks" {...a11yProps(0)} />
-                    <Tab label="My Tasks" {...a11yProps(1)} />
-                    <Tab label="All Tasks" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
-            <SwipeableViews
-                index={value}
-                onChangeIndex={handleChangeIndex}
-            >
-                <TabPanel value={value} index={0}>
-                    <OpenTasks user={user} />
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <MyTasks user={user} />
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <AllTasks user={user} />
-                </TabPanel>
-            </SwipeableViews>
-            <Link to="/newtask">
-                <h6>Add Task</h6>
-            </Link>
-        </div>
+            <div>
+                <AppBar position="static" style={styles.tabs}>
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+                        <Tab label="Open Tasks" {...a11yProps(0)} />
+                        <Tab label="My Tasks" {...a11yProps(1)} />
+                        <Tab label="All Tasks" {...a11yProps(2)} />
+                    </Tabs>
+                </AppBar>
+                <SwipeableViews
+                    index={value}
+                    onChangeIndex={handleChangeIndex}
+                >
+                    <TabPanel value={value} index={0}>
+                        <OpenTasks user={user} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <MyTasks user={user} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <AllTasks user={user} />
+                    </TabPanel>
+                </SwipeableViews>
+            </div>
     );
 }
 

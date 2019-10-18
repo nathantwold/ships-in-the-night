@@ -34,7 +34,6 @@ class TaskDetail extends Component {
     }
 
     deleteTask = (item) => {
-        console.log('In delete: ', item);
         this.props.dispatch({ type: 'DELETE_TASK', payload: item })
         this.props.history.push('/home')
     }
