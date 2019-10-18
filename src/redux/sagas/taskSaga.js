@@ -57,7 +57,6 @@ function* completeTask(action) {
 
 function* getDetail(action) {
     try {
-        yield console.log(action.payload);
         const response = yield axios.get('/api/task/detail/' + action.payload.id)
         yield put({ type: 'SET_DETAIL', payload: response.data });
     } catch (error) {

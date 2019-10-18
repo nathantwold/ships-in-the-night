@@ -50,8 +50,9 @@ class NewTask extends Component {
             <Router>
                 <div>
                     <TextField
+                        required
                         style={this.style.textField}
-                        label="Task Title*"
+                        label="Task Title"
                         variant="filled"
                         onChange={(event) => this.handleInputChangeFor(event, 'title')}
                     />

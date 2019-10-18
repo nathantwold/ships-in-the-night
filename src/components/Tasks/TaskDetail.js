@@ -16,30 +16,28 @@ class TaskDetail extends Component {
         this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
     }
 
-    ownTask = (item) => {
+    handleOwn = (item) => {
         console.log('In own: ', item);
 
         // this.props.history.push('/home')
     }
 
-    completeTask = (item) => {
-        console.log('In complete: ', item);
-
-        // this.props.history.push('/home')
+    handleComplete = (item) => {
+        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
+        this.props.history.push('/home');
     }
 
-    editTask = (item) => {
-        console.log('In edit: ', item);
-
+    handleEdit = (item) => {
+        this.props.history.push('/edittask/' + item.id)
     }
 
-    deleteTask = (item) => {
-        this.props.dispatch({ type: 'DELETE_TASK', payload: item })
-        this.props.history.push('/home')
+    handleDelete = (item) => {
+        this.props.dispatch({ type: 'DELETE_TASK', payload: item });
+        this.props.history.push('/home');
     }
 
     handleBack = () => {
-        this.props.history.push('/home')
+        this.props.history.push('/home');
     }
 
     render() {
@@ -52,10 +50,10 @@ class TaskDetail extends Component {
                             <h2>{item.title}</h2>
                             <h5>{item.detail}</h5>
                             <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
-                            <Button variant="contained" onClick={() => {this.ownTask(item)}}>Claim</Button>
-                            <Button variant="contained" onClick={() => {this.completeTask(item)}}>Complete</Button>
-                            <Button variant="contained" onClick={() => {this.editTask(item)}}>Edit</Button>
-                            <Button variant="contained" onClick={() => {this.deleteTask(item)}}>Delete</Button>
+                            <Button variant="contained" onClick={() => {this.handleOwn(item)}}>Claim</Button>
+                            <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
+                            <Button variant="contained" onClick={() => {this.handleEdit(item)}}>Edit</Button>
+                            <Button variant="contained" onClick={() => {this.handleDelete(item)}}>Delete</Button>
                             <Button variant="contained" onClick={this.handleBack}>Back</Button>
                         </div>
                     ))}

@@ -38,10 +38,10 @@ const styles = {
 class MyTasks extends Component {
 
     componentDidMount() {
-        this.getOpenTasks();
+        this.getMyTasks();
     }
 
-    getOpenTasks = () => {
+    getMyTasks = () => {
         this.props.dispatch({ type: 'GET_MY_TASKS', payload: this.props.user })
     }
 
