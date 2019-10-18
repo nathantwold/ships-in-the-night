@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
 
 import OpenTasks from './OpenTasks';
 import MyTasks from './MyTasks';
@@ -47,6 +48,10 @@ const TaskView = ({ user }) => {
         }
     }
 
+    const handleChangeIndex = index => {
+        setValue(index);
+    };
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -55,21 +60,26 @@ const TaskView = ({ user }) => {
         <Router>
             <div>
                 <AppBar position="static" style={styles.tabs}>
-                    <Tabs value={value} color="primary" onChange={handleChange} aria-label="simple tabs example" centered>
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
                         <Tab label="Open Tasks" {...a11yProps(0)} />
                         <Tab label="My Tasks" {...a11yProps(1)} />
                         <Tab label="All Tasks" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
-                <TabPanel value={value} index={0}>
-                    <OpenTasks user={user} />
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <MyTasks user={user} />
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <AllTasks user={user} />
-                </TabPanel>
+                <SwipeableViews
+                    index={value}
+                    onChangeIndex={handleChangeIndex}
+                >
+                    <TabPanel value={value} index={0}>
+                        <OpenTasks user={user} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <MyTasks user={user} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <AllTasks user={user} />
+                    </TabPanel>
+                </SwipeableViews>
                 <Link to="/newtask">
                     <h6>Add Task</h6>
                 </Link>
