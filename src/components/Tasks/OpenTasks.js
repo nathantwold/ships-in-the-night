@@ -54,14 +54,9 @@ class OpenTasks extends Component {
         this.props.history.push('/detail/' + id);
     }
 
-    addNewTask = () => {
-        this.props.history.push('/newtask')
-    }
-
     render() {
         return (
             <div>
-                <Button variant="contained" onClick={this.addNewTask}>Add task</Button>
                 {this.props.reduxStore.tasks.openTaskReducer.map(item => (
                     <div key={item.id} style={styles.div}>
                         <Button onClick={() => { this.showDetail(item.id) }}

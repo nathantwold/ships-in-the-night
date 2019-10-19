@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
@@ -57,23 +56,20 @@ const TaskView = ({ user }) => {
     };
 
     return (
-            <div>
+            <div className="appbar">
                 <AppBar position="static" style={styles.tabs}>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-                        <Tab label="My Tasks" {...a11yProps(0)} />
-                        <Tab label="Open Tasks" {...a11yProps(1)} />
+                        <Tab label="Open Tasks" {...a11yProps(0)} />
+                        <Tab label="My Tasks" {...a11yProps(1)} />
                         <Tab label="All Tasks" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
-                <SwipeableViews
-                    index={value}
-                    onChangeIndex={handleChangeIndex}
-                >
+                <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
                     <TabPanel value={value} index={0}>
-                        <MyTasks user={user} />
+                        <OpenTasks user={user} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <OpenTasks user={user} />
+                        <MyTasks user={user} />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         <AllTasks user={user} />
@@ -87,4 +83,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps)(withRouter(TaskView));
+export default connect(mapStateToProps)(TaskView);

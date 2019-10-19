@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Footer.css';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import HomeIcon from '@material-ui/icons/Home';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import GroupIcon from '@material-ui/icons/Group';
+import PersonIcon from '@material-ui/icons/Person';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const styles = {
   bar: {
@@ -17,6 +20,9 @@ const styles = {
     backgroundColor: "darkgreen",
   },
   each: {
+    color: "lightgreen",
+  },
+  add: {
     color: "white",
   }
 };
@@ -29,15 +35,15 @@ class Footer extends Component {
       <div>
         <BottomNavigation showLabels style={styles.bar} >
           <BottomNavigationAction onClick={() => this.props.history.push('/home')}
-            label="Home" icon={<FavoriteIcon />} />
+            label="Home" style={styles.each} icon={<HomeIcon />} />
           <BottomNavigationAction
-            label="Info" icon={<FavoriteIcon />} />
+            label="Info" style={styles.each} icon={<PersonIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
-            label="New Task" icon={<FavoriteIcon />} />
-          <BottomNavigationAction
-            label="Fleet" icon={<FavoriteIcon />} />
+            label="New Task" style={styles.add} icon={<AddCircleIcon />} />
+          <BottomNavigationAction onClick={() => this.props.history.push('/fleet')}
+            label="Fleet" style={styles.each} icon={<GroupIcon />} />
           <BottomNavigationAction onClick={() => this.props.dispatch({ type: 'LOGOUT' })}
-            label="Log Out" icon={<LocationOnIcon />} />
+            label="Log Out" style={styles.each} icon={<ExitToAppIcon />} />
         </BottomNavigation>
       </div>
     );
