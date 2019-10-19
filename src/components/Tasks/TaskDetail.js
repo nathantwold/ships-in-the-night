@@ -54,6 +54,7 @@ class TaskDetail extends Component {
     handleClaim = (item) => {
         console.log('In own: ', this.state);
         this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
+        this.props.dispatch({ type: 'GET_TASKS', payload: this.state })
         this.props.history.push('/home')
     }
 

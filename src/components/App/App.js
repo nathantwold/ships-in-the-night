@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import FooterEmpty from '../Footer/FooterEmpty';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -71,7 +72,7 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          {this.props.user.id ? <Footer /> : ''}
+          {this.props.user.id ? <Footer /> : <FooterEmpty />}
         </div>
       </Router>
     )

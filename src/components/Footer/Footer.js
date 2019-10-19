@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import './Footer.css';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -13,7 +12,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const styles = {
   bar: {
-    alignContent: "center",
+    textAlign: "center",
     width: "100%",
     position: "fixed",
     bottom: "0",
