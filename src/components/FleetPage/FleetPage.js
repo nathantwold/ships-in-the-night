@@ -73,13 +73,12 @@ class FleetPage extends Component {
         return (
             <Router>
                 <div style={style}>
+                    <h5>Create or join a fleet to get started!</h5>
                     {this.state.fleet.newFleet === true ?
                         <Button onClick={this.toggleFleet} size="small" variant="outlined">Join a fleet</Button> :
                         <Button onClick={this.toggleFleet} size="small" variant="outlined">Create a new fleet</Button>
                     }
-                    {this.state.newFleet === true ?
-                        <h5>Enter a fleet name and password to create a fleet</h5> : <h5>Enter a fleet name and password to join a fleet</h5>
-                    }
+                    <br />
                     <TextField
                         id="fleetName"
                         label="Fleet Name"
