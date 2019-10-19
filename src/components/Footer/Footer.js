@@ -1,19 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { HashRouter as Router, withRouter } from 'react-router-dom';
 import './Footer.css';
-import LogOutButton from '../LogOutButton/LogOutButton';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const Footer = () => (
-  <footer>
-    &copy; 2019 Ships in the Night
-    <LogOutButton className="logOut" />
-    <Link to="/fleet" className="fleetView">Fleet</Link>
-  </footer>
-);
+const styles = {
+  bar: {
+    alignContent: "center",
+    width: "100%",
+    position: "fixed",
+    bottom: "0",
+    backgroundColor: "darkgreen",
+  },
+  each: {
+    color: "white",
+  }
+};
 
-export default Footer;
+class Footer extends Component {
+
+  render() {
+
+    return (
+      <div>
+        <BottomNavigation showLabels style={styles.bar} >
+          <BottomNavigationAction onClick={() => this.props.history.push('/home')}
+            label="Home" icon={<FavoriteIcon />} />
+          <BottomNavigationAction
+            label="Info" icon={<FavoriteIcon />} />
+          <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
+            label="New Task" icon={<FavoriteIcon />} />
+          <BottomNavigationAction
+            label="Fleet" icon={<FavoriteIcon />} />
+          <BottomNavigationAction onClick={() => this.props.dispatch({ type: 'LOGOUT' })}
+            label="Log Out" icon={<LocationOnIcon />} />
+        </BottomNavigation>
+      </div>
+    );
+  }
+}
+
+export default connect()(withRouter(Footer));

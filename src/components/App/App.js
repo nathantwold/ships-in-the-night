@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Redirect, Switch, } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Header />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />

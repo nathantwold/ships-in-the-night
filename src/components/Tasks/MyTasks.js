@@ -60,20 +60,20 @@ class MyTasks extends Component {
     render() {
         return (
             <div>
-            <Button variant="contained" onClick={this.addNewTask}>Add task</Button>
-            {this.props.reduxStore.tasks.myTaskReducer.map(item => (
-                <div key={item.id} style={styles.div}>
-                    <Button onClick={() => { this.showDetail(item.id) }}
-                        style={styles.paperCenter} variant="contained">
-                        {item.title}
-                    </Button>
-                    <Button onClick={() => { this.handleComplete(item) }}
-                        style={styles.paperRight} variant="contained">
-                        Complete?
+                <Button variant="contained" onClick={this.addNewTask}>Add task</Button>
+                {this.props.reduxStore.tasks.myTaskReducer.map(item => (
+                    <div key={item.id} style={styles.div}>
+                        <Button onClick={() => { this.showDetail(item.id) }}
+                            style={styles.paperCenter} variant="contained">
+                            {item.title}
+                        </Button>
+                        <Button onClick={() => { this.handleComplete(item) }}
+                            style={styles.paperRight} variant="contained">
+                            Complete?
                         <CheckCircleIcon />
-                    </Button>
-                </div>
-            ))}
+                        </Button>
+                    </div>
+                ))}
             </div>
         )
     }
