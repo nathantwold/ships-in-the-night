@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
@@ -38,12 +37,15 @@ function a11yProps(index) {
     };
 }
 
-const TaskView = ({ user }) => {
+const TaskView = () => {
 
     const [value, setValue] = React.useState(0);
     const styles = {
         tabs: {
             backgroundColor: "green",
+        },
+        appbar: {
+            marginBottom: "10%",
         }
     }
 
@@ -56,7 +58,7 @@ const TaskView = ({ user }) => {
     };
 
     return (
-            <div className="appbar">
+            <div style={styles.appbar}>
                 <AppBar position="static" style={styles.tabs}>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
                         <Tab label="Open Tasks" {...a11yProps(0)} />
@@ -66,21 +68,17 @@ const TaskView = ({ user }) => {
                 </AppBar>
                 <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
                     <TabPanel value={value} index={0}>
-                        <OpenTasks user={user} />
+                        <OpenTasks />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <MyTasks user={user} />
+                        <MyTasks />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <AllTasks user={user} />
+                        <AllTasks />
                     </TabPanel>
                 </SwipeableViews>
             </div>
     );
 }
 
-const mapStateToProps = state => ({
-    user: state.user,
-});
-
-export default connect(mapStateToProps)(TaskView);
+export default TaskView;

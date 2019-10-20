@@ -20,8 +20,27 @@ class TaskDetail extends Component {
             marginLeft: '20%',
             marginRight: '20%',
             marginTop: '5%',
-            width: '60%'
+            width: '60%',
         },
+        button: {
+            marginLeft: '35%',
+            marginRight: '35%',
+            marginTop: '5%',
+            width: '30%',
+            marginBottom: '5%',
+            backgroundColor: 'seagreen',
+        },
+        delete: {
+            marginLeft: '35%',
+            marginRight: '35%',
+            marginTop: '5%',
+            width: '30%',
+            marginBottom: '15%',
+            backgroundColor: 'red',
+        },
+        options: {
+            textAlign: 'center',
+        }
     }
 
     componentDidMount = () => {
@@ -51,7 +70,7 @@ class TaskDetail extends Component {
         this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
     }
 
-    handleClaim = (item) => {
+    handleClaim = () => {
         console.log('In own: ', this.state);
         this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
         this.props.dispatch({ type: 'GET_TASKS', payload: this.state })
@@ -118,15 +137,19 @@ class TaskDetail extends Component {
                                 onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                             />
                             <br />
-                            <Button style={this.style.textField} variant="contained" onClick={this.checkFields}>
-                                Done!
+                            <Button style={this.style.button} variant="contained" onClick={this.checkFields}>
+                                Save
                             </Button>
-                            <div>
-                                <Button variant="contained" onClick={() => { this.handleClaim(item) }}>Claim</Button>
-                                <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
-                                <Button variant="contained" onClick={() => { this.handleDelete(item) }}>Delete</Button>
+                            <div style={this.style.options}>
                                 <Button variant="contained" onClick={this.handleBack}>Back</Button>
+                                <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
+                                <Button variant="contained" onClick={this.handleClaim}>Claim</Button>
                             </div>
+                            <Button style={this.style.delete} variant="contained" 
+                                onClick={() => { this.handleDelete(item) }}
+                            >
+                                Delete
+                            </Button>
                         </div>
                     ))}
                 </div>

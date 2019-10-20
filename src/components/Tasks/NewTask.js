@@ -18,6 +18,12 @@ class NewTask extends Component {
             marginTop: '5%',
             width: '60%'
         },
+        button: {
+            marginLeft: '35%',
+            marginRight: '35%',
+            marginTop: '5%',
+            width: '30%'
+        },
     }
 
     handleInputChangeFor = (event, input) => {
@@ -62,7 +68,7 @@ class NewTask extends Component {
                         onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                     />
                     <br />
-                    <Button style={this.style.textField} variant="contained" onClick={this.checkFields}>
+                    <Button style={this.style.button} variant="contained" onClick={this.checkFields}>
                         Add Task!
                     </Button>
                 </div>

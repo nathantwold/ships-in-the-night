@@ -8,17 +8,40 @@ class FleetPage extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_USER' })
-        console.log(this.props.user);
     }
 
     state = {
         fleet: {
             groupname: '',
             password: '',
-            currentUser: this.props.user.id,
+            currentUser: this.props.reduxStore.user.id,
             newFleet: true
         }
     };
+
+    style = {
+        textField: {
+            marginLeft: '20%',
+            marginRight: '20%',
+            marginTop: '5%',
+            width: '60%'
+        },
+        button: {
+            marginLeft: '35%',
+            marginRight: '35%',
+            marginTop: '5%',
+            width: '30%'
+        },
+    }
+
+    handleInputChangeFor = (event, input) => {
+        this.setState({
+            fleet: {
+                ...this.state.fleet,
+                [input]: event.target.value,
+            }
+        });
+    }
 
     // alert if fields are empty on submit
     checkFields = () => {
@@ -45,21 +68,12 @@ class FleetPage extends Component {
         }
     }
 
-    handleInputChangeFor = (event, input) => {
-        this.setState({
-            fleet: {
-                ...this.state.fleet,
-                [input]: event.target.value,
-            }
-        });
-    }
-
     toggleFleet = () => {
         this.setState({
             fleet: {
                 groupname: '',
                 password: '',
-                currentUser: this.props.user.id,
+                currentUser: this.props.reduxStore.user.id,
                 newFleet: !this.state.fleet.newFleet,
             }
         })
@@ -73,31 +87,49 @@ class FleetPage extends Component {
         return (
             <Router>
                 <div style={style}>
-                    <h5>Create or join a fleet to get started!</h5>
                     {this.state.fleet.newFleet === true ?
-                        <Button onClick={this.toggleFleet} size="small" variant="outlined">Join a fleet</Button> :
-                        <Button onClick={this.toggleFleet} size="small" variant="outlined">Create a new fleet</Button>
+                        <Button onClick={this.toggleFleet} size="small"
+                            style={this.style.button} variant="contained"
+                        >
+                            Join a fleet
+                        </Button> :
+                        <Button onClick={this.toggleFleet} size="small"
+                            style={this.style.button} variant="contained"
+                        >
+                            Create a new fleet
+                        </Button>
                     }
+                    <h5>Create or join a fleet to get started!</h5>
                     <br />
                     <TextField
                         id="fleetName"
+                        style={this.style.textField}
                         label="Fleet Name"
                         value={this.state.fleet.groupname}
                         onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
-                        variant="outlined"
+                        variant="filled"
                     />
                     <TextField
                         id="password"
+                        style={this.style.textField}
                         label="Password"
                         type="password"
                         value={this.state.fleet.password}
                         onChange={(event) => this.handleInputChangeFor(event, 'password')}
-                        variant="outlined"
+                        variant="filled"
                     />
                     <br />
                     {this.state.fleet.newFleet === true ?
-                        <Button onClick={this.checkFields} variant="outlined">Create!</Button> :
-                        <Button onClick={this.checkFields} variant="outlined">Join!</Button>
+                        <Button onClick={this.checkFields}
+                            style={this.style.button} variant="contained"
+                        >
+                            Create!
+                        </Button> :
+                        <Button onClick={this.checkFields}
+                            style={this.style.button} variant="contained"
+                        >
+                            Join!
+                        </Button>
                     }
                 </div>
             </Router>
@@ -105,8 +137,8 @@ class FleetPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    user: state.user,
+const mapStateToProps = reduxStore => ({
+    reduxStore,
 });
 
 export default connect(mapStateToProps)(FleetPage);
