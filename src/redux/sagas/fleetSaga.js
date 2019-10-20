@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import swal from 'sweetalert';
 
 function* createFleet(action) {
     try {
@@ -7,7 +8,7 @@ function* createFleet(action) {
         yield axios.put(`/api/fleet/create/${action.payload.currentUser}`, response.data);
     } catch (error) {
         console.log('Fleet create request failed', error);
-        alert('Please choose a different fleet name.')
+        swal('Please choose a different fleet name.')
     }
 }
 

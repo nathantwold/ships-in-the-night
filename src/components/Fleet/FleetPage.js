@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import swal from 'sweetalert';
 
 class FleetPage extends Component {
 
@@ -49,7 +50,7 @@ class FleetPage extends Component {
     // alert if fields are empty on submit
     checkFields = () => {
         if (this.state.fleet.groupname === '' || this.state.fleet.password === '') {
-            alert('Fleet name and password are required!');
+            swal('Fleet name and password are required!');
         } else {
             this.handleSubmit();
         }

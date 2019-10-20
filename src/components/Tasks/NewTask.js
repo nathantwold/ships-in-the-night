@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
+import swal from 'sweetalert';
 
 class NewTask extends Component {
 
@@ -35,7 +36,7 @@ class NewTask extends Component {
 
     checkFields = () => {
         if (this.state.title === '') {
-            alert('Please enter a task title!');
+            swal('Please enter a task title!');
         } else {
             this.handleSubmit();
         }
@@ -45,7 +46,7 @@ class NewTask extends Component {
         this.props.dispatch({ type: 'ADD_TASK', payload: this.state })
         // this.props.dispatch({ type: 'GET_TASKS', payload: this.props.reduxStore.user })
         this.props.history.push('/home')
-        // alert('Success!  Your task has been created!');
+        swal('Success!  Your task has been created!');
     }
 
     render() {

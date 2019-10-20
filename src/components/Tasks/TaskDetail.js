@@ -4,6 +4,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
 import { Button, TextField } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import swal from 'sweetalert';
 
 class TaskDetail extends Component {
 
@@ -100,7 +101,7 @@ class TaskDetail extends Component {
 
     checkFields = () => {
         if (this.state.title === '') {
-            alert('Please enter a task title!');
+            swal('Please enter a task title!');
         } else {
             this.handleSubmit();
         }
@@ -109,7 +110,7 @@ class TaskDetail extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
         this.props.history.push('/home')
-        alert('Success!  Your task has been updated!');
+        swal('Success!  Your task has been updated!');
     }
 
     render() {

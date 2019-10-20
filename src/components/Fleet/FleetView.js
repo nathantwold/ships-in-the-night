@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
+import swal from 'sweetalert';
 
 class FleetView extends Component {
     componentDidMount = () => {
@@ -16,7 +17,7 @@ class FleetView extends Component {
             this.props.dispatch({ type: 'REMOVE_USER', payload: user });
             this.getFleet();
         } else {
-            alert('Request denied. Only the fleet commander can remove a user.');
+            swal('Request denied. Only the fleet commander can remove a user.');
         }
     }
 
