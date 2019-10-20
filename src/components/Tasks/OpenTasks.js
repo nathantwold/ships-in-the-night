@@ -13,13 +13,6 @@ const styles = {
         padding: '1px',
         margin: '5px'
     },
-    paperLeft: {
-        height: '35px',
-        borderRadius: '3px',
-        textAlign: 'center',
-        fontSize: '8px',
-        backgroundColor: 'lightgreen',
-    },
     paperCenter: {
         height: '35px',
         borderRadius: '3px',

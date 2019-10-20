@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import HeaderWelcome from './HeaderWelcome';
 import './Header.css';
 
+// const styles = {
+//   header: {
+//     position: "fixed",
+//     top: "0",
+//     width: "100%",
+//   }
+// }
+
 class Header extends Component {
   render() {
     return (

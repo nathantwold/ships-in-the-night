@@ -6,8 +6,7 @@ const router = express.Router();
  * GET route 
  */
 router.get('/view', (req, res) => {
-    console.log(req.user);
-    const queryText = `SELECT * FROM "users" WHERE "groupname" = $1;`;
+    const queryText = `SELECT * FROM "users" WHERE "groupname" = $1 ORDER BY "admin_level" DESC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(() => res.sendStatus(500));
@@ -29,7 +28,6 @@ router.post('/create', (req, res, next) => {
  * PUT route for tagging fleet creator as admin
  */
 router.put('/create/:id', (req, res) => {
-    console.log('in create: ', req.body, req.params);
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=1 WHERE "id"=$2;`;
     pool.query(queryText, [req.body.name, req.params.id])
         .then(() => res.sendStatus(201))
@@ -40,7 +38,6 @@ router.put('/create/:id', (req, res) => {
  * PUT route for tagging fleet id to user on fleet join
  */
 router.put('/join', (req, res) => {
-    console.log('in join: ', req.body);
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=0 WHERE "id"=$2`
     pool.query(queryText, [req.body.groupname, req.body.currentUser])
         .then(() => res.sendStatus(201))

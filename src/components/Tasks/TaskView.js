@@ -43,6 +43,7 @@ const TaskView = () => {
     const styles = {
         tabs: {
             backgroundColor: "green",
+            width: "100%",
         },
         appbar: {
             marginBottom: "10%",

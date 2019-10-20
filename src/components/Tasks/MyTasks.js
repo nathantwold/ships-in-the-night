@@ -11,13 +11,7 @@ const styles = {
         flexDirection: 'wrap',
         width: '100%',
         padding: '1px',
-    },
-    paperLeft: {
-        height: '35px',
-        borderRadius: '3px',
-        textAlign: 'center',
-        fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        margin: '5px'
     },
     paperCenter: {
         height: '35px',

@@ -19,7 +19,7 @@ class FleetPage extends Component {
         }
     };
 
-    style = {
+    styles = {
         textField: {
             marginLeft: '20%',
             marginRight: '20%',
@@ -32,6 +32,9 @@ class FleetPage extends Component {
             marginTop: '5%',
             width: '30%'
         },
+        header: {
+            textAlign: "center",
+        }
     }
 
     handleInputChangeFor = (event, input) => {
@@ -80,21 +83,18 @@ class FleetPage extends Component {
     }
 
     render() {
-        const style = {
-            textAlign: "center",
-        }
 
         return (
             <Router>
-                <div style={style}>
+                <div style={this.styles.header}>
                     {this.state.fleet.newFleet === true ?
                         <Button onClick={this.toggleFleet} size="small"
-                            style={this.style.button} variant="contained"
+                            style={this.styles.button} variant="contained"
                         >
                             Join a fleet
                         </Button> :
                         <Button onClick={this.toggleFleet} size="small"
-                            style={this.style.button} variant="contained"
+                            style={this.styles.button} variant="contained"
                         >
                             Create a new fleet
                         </Button>
@@ -103,7 +103,7 @@ class FleetPage extends Component {
                     <br />
                     <TextField
                         id="fleetName"
-                        style={this.style.textField}
+                        style={this.styles.textField}
                         label="Fleet Name"
                         value={this.state.fleet.groupname}
                         onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
@@ -111,7 +111,7 @@ class FleetPage extends Component {
                     />
                     <TextField
                         id="password"
-                        style={this.style.textField}
+                        style={this.styles.textField}
                         label="Password"
                         type="password"
                         value={this.state.fleet.password}
@@ -121,12 +121,12 @@ class FleetPage extends Component {
                     <br />
                     {this.state.fleet.newFleet === true ?
                         <Button onClick={this.checkFields}
-                            style={this.style.button} variant="contained"
+                            style={this.styles.button} variant="contained"
                         >
                             Create!
                         </Button> :
                         <Button onClick={this.checkFields}
-                            style={this.style.button} variant="contained"
+                            style={this.styles.button} variant="contained"
                         >
                             Join!
                         </Button>
