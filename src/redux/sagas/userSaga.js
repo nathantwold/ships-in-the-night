@@ -42,10 +42,21 @@ function* joinFleet(action) {
   }
 }
 
+function* fetchFleet(action) {
+  try {
+    console.log(action.payload);
+    const response = yield axios.get('/api/fleet/view', action.payload);
+    yield put({ type: 'SET_FLEET', payload: response.data });
+  } catch (error) {
+    console.log('Fleet view request failed', error);
+}
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('NEW_FLEET', createFleet);
   yield takeLatest('JOIN_FLEET', joinFleet);
+  yield takeLatest('FETCH_FLEET', fetchFleet);
 }
 
 export default userSaga;

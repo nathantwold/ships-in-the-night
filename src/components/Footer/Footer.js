@@ -39,7 +39,7 @@ class Footer extends Component {
             label="Info" style={styles.each} icon={<PersonIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
             label="New Task" style={styles.add} icon={<AddCircleIcon />} />
-          <BottomNavigationAction onClick={() => this.props.history.push('/fleet')}
+          <BottomNavigationAction onClick={() => this.props.history.push('/fleetview')}
             label="Fleet" style={styles.each} icon={<GroupIcon />} />
           <BottomNavigationAction onClick={() => this.props.dispatch({ type: 'LOGOUT' })}
             label="Log Out" style={styles.each} icon={<ExitToAppIcon />} />

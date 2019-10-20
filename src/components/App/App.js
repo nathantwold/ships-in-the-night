@@ -11,7 +11,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import InfoPage from '../InfoPage/InfoPage';
-import FleetPage from '../FleetPage/FleetPage';
+import FleetPage from '../Fleet/FleetPage';
+import FleetView from '../Fleet/FleetView';
 import NewTask from '../Tasks/NewTask';
 import TaskDetail from '../Tasks/TaskDetail';
 
@@ -58,6 +59,11 @@ class App extends Component {
               exact
               path="/fleet"
               component={FleetPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/fleetview"
+              component={FleetView}
             />
             <ProtectedRoute
               exact

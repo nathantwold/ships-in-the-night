@@ -5,21 +5,25 @@ const router = express.Router();
 /**
  * GET route 
  */
-router.get('/', (req, res) => {
-    
+router.get('/view', (req, res) => {
+    console.log(req.user);
+    const queryText = `SELECT * FROM "users" WHERE "groupname" = $1;`;
+    pool.query(queryText, [req.user.groupname])
+        .then((result) => res.send(result.rows))
+        .catch(() => res.sendStatus(500));
 });
 
 /**
  * POST route to create new fleet
  */
-router.post('/create', (req, res, next) => {  
+router.post('/create', (req, res, next) => {
     const groupname = req.body.groupname;
     const password = req.body.password;
     const queryText = `INSERT INTO "public"."groups"("name", "password") VALUES($1, $2) RETURNING "public"."groups".name;`;
     pool.query(queryText, [groupname, password])
-      .then((result) => res.send(result.rows[0]))
-      .catch(() => res.sendStatus(500));
-  });
+        .then((result) => res.send(result.rows[0]))
+        .catch(() => res.sendStatus(500));
+});
 
 /**
  * PUT route for tagging fleet creator as admin
@@ -28,19 +32,19 @@ router.put('/create/:id', (req, res) => {
     console.log('in create: ', req.body, req.params);
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=1 WHERE "id"=$2;`;
     pool.query(queryText, [req.body.name, req.params.id])
-    .then(() => res.sendStatus(201))
-    .catch(() => res.sendStatus(500))
+        .then(() => res.sendStatus(201))
+        .catch(() => res.sendStatus(500))
 });
 
 /**
  * PUT route for tagging fleet id to user on fleet join
  */
 router.put('/join', (req, res) => {
-    console.log('in join: ', req.body); 
+    console.log('in join: ', req.body);
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=0 WHERE "id"=$2`
     pool.query(queryText, [req.body.groupname, req.body.currentUser])
-    .then(() => res.sendStatus(201))
-    .catch(() => res.sendStatus(500))
+        .then(() => res.sendStatus(201))
+        .catch(() => res.sendStatus(500))
 });
 
 module.exports = router;
