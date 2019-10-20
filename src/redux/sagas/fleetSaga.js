@@ -28,10 +28,20 @@ function* fetchFleet(action) {
     }
 }
 
+function* removeUser(action) {
+    try {
+        yield axios.put('/api/fleet/remove', action.payload)
+        yield fetchFleet(action);
+    } catch (error) {
+        console.log('Error trying to remove user', error);
+    }
+}
+
 function* fleetSaga() {
     yield takeLatest('NEW_FLEET', createFleet);
     yield takeLatest('JOIN_FLEET', joinFleet);
     yield takeLatest('FETCH_FLEET', fetchFleet);
+    yield takeLatest('REMOVE_USER', removeUser);
 }
 
 export default fleetSaga;

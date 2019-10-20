@@ -11,28 +11,64 @@ class FleetView extends Component {
         this.props.dispatch({ type: 'FETCH_FLEET', payload: this.props.reduxStore.user });
     }
 
-    authorizeRemove = (user) => {
+    removeUser = (user) => {
         if (this.props.reduxStore.user.admin_level === 1) {
-            console.log(user);
-            // this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+            this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+            this.getFleet();
         } else {
-            alert('Request denied. Only the fleet commander can remove ');
+            alert('Request denied. Only the fleet commander can remove a user.');
+        }
+    }
+
+    leaveFleet = (user) => {
+        if (window.confirm(`Are you sure you wish to leave ${user.groupname} fleet?`)) {
+            this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+            this.props.history.push('/fleet');
+        }
+    }
+
+    sendInvite = () => {
+        console.log('sending invite');
+    }
+
+    styles = {
+        main: {
+            textAlign: "center",
+        },
+        button: {
+            margin: "10px",
         }
     }
 
     render() {
         return (
-            <div>
+            <div style={this.styles.main}>
+                {this.props.reduxStore.user.groupname !== "0" ?
+                    <Button style={this.styles.button} onClick={this.sendInvite} variant="contained">
+                        Send fleet invite
+                    </Button> : ''
+                }
                 {this.props.reduxStore.fleet.map(user => (
                     <div key={user.id}>
-                        <h4>{user.username}</h4>
                         {user.id === this.props.reduxStore.user.id ?
-                            <Button onClick={() => console.log(user.id)}>
-                                Leave fleet
-                            </Button> :
-                            <Button onClick={() => {this.authorizeRemove(user)}}>
-                                Remove
-                            </Button>
+                            <div>
+                                <h4>{user.username}</h4>
+                                <Button variant="contained" onClick={() => { this.leaveFleet(user) }}>
+                                    Leave fleet
+                                </Button>
+                            </div> : ''
+                        }
+                    </div>
+                ))}
+                {this.props.reduxStore.fleet.map(user => (
+                    <div key={user.id}>
+                        {user.id !== this.props.reduxStore.user.id ?
+                            <div>
+                                <h4>{user.username}</h4>
+                                <Button variant="contained" onClick={() => { this.removeUser(user) }}>
+                                    Remove
+                                </Button>
+                            </div> : ''
                         }
                     </div>
                 ))}

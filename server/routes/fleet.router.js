@@ -44,4 +44,14 @@ router.put('/join', (req, res) => {
         .catch(() => res.sendStatus(500))
 });
 
+/**
+ * PUT route for removing user from fleet
+ */
+router.put('/remove', (req, res) => {
+    const queryText = `UPDATE "users" SET "groupname" = 0 WHERE "id" = $1;`;
+    pool.query(queryText, [req.body.id])
+        .then(() => res.sendStatus(201))
+        .catch(() => res.sendStatus(500))
+});
+
 module.exports = router;
