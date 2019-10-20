@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route 
  */
 router.get('/view', (req, res) => {
-    const queryText = `SELECT * FROM "users" WHERE "groupname" = $1 ORDER BY "admin_level" DESC;`;
+    const queryText = `SELECT * FROM "users" WHERE "groupname"=$1 ORDER BY "admin_level" DESC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(() => res.sendStatus(500));
@@ -48,7 +48,7 @@ router.put('/join', (req, res) => {
  * PUT route for removing user from fleet
  */
 router.put('/remove', (req, res) => {
-    const queryText = `UPDATE "users" SET "groupname" = 0 WHERE "id" = $1;`;
+    const queryText = `UPDATE "users" SET "groupname"=0, "admin_level"=0 WHERE "id" = $1;`;
     pool.query(queryText, [req.body.id])
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500))
