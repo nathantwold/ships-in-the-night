@@ -46,8 +46,8 @@ router.get('/detail/:id', (req, res) => {
  * POST route for new tasks
  */
 router.post('/', (req, res, next) => {
-    const queryText = `INSERT INTO "tasks"("groupname", "title", "detail") VALUES($1, $2, $3);`;
-    pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail])
+    const queryText = `INSERT INTO "tasks"("groupname", "title", "detail", "due") VALUES($1, $2, $3, $4);`;
+    pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail, req.body.due])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
 });
@@ -66,8 +66,8 @@ router.put('/complete', (req, res) => {
  * PUT route for editing tasks
  */
 router.put('/edit', (req, res) => {
-    const queryText = `UPDATE "tasks" SET "title"=$1, "detail"=$2 WHERE "id"=$3;`;
-    pool.query(queryText, [req.body.title, req.body.detail, req.body.id])
+    const queryText = `UPDATE "tasks" SET "title"=$1, "detail"=$2, "due"=$3 WHERE "id"=$4;`;
+    pool.query(queryText, [req.body.title, req.body.detail, req.body.due, req.body.id])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
 });

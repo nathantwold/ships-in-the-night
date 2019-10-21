@@ -10,6 +10,7 @@ class NewTask extends Component {
         groupname: this.props.reduxStore.user.groupname,
         title: '',
         detail: '',
+        due: ''
     }
 
     style = {
@@ -46,7 +47,6 @@ class NewTask extends Component {
         this.props.dispatch({ type: 'ADD_TASK', payload: this.state });
         swal('Success', 'Your task has been created!', 'success')
             .then(this.props.history.push('/home'));
-
     }
 
     render() {
@@ -67,6 +67,17 @@ class NewTask extends Component {
                         variant="filled"
                         multiline rows="6"
                         onChange={(event) => this.handleInputChangeFor(event, 'detail')}
+                    />
+                    <br />
+                    <TextField
+                        style={this.style.textField}
+                        label="Due date"
+                        variant="filled"
+                        type="date"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        onChange={(event) => this.handleInputChangeFor(event, 'due')}
                     />
                     <br />
                     <Button style={this.style.button} variant="contained" onClick={this.checkFields}>

@@ -14,19 +14,15 @@ const styles = {
         width: '60%',
     },
     button: {
-        marginLeft: '35%',
-        marginRight: '35%',
         marginTop: '5%',
         width: '30%',
         marginBottom: '5%',
         backgroundColor: 'seagreen',
     },
     delete: {
-        marginLeft: '35%',
-        marginRight: '35%',
         marginTop: '5%',
         width: '30%',
-        marginBottom: '15%',
+        marginBottom: '5%',
         backgroundColor: 'red',
     },
     options: {
@@ -42,6 +38,7 @@ class TaskDetail extends Component {
         detail: '',
         id: '',
         username: '',
+        due: '',
     }
 
     componentDidMount = () => {
@@ -62,6 +59,7 @@ class TaskDetail extends Component {
                 detail: item.detail,
                 id: item.id,
                 username: this.props.reduxStore.user.username,
+                due: item.due,
             })
         })
     }
@@ -128,6 +126,9 @@ class TaskDetail extends Component {
                                 <h5>Claimed by: {item.username}</h5> :
                                 <h5>Completed by: {item.username}</h5>
                             }
+                            {item.due !== null ? 
+                                <h5>Due: {moment(item.due).format("MMMM Do YYYY")}</h5> : ''
+                            }
                             <TextField
                                 defaultValue={item.title}
                                 style={styles.textField}
@@ -145,9 +146,25 @@ class TaskDetail extends Component {
                                 onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                             />
                             <br />
-                            <Button style={styles.button} variant="contained" onClick={this.checkFields}>
-                                Save
-                            </Button>
+                            <TextField
+                                style={styles.textField}
+                                label="Due date"
+                                variant="filled"
+                                type="date"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={(event) => this.handleInputChangeFor(event, 'due')}
+                            />
+                            <br />
+                            <div style={styles.options}>
+                                <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
+                                    Delete
+                                </Button>
+                                <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                                    Save
+                                </Button>
+                            </div>
                             <div style={styles.options}>
                                 <Button variant="contained" onClick={this.handleBack}>Back</Button>
                                 {item.complete === false ?
@@ -156,11 +173,6 @@ class TaskDetail extends Component {
                                 }
                                 <Button variant="contained" onClick={this.handleClaim}>Claim</Button>
                             </div>
-                            <Button style={styles.delete} variant="contained"
-                                onClick={() => { this.handleDelete(item) }}
-                            >
-                                Delete
-                            </Button>
                         </div>
                     ))}
                 </div>
