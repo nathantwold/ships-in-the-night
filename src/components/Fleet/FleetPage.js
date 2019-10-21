@@ -51,7 +51,7 @@ class FleetPage extends Component {
     // alert if fields are empty on submit
     checkFields = () => {
         if (this.state.fleet.groupname === '' || this.state.fleet.password === '') {
-            swal('Enter a fleet name and password!');
+            swal('Missing info', 'Enter a fleet name and password!', 'warning');
         } else {
             this.handleSubmit();
         }

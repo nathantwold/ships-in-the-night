@@ -3,8 +3,36 @@ import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
 import { Button, TextField } from '@material-ui/core';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from 'sweetalert';
+
+
+const styles = {
+    textField: {
+        marginLeft: '20%',
+        marginRight: '20%',
+        marginTop: '5%',
+        width: '60%',
+    },
+    button: {
+        marginLeft: '35%',
+        marginRight: '35%',
+        marginTop: '5%',
+        width: '30%',
+        marginBottom: '5%',
+        backgroundColor: 'seagreen',
+    },
+    delete: {
+        marginLeft: '35%',
+        marginRight: '35%',
+        marginTop: '5%',
+        width: '30%',
+        marginBottom: '15%',
+        backgroundColor: 'red',
+    },
+    options: {
+        textAlign: 'center',
+    }
+}
 
 class TaskDetail extends Component {
 
@@ -14,34 +42,6 @@ class TaskDetail extends Component {
         detail: '',
         id: '',
         username: '',
-    }
-
-    style = {
-        textField: {
-            marginLeft: '20%',
-            marginRight: '20%',
-            marginTop: '5%',
-            width: '60%',
-        },
-        button: {
-            marginLeft: '35%',
-            marginRight: '35%',
-            marginTop: '5%',
-            width: '30%',
-            marginBottom: '5%',
-            backgroundColor: 'seagreen',
-        },
-        delete: {
-            marginLeft: '35%',
-            marginRight: '35%',
-            marginTop: '5%',
-            width: '30%',
-            marginBottom: '15%',
-            backgroundColor: 'red',
-        },
-        options: {
-            textAlign: 'center',
-        }
     }
 
     componentDidMount = () => {
@@ -67,15 +67,12 @@ class TaskDetail extends Component {
     }
 
     getDetail = () => {
-        console.log(this.props.match.params);
         this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
     }
 
     handleClaim = () => {
-        console.log('In own: ', this.state);
-        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
-        this.props.dispatch({ type: 'GET_TASKS', payload: this.state })
-        this.props.history.push('/home')
+        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state });
+        this.props.history.push('/home');
     }
 
     handleComplete = (item) => {
@@ -101,7 +98,7 @@ class TaskDetail extends Component {
 
     checkFields = () => {
         if (this.state.title === '') {
-            swal('Please enter a task title!');
+            swal('Missing info', 'Please enter a task title!', 'warning');
         } else {
             this.handleSubmit();
         }
@@ -110,7 +107,7 @@ class TaskDetail extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
         this.props.history.push('/home')
-        swal('Your task has been updated!');
+        swal('Success', 'Your task has been updated!', 'success');
     }
 
     render() {
@@ -123,7 +120,7 @@ class TaskDetail extends Component {
                             <h5>Currently claimed by: {item.username}</h5>
                             <TextField
                                 defaultValue={item.title}
-                                style={this.style.textField}
+                                style={styles.textField}
                                 label="Task Title*"
                                 variant="filled"
                                 onChange={(event) => this.handleInputChangeFor(event, 'title')}
@@ -131,22 +128,22 @@ class TaskDetail extends Component {
                             <br />
                             <TextField
                                 defaultValue={item.detail}
-                                style={this.style.textField}
+                                style={styles.textField}
                                 label="Task Details"
                                 variant="filled"
                                 multiline rows="6"
                                 onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                             />
                             <br />
-                            <Button style={this.style.button} variant="contained" onClick={this.checkFields}>
+                            <Button style={styles.button} variant="contained" onClick={this.checkFields}>
                                 Save
                             </Button>
-                            <div style={this.style.options}>
+                            <div style={styles.options}>
                                 <Button variant="contained" onClick={this.handleBack}>Back</Button>
                                 <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
                                 <Button variant="contained" onClick={this.handleClaim}>Claim</Button>
                             </div>
-                            <Button style={this.style.delete} variant="contained" 
+                            <Button style={styles.delete} variant="contained"
                                 onClick={() => { this.handleDelete(item) }}
                             >
                                 Delete

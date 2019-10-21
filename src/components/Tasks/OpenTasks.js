@@ -36,11 +36,11 @@ class OpenTasks extends Component {
     }
 
     getOpenTasks = () => {
-        this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user })
+        this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user });
     }
 
     handleComplete = (item) => {
-        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item })
+        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
     }
 
     showDetail = (id) => {

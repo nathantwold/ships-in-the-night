@@ -36,11 +36,11 @@ class MyTasks extends Component {
     }
 
     getMyTasks = () => {
-        this.props.dispatch({ type: 'GET_MY_TASKS', payload: this.props.user })
+        this.props.dispatch({ type: 'GET_MY_TASKS', payload: this.props.user });
     }
 
     handleComplete = (item) => {
-        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item })
+        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
     }
 
     showDetail = (id) => {

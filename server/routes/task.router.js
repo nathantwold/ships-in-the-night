@@ -77,7 +77,7 @@ router.put('/edit', (req, res) => {
  */
 router.put('/claim', (req, res) => {
     const queryText = `UPDATE "tasks" SET "username"=$1 WHERE "id"=$2;`;
-    pool.query(queryText, [req.body.username, req.body.id])
+    pool.query(queryText, [req.user.username, req.body.id])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))
 });

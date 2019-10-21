@@ -36,7 +36,7 @@ class NewTask extends Component {
 
     checkFields = () => {
         if (this.state.title === '') {
-            swal('Enter a task title!');
+            swal('Missing info', 'Enter a task title!', 'warning');
         } else {
             this.handleSubmit();
         }
@@ -45,7 +45,7 @@ class NewTask extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: 'ADD_TASK', payload: this.state })
         this.props.history.push('/home')
-        swal('Your task has been created!');
+        swal('Success', 'Your task has been created!', 'success');
     }
 
     render() {

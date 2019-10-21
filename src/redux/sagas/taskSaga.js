@@ -7,7 +7,7 @@ function* getOpenTasks(action) {
         const response = yield axios.get(`/api/task/opentasks`, action.payload);
         yield put({ type: 'SET_OPEN_TASKS', payload: response.data})
     } catch (error) {
-        swal('There was an error getting tasks. Please try again later.')
+        swal('There was an error getting tasks', 'Please try again later', 'error')
         console.log('error in GET_OPEN_TASKS: ', error);
     }
 }
@@ -17,7 +17,7 @@ function* getMyTasks(action) {
         const response = yield axios.get(`/api/task/mytasks`, action.payload);
         yield put({ type: 'SET_MY_TASKS', payload: response.data})
     } catch (error) {
-        swal('There was an error getting tasks. Please try again later.')
+        swal('There was an error getting tasks', 'Please try again later', 'error')
         console.log('error in GET_MY_TASKS: ', error);
     }
 }
@@ -27,7 +27,7 @@ function* getAllTasks(action) {
         const response = yield axios.get(`/api/task/alltasks`, action.payload);
         yield put({ type: 'SET_ALL_TASKS', payload: response.data})
     } catch (error) {
-        swal('There was an error getting tasks. Please try again later.')
+        swal('There was an error getting tasks', 'Please try again later', 'error')
         console.log('error in GET_ALL_TASKS: ', error);
     }
 }
@@ -39,7 +39,7 @@ function* addTask(action) {
         yield getMyTasks(action);
         yield getAllTasks(action);
     } catch (error) {
-        swal('There was an error adding task. Please try again later.')
+        swal('There was an error adding task', 'Please try again later', 'error')
         console.log('error in ADD_TASK: ', error);
     }
 }
@@ -51,7 +51,7 @@ function* completeTask(action) {
         yield getMyTasks(action);
         yield getAllTasks(action);
     } catch (error) {
-        swal('There was an error completing task. Please try again later.');
+        swal('There was an error completing task', 'Please try again later', 'error');
         console.log('error in COMPLETE_TASK: ', error);
     }
 }
@@ -61,7 +61,7 @@ function* getDetail(action) {
         const response = yield axios.get('/api/task/detail/' + action.payload.id)
         yield put({ type: 'SET_DETAIL', payload: response.data });
     } catch (error) {
-        swal('There was an error getting task. Please try again later.');
+        swal('There was an error getting task', 'Please try again later', 'error');
         console.log('error in GET_DETAIL: ', error);
     }
 }
@@ -74,7 +74,7 @@ function* deleteTask(action) {
         yield getMyTasks(action);
         yield getAllTasks(action);
     } catch (error) {
-        swal('There was an error deleting task. Please try again later.');
+        swal('There was an error deleting task', 'Please try again later', 'error');
         console.log('error in DELETE_TASK: ', error);
     }
 }
@@ -86,7 +86,7 @@ function* editTask(action) {
         yield getMyTasks(action);
         yield getAllTasks(action);
     } catch (error) {
-        swal('There was an error updating task. Please try again later.');
+        swal('There was an error updating task', 'Please try again later', 'error');
         console.log('error in EDIT_TASK: ', error);
     }
 }
@@ -98,7 +98,7 @@ function* claimTask(action) {
         yield getMyTasks(action);
         yield getAllTasks(action);
     } catch (error) {
-        swal('There was an error claiming task. Please try again later.');
+        swal('There was an error claiming task', 'Please try again later', 'error');
         console.log('error in CLAIM_TASK: ', error);
     }
 }

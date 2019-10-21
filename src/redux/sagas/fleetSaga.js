@@ -8,7 +8,7 @@ function* createFleet(action) {
         yield axios.put(`/api/fleet/create/${action.payload.currentUser}`, response.data);
     } catch (error) {
         console.log('Fleet create request failed', error);
-        swal('Please choose a different fleet name.')
+        swal('Fleet name not available', 'Please choose a different fleet name.', 'warning')
     }
 }
 
