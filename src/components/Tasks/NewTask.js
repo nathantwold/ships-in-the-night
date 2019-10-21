@@ -43,9 +43,10 @@ class NewTask extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'ADD_TASK', payload: this.state })
-        this.props.history.push('/home')
-        swal('Success', 'Your task has been created!', 'success');
+        this.props.dispatch({ type: 'ADD_TASK', payload: this.state });
+        swal('Success', 'Your task has been created!', 'success')
+            .then(this.props.history.push('/home'));
+
     }
 
     render() {

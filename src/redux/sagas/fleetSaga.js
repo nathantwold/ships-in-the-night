@@ -15,7 +15,6 @@ function* createFleet(action) {
 function* joinFleet(action) {
     try {
         yield axios.put('/api/fleet/join', action.payload);
-        swal('Welcome to the fleet, Captain ' + action.payload.username)
     } catch (error) {
         console.log('Fleet join request failed', error);
     }

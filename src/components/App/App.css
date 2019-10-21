@@ -4,8 +4,10 @@ body {
 }
 
 .alert {
-    background-color: #ff4545;
+    background-color: #c92e2e;
     margin: 50px;
+    text-align: center;
+    border-radius: 10px;
 }
 
 form {
