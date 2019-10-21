@@ -14,8 +14,22 @@ class FleetView extends Component {
 
     removeUser = (user) => {
         if (this.props.reduxStore.user.admin_level === 1) {
-            this.props.dispatch({ type: 'REMOVE_USER', payload: user });
-            swal(user.username, ' has been removed from the fleet.', 'success');
+            swal({
+                text: `Are you sure you wish to remove ${user.username} from the fleet?`,
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+                        swal(`${user.username} has left the fleet!`, {
+                            icon: "success",
+                        });
+                    } else {
+                        swal('Cancelled!');
+                    }
+                });
             this.getFleet();
         } else {
             swal('Request denied', 'Only the fleet commander can remove a user.', 'warning');
@@ -37,7 +51,7 @@ class FleetView extends Component {
                     });
                     this.props.history.push('/fleet');
                 } else {
-                    swal('You remain in the fleet!');
+                    swal('Cancelled!');
                 }
             });
     }

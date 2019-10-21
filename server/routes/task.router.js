@@ -56,7 +56,7 @@ router.post('/', (req, res, next) => {
  * PUT route for marking tasks as complete
  */
 router.put('/complete', (req, res) => {
-    const queryText = `UPDATE "tasks" SET "complete"=TRUE, "username"=$1 WHERE "id"=$2;`;
+    const queryText = `UPDATE "tasks" SET "complete"=NOT "complete", "username"=$1 WHERE "id"=$2;`;
     pool.query(queryText, [req.user.username, req.body.id])
         .then(() => res.sendStatus(201))
         .catch(error => res.sendStatus(500))

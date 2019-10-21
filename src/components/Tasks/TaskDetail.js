@@ -78,7 +78,11 @@ class TaskDetail extends Component {
 
     handleComplete = (item) => {
         this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
-        swal({ text: 'Nice work, Captain!', icon: 'success' })
+        if (item.complete === false) {
+            swal({ text: 'Nice work, Captain!', icon: 'success' })
+        } else {
+            swal({ text: 'Task has been re-opened!', icon: 'success' })
+        }
         this.props.history.push('/home');
     }
 
@@ -121,8 +125,8 @@ class TaskDetail extends Component {
                         <div key={item.id}>
                             <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
                             {item.complete === false ?
-                            <h5>Claimed by: {item.username}</h5> :
-                            <h5>Completed by: {item.username}</h5>
+                                <h5>Claimed by: {item.username}</h5> :
+                                <h5>Completed by: {item.username}</h5>
                             }
                             <TextField
                                 defaultValue={item.title}
@@ -146,7 +150,10 @@ class TaskDetail extends Component {
                             </Button>
                             <div style={styles.options}>
                                 <Button variant="contained" onClick={this.handleBack}>Back</Button>
-                                <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button>
+                                {item.complete === false ?
+                                    <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button> :
+                                    <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Open</Button>
+                                }
                                 <Button variant="contained" onClick={this.handleClaim}>Claim</Button>
                             </div>
                             <Button style={styles.delete} variant="contained"
