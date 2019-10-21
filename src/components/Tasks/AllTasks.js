@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PanToolIcon from '@material-ui/icons/PanTool';
+import swal from "sweetalert";
 
 const styles = {
     div: {
@@ -43,11 +43,13 @@ class AllTasks extends Component {
 
     handleClaim = (item) => {
         this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
-        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user })
+        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
+        swal({ text: 'The task is yours, Captain!', icon: 'success' })
     }
 
     handleDelete = (item) => {
         this.props.dispatch({ type: 'DELETE_TASK', payload: item });
+        swal({ text: 'Task deleted!', icon: 'success' })
     }
 
     showDetail = (id) => {

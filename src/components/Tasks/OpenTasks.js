@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import swal from "sweetalert";
 
 const styles = {
     div: {
@@ -41,6 +42,7 @@ class OpenTasks extends Component {
 
     handleComplete = (item) => {
         this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
+        swal({ text: 'Nice work, Captain!', icon: 'success' })
     }
 
     showDetail = (id) => {

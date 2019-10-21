@@ -23,10 +23,23 @@ class FleetView extends Component {
     }
 
     leaveFleet = (user) => {
-        if (window.confirm(`Are you sure you wish to leave ${user.groupname} fleet?`)) {
-            this.props.dispatch({ type: 'REMOVE_USER', payload: user });
-            this.props.history.push('/fleet');
-        }
+        swal({
+            text: `Are you sure you wish to leave ${user.groupname} fleet?`,
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+                    swal('You have left the fleet!', {
+                        icon: "success",
+                    });
+                    this.props.history.push('/fleet');
+                } else {
+                    swal('You remain in the fleet!');
+                }
+            });
     }
 
     sendInvite = () => {

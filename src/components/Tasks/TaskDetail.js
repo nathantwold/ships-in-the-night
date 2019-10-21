@@ -71,17 +71,20 @@ class TaskDetail extends Component {
     }
 
     handleClaim = () => {
-        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state });
+        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
+        swal({ text: 'The task is yours, Captain!', icon: 'success' });
         this.props.history.push('/home');
     }
 
     handleComplete = (item) => {
         this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
+        swal({ text: 'Nice work, Captain!', icon: 'success' })
         this.props.history.push('/home');
     }
 
     handleDelete = (item) => {
         this.props.dispatch({ type: 'DELETE_TASK', payload: item });
+        swal({ text: 'Task deleted!', icon: 'success' })
         this.props.history.push('/home');
     }
 
@@ -117,7 +120,10 @@ class TaskDetail extends Component {
                     {this.props.reduxStore.tasks.setDetailReducer.map(item => (
                         <div key={item.id}>
                             <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
-                            <h5>Currently claimed by: {item.username}</h5>
+                            {item.complete === false ?
+                            <h5>Claimed by: {item.username}</h5> :
+                            <h5>Completed by: {item.username}</h5>
+                            }
                             <TextField
                                 defaultValue={item.title}
                                 style={styles.textField}
