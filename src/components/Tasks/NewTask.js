@@ -36,7 +36,7 @@ class NewTask extends Component {
 
     checkFields = () => {
         if (this.state.title === '') {
-            swal('Please enter a task title!');
+            swal('Enter a task title!');
         } else {
             this.handleSubmit();
         }
@@ -44,9 +44,8 @@ class NewTask extends Component {
 
     handleSubmit = () => {
         this.props.dispatch({ type: 'ADD_TASK', payload: this.state })
-        // this.props.dispatch({ type: 'GET_TASKS', payload: this.props.reduxStore.user })
         this.props.history.push('/home')
-        swal('Success!  Your task has been created!');
+        swal('Your task has been created!');
     }
 
     render() {

@@ -110,7 +110,7 @@ class TaskDetail extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
         this.props.history.push('/home')
-        swal('Success!  Your task has been updated!');
+        swal('Your task has been updated!');
     }
 
     render() {

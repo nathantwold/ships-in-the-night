@@ -16,6 +16,7 @@ class FleetPage extends Component {
             groupname: '',
             password: '',
             currentUser: this.props.reduxStore.user.id,
+            username: this.props.reduxStore.user.username,
             newFleet: true
         }
     };
@@ -50,7 +51,7 @@ class FleetPage extends Component {
     // alert if fields are empty on submit
     checkFields = () => {
         if (this.state.fleet.groupname === '' || this.state.fleet.password === '') {
-            swal('Fleet name and password are required!');
+            swal('Enter a fleet name and password!');
         } else {
             this.handleSubmit();
         }
@@ -62,12 +63,14 @@ class FleetPage extends Component {
                 type: 'NEW_FLEET',
                 payload: this.state.fleet
             })
+            this.props.dispatch({ type: 'GET_TASKS' })
             this.props.history.push('/home')
         } else {
             this.props.dispatch({
                 type: 'JOIN_FLEET',
                 payload: this.state.fleet
             })
+            this.props.dispatch({ type: 'GET_TASKS' })
             this.props.history.push('/home')
         }
     }
@@ -79,6 +82,7 @@ class FleetPage extends Component {
                 password: '',
                 currentUser: this.props.reduxStore.user.id,
                 newFleet: !this.state.fleet.newFleet,
+                username: this.props.reduxStore.user.username,
             }
         })
     }

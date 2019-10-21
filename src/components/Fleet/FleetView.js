@@ -15,6 +15,7 @@ class FleetView extends Component {
     removeUser = (user) => {
         if (this.props.reduxStore.user.admin_level === 1) {
             this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+            swal(user.username + ' has been removed from the fleet.');
             this.getFleet();
         } else {
             swal('Request denied. Only the fleet commander can remove a user.');
