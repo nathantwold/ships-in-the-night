@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Grid, Paper } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import PanToolIcon from '@material-ui/icons/PanTool';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import swal from "sweetalert";
 
 const styles = {
@@ -16,7 +16,17 @@ const styles = {
     },
     paperOpen: {
         width: '100%',
-        backgroundColor: 'lightred',
+        backgroundColor: '#e4878d',
+    },
+    paperClaim: {
+        width: '100%',
+        backgroundColor: 'lightgreen',
+        fontSize: '8px',
+    },
+    paperDelete: {
+        width: '100%',
+        backgroundColor: '#e4878d',
+        fontSize: '8px',
     }
 };
 
@@ -51,19 +61,43 @@ class AllTasks extends Component {
                 {this.props.reduxStore.tasks.allTaskReducer.map(item => (
                     <div key={item.id}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Paper>
-                                    {item.complete === true ?
-                                    <Button onClick={() => { this.showDetail(item.id) }}
-                                        style={styles.paperComplete} variant="contained">
-                                        {item.title} completed by: {item.username}
-                                    </Button> :
-                                    <Button onClick={() => { this.showDetail(item.id) }}
-                                        style={styles.paperOpen} variant="contained">
-                                        {item.title} claimed by: {item.username}
-                                    </Button>
-                                    }
-                                </Paper>
+                            <Grid item xs={9}>
+                                {item.complete === true ?
+                                    <Paper>
+                                        <Button onClick={() => { this.showDetail(item.id) }}
+                                            style={styles.paperComplete} variant="contained">
+                                            {item.title} 
+                                            <br />
+                                            completed by: {item.username}
+                                        </Button>
+                                    </Paper> :
+                                    <Paper>
+                                        <Button onClick={() => { this.showDetail(item.id) }}
+                                            style={styles.paperOpen} variant="contained">
+                                            {item.title} 
+                                            <br />
+                                            claimed by: {item.username}
+                                        </Button>
+                                    </Paper>
+                                }
+                            </Grid>
+                            <Grid item xs={3}>
+                                {item.complete === true ?
+                                    <Paper>
+                                        <Button onClick={() => { this.handleDelete(item.id) }}
+                                            style={styles.paperDelete} variant="contained">
+                                            Delete
+                                            <DeleteIcon />
+                                        </Button>
+                                    </Paper> :
+                                    <Paper>
+                                        <Button onClick={() => { this.handleClaim(item.id) }}
+                                            style={styles.paperClaim} variant="contained">
+                                            Claim
+                                            <GetAppIcon />
+                                        </Button>
+                                    </Paper>
+                                }
                             </Grid>
                         </Grid>
                     </div>
