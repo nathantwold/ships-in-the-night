@@ -6,6 +6,9 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from "sweetalert";
 
 const styles = {
+    container: {
+        marginTop: "15%",
+    },
     div: {
         height: '20%',
         display: 'flex',
@@ -51,7 +54,7 @@ class OpenTasks extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.container}>
                 {this.props.reduxStore.tasks.openTaskReducer.map(item => (
                     <div key={item.id} style={styles.div}>
                         <Button onClick={() => { this.showDetail(item.id) }}

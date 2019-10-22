@@ -7,6 +7,9 @@ import PanToolIcon from '@material-ui/icons/PanTool';
 import swal from "sweetalert";
 
 const styles = {
+    container: {
+        marginTop: "15%",
+    },
     div: {
         height: '20%',
         display: 'flex',
@@ -58,7 +61,7 @@ class AllTasks extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.container}>
                 <h5>Claimed tasks:</h5>
                 {this.props.reduxStore.tasks.allTaskReducer.map(item => (
                     <div key={item.id}>

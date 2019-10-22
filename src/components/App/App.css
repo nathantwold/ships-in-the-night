@@ -10,6 +10,11 @@ body {
     border-radius: 10px;
 }
 
+.appBody {
+    margin-top: 150px;
+    margin-bottom: 10%;
+}
+
 form {
     text-align: center;
     background-color: #dbd5d5;

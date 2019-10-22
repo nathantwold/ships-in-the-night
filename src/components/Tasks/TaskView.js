@@ -41,12 +41,13 @@ const TaskView = () => {
 
     const [value, setValue] = React.useState(0);
     const styles = {
-        tabs: {
+        bar: {
+            position: "fixed",
             backgroundColor: "green",
             width: "100%",
         },
-        appbar: {
-            marginBottom: "10%",
+        tabs: {
+            marginTop: "20px",
         }
     }
 
@@ -59,8 +60,8 @@ const TaskView = () => {
     };
 
     return (
-            <div style={styles.appbar}>
-                <AppBar position="static" style={styles.tabs}>
+            <div>
+                <AppBar position="static" style={styles.bar}>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
                         <Tab label="Open Tasks" {...a11yProps(0)} />
                         <Tab label="My Tasks" {...a11yProps(1)} />
@@ -69,7 +70,7 @@ const TaskView = () => {
                 </AppBar>
                 <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
                     <TabPanel value={value} index={0}>
-                        <OpenTasks />
+                        <OpenTasks style={styles.tabs}/>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
                         <MyTasks />

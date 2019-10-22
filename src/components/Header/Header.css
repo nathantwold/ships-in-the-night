@@ -2,7 +2,7 @@
     font-size: 24px;
     font-weight: 700;
     display: inline-block;
-    color: #24321c;
+    color: #5cf56d;
     padding-left: 10px;
 }
 
@@ -13,7 +13,16 @@
 }
 
 .header {
+  z-index: 1;
+  height: 150px;
+  background-image: url('../../images/ships1.jpg');
+  background-size: cover;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  
+  position: fixed;
+  top: 0;
+  width: 100%;
   overflow: hidden;
-  background-color: seagreen;
+  /* background-color: seagreen; */
 }
