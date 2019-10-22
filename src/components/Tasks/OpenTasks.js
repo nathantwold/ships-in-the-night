@@ -1,33 +1,19 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import swal from "sweetalert";
+import { Button, Grid, Paper } from '@material-ui/core';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 const styles = {
     container: {
-        marginTop: "15%",
-    },
-    div: {
-        height: '20%',
-        display: 'flex',
-        flexDirection: 'wrap',
-        width: '100%',
-        padding: '1px',
-        margin: '5px'
+        marginTop: "12%",
     },
     paperCenter: {
-        height: '35px',
-        borderRadius: '3px',
-        width: '85%',
-        textAlign: 'center',
+        width: '100%',
         backgroundColor: 'lightblue',
     },
     paperRight: {
-        height: '35px',
-        borderRadius: '3px',
-        textAlign: 'center',
+        width: '100%',
         fontSize: '8px',
         backgroundColor: 'lightgreen',
     }
@@ -43,9 +29,10 @@ class OpenTasks extends Component {
         this.props.dispatch({ type: 'GET_OPEN_TASKS', payload: this.props.user });
     }
 
-    handleComplete = (item) => {
-        this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
-        swal({ text: 'Nice work, Captain!', icon: 'success' })
+    handleClaim = (item) => {
+        this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
+        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
+        // swal({ text: 'The task is yours, Captain!', icon: 'success' })
     }
 
     showDetail = (id) => {
@@ -56,16 +43,26 @@ class OpenTasks extends Component {
         return (
             <div style={styles.container}>
                 {this.props.reduxStore.tasks.openTaskReducer.map(item => (
-                    <div key={item.id} style={styles.div}>
-                        <Button onClick={() => { this.showDetail(item.id) }}
-                            style={styles.paperCenter} variant="contained">
-                            {item.title}
-                        </Button>
-                        <Button onClick={() => { this.handleComplete(item) }}
-                            style={styles.paperRight} variant="contained">
-                            Complete?
-                            <CheckCircleIcon />
-                        </Button>
+                    <div key={item.id}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={9}>
+                                <Paper>
+                                    <Button onClick={() => { this.showDetail(item.id) }}
+                                        style={styles.paperCenter} variant="contained">
+                                        {item.title}
+                                    </Button>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Paper>
+                                    <Button onClick={() => { this.handleClaim(item) }}
+                                        style={styles.paperRight} variant="contained">
+                                        Claim
+                                        <GetAppIcon />
+                                    </Button>
+                                </Paper>
+                            </Grid>
+                        </Grid>
                     </div>
                 ))}
             </div>

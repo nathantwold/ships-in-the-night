@@ -1,36 +1,22 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, Grid, Paper } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PanToolIcon from '@material-ui/icons/PanTool';
 import swal from "sweetalert";
 
 const styles = {
     container: {
-        marginTop: "15%",
+        marginTop: "12%",
     },
-    div: {
-        height: '20%',
-        display: 'flex',
-        flexDirection: 'wrap',
+    paperComplete: {
         width: '100%',
-        padding: '1px',
-        margin: '5px'
-    },
-    paperCenter: {
-        height: '35px',
-        borderRadius: '3px',
-        width: '85%',
-        textAlign: 'center',
-        backgroundColor: 'lightblue',
-    },
-    paperRight: {
-        height: '35px',
-        borderRadius: '3px',
-        textAlign: 'center',
-        fontSize: '8px',
         backgroundColor: 'lightgreen',
+    },
+    paperOpen: {
+        width: '100%',
+        backgroundColor: 'lightred',
     }
 };
 
@@ -62,59 +48,24 @@ class AllTasks extends Component {
     render() {
         return (
             <div style={styles.container}>
-                <h5>Claimed tasks:</h5>
                 {this.props.reduxStore.tasks.allTaskReducer.map(item => (
                     <div key={item.id}>
-                        {item.username !== "none" ?
-                            <div style={styles.div}>
-                                <Button onClick={() => { this.showDetail(item.id) }}
-                                    style={styles.paperCenter} variant="contained">
-                                    {item.title}
-                                </Button>
-                                <Button
-                                    style={styles.paperRight} variant="contained">
-                                    Claimed by: {item.username}
-                                </Button>
-                            </div> : ''
-                        }
-                    </div>
-                ))}
-
-                <h5>Unclaimed tasks:</h5>
-                {this.props.reduxStore.tasks.allTaskReducer.map(item => (
-                    <div key={item.id}>
-                        {item.complete === false && item.username === "none" ?
-                            <div style={styles.div}>
-                                <Button onClick={() => { this.showDetail(item.id) }}
-                                    style={styles.paperCenter} variant="contained">
-                                    {item.title}
-                                </Button>
-                                <Button onClick={() => { this.handleClaim(item) }}
-                                    style={styles.paperRight} variant="contained">
-                                    Claim
-                                    <PanToolIcon />
-                                </Button>
-                            </div> : ''
-                        }
-                    </div>
-                ))}
-
-                <h5>Completed tasks:</h5>
-                {this.props.reduxStore.tasks.allTaskReducer.map(item => (
-                    <div key={item.id}>
-                        {item.complete === true ?
-                            <div style={styles.div}>
-                                <Button onClick={() => { this.showDetail(item.id) }}
-                                    style={styles.paperCenter} variant="contained">
-                                    {item.title}
-                                </Button>
-                                <Button onClick={() => { this.handleDelete(item) }}
-                                    style={styles.paperRight} variant="contained">
-                                    Delete
-                                    <DeleteIcon />
-                                </Button>
-                            </div> : ''
-                        }
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Paper>
+                                    {item.complete === true ?
+                                    <Button onClick={() => { this.showDetail(item.id) }}
+                                        style={styles.paperComplete} variant="contained">
+                                        {item.title} completed by: {item.username}
+                                    </Button> :
+                                    <Button onClick={() => { this.showDetail(item.id) }}
+                                        style={styles.paperOpen} variant="contained">
+                                        {item.title} claimed by: {item.username}
+                                    </Button>
+                                    }
+                                </Paper>
+                            </Grid>
+                        </Grid>
                     </div>
                 ))}
             </div>

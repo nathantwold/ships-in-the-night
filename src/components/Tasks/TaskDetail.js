@@ -7,8 +7,8 @@ import swal from 'sweetalert';
 
 
 const styles = {
-    form: {
-        height: '200px',
+    input: {
+        margin: '5px',
     },
     textField: {
         width: '100%',
@@ -115,26 +115,27 @@ class TaskDetail extends Component {
                 <div>
                     {this.props.reduxStore.tasks.setDetailReducer.map(item => (
                         <div key={item.id}>
-                            <Grid container spacing={2}>
+                            <Grid container spacing={0}>
                                 <Grid item xs={12}>
                                     <Paper style={styles.text}>Entered on {moment(item.created).format("MMMM Do YYYY")}</Paper>
                                 </Grid>
                                 <Grid item xs={6}>
                                     {item.complete === false ?
-                                        <Paper>Claimed by: {item.username}</Paper> :
-                                        <Paper>Completed by: {item.username}</Paper>
+                                        <Paper style={styles.input}>Claimed by: {item.username}</Paper> :
+                                        <Paper style={styles.input}>Completed by: {item.username}</Paper>
                                     }
                                 </Grid>
                                 <Grid item xs={6}>
                                     {item.due !== null ?
-                                        <Paper>Due: {moment(item.due).format("MMM Do YY")}</Paper> : <Paper>Due: </Paper>
+                                        <Paper style={styles.input}>Due: {moment(item.due).format("MMM Do YY")}</Paper> : 
+                                        <Paper style={styles.input}>Due: </Paper>
                                     }
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Paper>
+                                    <Paper style={styles.input}>
                                         <TextField
                                             defaultValue={item.title}
                                             style={styles.textField}
@@ -151,7 +152,7 @@ class TaskDetail extends Component {
                                     <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={8}>
-                                    <Paper>
+                                    <Paper style={styles.input}>
                                         <TextField
                                             defaultValue={item.detail}
                                             style={styles.textField}
@@ -166,12 +167,10 @@ class TaskDetail extends Component {
                                     <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper>
-                                        <Button style={styles.button} variant="contained" onClick={this.handleBack}>Back</Button>
-                                    </Paper>
+                                    <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Paper>
+                                    <Paper style={styles.input}>
                                         <TextField
                                             style={styles.textField}
                                             label="Due date"
@@ -185,38 +184,45 @@ class TaskDetail extends Component {
                                     </Paper>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper>
-                                        <Button style={styles.button} variant="contained" onClick={this.checkFields}>Save</Button>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper style={styles.input}>
+                                        <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                                            Back
+                                        </Button>
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    {item.complete === false ?
+                                        <Paper style={styles.input}>
+                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                                Complete
+                                            </Button>
+                                        </Paper> :
+                                        <Paper style={styles.input}>
+                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                                Re-Open
+                                            </Button>
+                                        </Paper>
+                                    }
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper style={styles.input}>
+                                        <Button style={styles.button} variant="contained" onClick={this.handleClaim}>
+                                            Claim
+                                        </Button>
                                     </Paper>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    {item.complete === false ?
-                                        <Paper>
-                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                                Complete
-                                            </Button>
-                                        </Paper> :
-                                        <Paper>
-                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                                Open
-                                            </Button>
-                                        </Paper>
-                                    }
+                                    <Paper style={styles.input}>
+                                        <Button style={styles.button} variant="contained" onClick={() => {this.handleDelete(item)}}>
+                                            Delete
+                                        </Button>
+                                    </Paper>
                                 </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Button style={styles.button} variant="contained" onClick={this.handleClaim}>
-                                        Claim
-                                    </Button>
-                                 </Grid>
                                 <Grid item xs={3}>
                                     <Paper></Paper>
                                 </Grid>

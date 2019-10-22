@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import swal from 'sweetalert';
 
 class FleetView extends Component {
@@ -74,7 +75,7 @@ class FleetView extends Component {
             <div style={this.styles.main}>
                 {this.props.reduxStore.user.groupname !== "0" ?
                     <Button style={this.styles.button} onClick={this.sendInvite} variant="contained">
-                        Send fleet invite
+                        <GroupAddIcon />
                     </Button> : ''
                 }
                 {this.props.reduxStore.fleet.map(user => (

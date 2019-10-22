@@ -15,7 +15,6 @@ class Header extends Component {
     return (
       <div className="header">
         <h2 className="header-title">Ships <br /> in <br /> the <br /> Night </h2>
-        {/* <img src={require('../../images/ships1.jpg')} alt="Ships" width="100%" height="100" /> */}
       </div>
     )
   }
