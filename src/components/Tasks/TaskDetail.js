@@ -2,30 +2,24 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Grid, Paper } from '@material-ui/core';
 import swal from 'sweetalert';
 
 
 const styles = {
+    form: {
+        height: '200px',
+    },
     textField: {
-        marginLeft: '20%',
-        marginRight: '20%',
-        marginTop: '5%',
-        width: '60%',
+        width: '100%',
     },
     button: {
-        marginTop: '5%',
-        width: '30%',
-        marginBottom: '5%',
-        backgroundColor: 'seagreen',
+        width: '100%',
     },
     delete: {
-        marginTop: '5%',
-        width: '30%',
-        marginBottom: '5%',
-        backgroundColor: 'red',
+        width: '100%',
     },
-    options: {
+    text: {
         textAlign: 'center',
     }
 }
@@ -121,58 +115,112 @@ class TaskDetail extends Component {
                 <div>
                     {this.props.reduxStore.tasks.setDetailReducer.map(item => (
                         <div key={item.id}>
-                            <h5>Entered on {moment(item.created).format("MMMM Do YYYY")}</h5>
-                            {item.complete === false ?
-                                <h5>Claimed by: {item.username}</h5> :
-                                <h5>Completed by: {item.username}</h5>
-                            }
-                            {item.due !== null ? 
-                                <h5>Due: {moment(item.due).format("MMMM Do YYYY")}</h5> : ''
-                            }
-                            <TextField
-                                defaultValue={item.title}
-                                style={styles.textField}
-                                label="Task Title*"
-                                variant="filled"
-                                onChange={(event) => this.handleInputChangeFor(event, 'title')}
-                            />
-                            <br />
-                            <TextField
-                                defaultValue={item.detail}
-                                style={styles.textField}
-                                label="Task Details"
-                                variant="filled"
-                                multiline rows="6"
-                                onChange={(event) => this.handleInputChangeFor(event, 'detail')}
-                            />
-                            <br />
-                            <TextField
-                                style={styles.textField}
-                                label="Due date"
-                                variant="filled"
-                                type="date"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={(event) => this.handleInputChangeFor(event, 'due')}
-                            />
-                            <br />
-                            <div style={styles.options}>
-                                <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
-                                    Delete
-                                </Button>
-                                <Button style={styles.button} variant="contained" onClick={this.checkFields}>
-                                    Save
-                                </Button>
-                            </div>
-                            <div style={styles.options}>
-                                <Button variant="contained" onClick={this.handleBack}>Back</Button>
-                                {item.complete === false ?
-                                    <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Complete</Button> :
-                                    <Button variant="contained" onClick={() => { this.handleComplete(item) }}>Open</Button>
-                                }
-                                <Button variant="contained" onClick={this.handleClaim}>Claim</Button>
-                            </div>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Paper style={styles.text}>Entered on {moment(item.created).format("MMMM Do YYYY")}</Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    {item.complete === false ?
+                                        <Paper>Claimed by: {item.username}</Paper> :
+                                        <Paper>Completed by: {item.username}</Paper>
+                                    }
+                                </Grid>
+                                <Grid item xs={6}>
+                                    {item.due !== null ?
+                                        <Paper>Due: {moment(item.due).format("MMM Do YY")}</Paper> : <Paper>Due: </Paper>
+                                    }
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Paper>
+                                        <TextField
+                                            defaultValue={item.title}
+                                            style={styles.textField}
+                                            label="Task Title*"
+                                            variant="filled"
+                                            onChange={(event) => this.handleInputChangeFor(event, 'title')}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={8}>
+                                    <Paper>
+                                        <TextField
+                                            defaultValue={item.detail}
+                                            style={styles.textField}
+                                            label="Task Details"
+                                            variant="filled"
+                                            multiline rows="6"
+                                            onChange={(event) => this.handleInputChangeFor(event, 'detail')}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper>
+                                        <Button style={styles.button} variant="contained" onClick={this.handleBack}>Back</Button>
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Paper>
+                                        <TextField
+                                            style={styles.textField}
+                                            label="Due date"
+                                            variant="filled"
+                                            type="date"
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            onChange={(event) => this.handleInputChangeFor(event, 'due')}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper>
+                                        <Button style={styles.button} variant="contained" onClick={this.checkFields}>Save</Button>
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    {item.complete === false ?
+                                        <Paper>
+                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                                Complete
+                                            </Button>
+                                        </Paper> :
+                                        <Paper>
+                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                                Open
+                                            </Button>
+                                        </Paper>
+                                    }
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Button style={styles.button} variant="contained" onClick={this.handleClaim}>
+                                        Claim
+                                    </Button>
+                                 </Grid>
+                                <Grid item xs={3}>
+                                    <Paper></Paper>
+                                </Grid>
+                            </Grid>
                         </div>
                     ))}
                 </div>
