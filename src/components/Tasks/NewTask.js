@@ -2,7 +2,25 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from 'sweetalert';
+
+const styles = {
+    textField: {
+        marginLeft: '20%',
+        marginRight: '20%',
+        marginTop: '5%',
+        width: '60%'
+    },
+    button: {
+        marginLeft: '35%',
+        marginRight: '35%',
+        marginTop: '5%',
+        width: '30%',
+        fontSize: '8px',
+        backgroundColor: 'lightgreen',
+    },
+}
 
 class NewTask extends Component {
 
@@ -11,21 +29,6 @@ class NewTask extends Component {
         title: '',
         detail: '',
         due: ''
-    }
-
-    style = {
-        textField: {
-            marginLeft: '20%',
-            marginRight: '20%',
-            marginTop: '5%',
-            width: '60%'
-        },
-        button: {
-            marginLeft: '35%',
-            marginRight: '35%',
-            marginTop: '5%',
-            width: '30%'
-        },
     }
 
     handleInputChangeFor = (event, input) => {
@@ -55,14 +58,14 @@ class NewTask extends Component {
                 <div>
                     <TextField
                         required
-                        style={this.style.textField}
+                        style={styles.textField}
                         label="Task Title"
                         variant="filled"
                         onChange={(event) => this.handleInputChangeFor(event, 'title')}
                     />
                     <br />
                     <TextField
-                        style={this.style.textField}
+                        style={styles.textField}
                         label="Task Details"
                         variant="filled"
                         multiline rows="6"
@@ -70,7 +73,7 @@ class NewTask extends Component {
                     />
                     <br />
                     <TextField
-                        style={this.style.textField}
+                        style={styles.textField}
                         label="Due date"
                         variant="filled"
                         type="date"
@@ -80,8 +83,9 @@ class NewTask extends Component {
                         onChange={(event) => this.handleInputChangeFor(event, 'due')}
                     />
                     <br />
-                    <Button style={this.style.button} variant="contained" onClick={this.checkFields}>
+                    <Button style={styles.button} variant="contained" onClick={this.checkFields}>
                         Add Task!
+                        <CheckCircleIcon />
                     </Button>
                 </div>
             </Router>

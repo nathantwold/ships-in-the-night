@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
 import { Button, TextField, Grid, Paper } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ReplayIcon from '@material-ui/icons/Replay';
+import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import swal from 'sweetalert';
-
 
 const styles = {
     input: {
@@ -15,6 +19,7 @@ const styles = {
     },
     button: {
         width: '100%',
+        fontSize: '8px',
     },
     delete: {
         width: '100%',
@@ -84,10 +89,6 @@ class TaskDetail extends Component {
         this.props.history.push('/home');
     }
 
-    handleBack = () => {
-        this.props.history.push('/home');
-    }
-
     handleInputChangeFor = (event, input) => {
         this.setState({
             ...this.state,
@@ -148,10 +149,10 @@ class TaskDetail extends Component {
                                 <Grid item xs={3}>
                                     <Paper></Paper>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={1}>
                                     <Paper></Paper>
                                 </Grid>
-                                <Grid item xs={8}>
+                                <Grid item xs={10}>
                                     <Paper style={styles.input}>
                                         <TextField
                                             defaultValue={item.detail}
@@ -163,7 +164,7 @@ class TaskDetail extends Component {
                                         />
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={1}>
                                     <Paper></Paper>
                                 </Grid>
                                 <Grid item xs={3}>
@@ -189,6 +190,7 @@ class TaskDetail extends Component {
                                     <Paper style={styles.input}>
                                         <Button style={styles.button} variant="contained" onClick={this.checkFields}>
                                             Back
+                                            <SaveIcon />
                                         </Button>
                                     </Paper>
                                 </Grid>
@@ -197,11 +199,13 @@ class TaskDetail extends Component {
                                         <Paper style={styles.input}>
                                             <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
                                                 Complete
+                                                <CheckCircleIcon />
                                             </Button>
                                         </Paper> :
                                         <Paper style={styles.input}>
                                             <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
                                                 Re-Open
+                                                <ReplayIcon />
                                             </Button>
                                         </Paper>
                                     }
@@ -210,6 +214,7 @@ class TaskDetail extends Component {
                                     <Paper style={styles.input}>
                                         <Button style={styles.button} variant="contained" onClick={this.handleClaim}>
                                             Claim
+                                            <GetAppIcon />
                                         </Button>
                                     </Paper>
                                 </Grid>
@@ -220,6 +225,7 @@ class TaskDetail extends Component {
                                     <Paper style={styles.input}>
                                         <Button style={styles.button} variant="contained" onClick={() => {this.handleDelete(item)}}>
                                             Delete
+                                            <DeleteIcon />
                                         </Button>
                                     </Paper>
                                 </Grid>

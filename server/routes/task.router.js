@@ -26,7 +26,7 @@ router.get('/mytasks', (req, res) => {
  * GET route to display all tasks
  */
 router.get('/alltasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname=$1 ORDER BY "id" ASC;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname=$1 ORDER BY "complete" DESC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
