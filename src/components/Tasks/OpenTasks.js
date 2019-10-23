@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Grid, Paper } from '@material-ui/core';
+import { Button, Grid, Paper, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreIcon from '@material-ui/icons/More';
 import GetAppIcon from '@material-ui/icons/GetApp';
 
 const styles = {
     container: {
-        marginTop: "12%",
+        marginTop: "40px",
+    },
+    paperLeft: {
+        width: '100%',
+        fontSize: '8px',
+        backgroundColor: 'yellow',
     },
     paperCenter: {
         width: '100%',
         backgroundColor: '#d4ff39',
+        textAlign: 'center',
     },
     paperRight: {
         width: '100%',
@@ -45,21 +53,51 @@ class OpenTasks extends Component {
                 {this.props.reduxStore.tasks.openTaskReducer.map(item => (
                     <div key={item.id}>
                         <Grid container spacing={2}>
-                            <Grid item xs={9}>
+                            <Grid item xs={12}>
                                 <Paper>
-                                    <Button onClick={() => { this.showDetail(item.id) }}
-                                        style={styles.paperCenter} variant="contained">
-                                        {item.title}
-                                    </Button>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Paper>
-                                    <Button onClick={() => { this.handleClaim(item) }}
-                                        style={styles.paperRight} variant="contained">
-                                        Claim
-                                        <GetAppIcon />
-                                    </Button>
+                                    <ExpansionPanel style={styles.paperCenter}>
+                                        <ExpansionPanelSummary
+                                            expandIcon={<ExpandMoreIcon />} 
+                                        >
+                                            {item.title}
+                                        </ExpansionPanelSummary>
+                                        <ExpansionPanelDetails>
+                                            <Grid container spacing={1}>
+                                                <Grid item xs={12}>
+                                                    <Paper>
+                                                        due: {item.due}
+                                                    </Paper>
+                                                </Grid>
+                                                <Grid item xs={12}>
+                                                    <Paper>
+                                                        {item.detail}
+                                                    </Paper>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Paper>
+                                                        <Button onClick={() => { this.showDetail(item.id) }}
+                                                            style={styles.paperLeft} variant="contained">
+                                                            <MoreIcon />
+                                                            Info
+                                                        </Button>
+                                                    </Paper>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Paper>
+                                                    </Paper>
+                                                </Grid>
+                                                <Grid item xs={4}>
+                                                    <Paper>
+                                                        <Button onClick={() => { this.handleClaim(item) }}
+                                                            style={styles.paperRight} variant="contained">
+                                                            Claim
+                                                            <GetAppIcon />
+                                                        </Button>
+                                                    </Paper>
+                                                </Grid>
+                                            </Grid>
+                                        </ExpansionPanelDetails>
+                                    </ExpansionPanel>
                                 </Paper>
                             </Grid>
                         </Grid>

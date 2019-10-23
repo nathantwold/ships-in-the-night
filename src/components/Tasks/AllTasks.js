@@ -5,7 +5,7 @@ import { Button, Grid, Paper } from '@material-ui/core';
 
 const styles = {
     container: {
-        marginTop: "12%",
+        marginTop: "40px",
     },
     paperComplete: {
         width: '100%',

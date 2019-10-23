@@ -63,17 +63,17 @@ const TaskView = () => {
             <div>
                 <AppBar position="static" style={styles.bar}>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-                        <Tab label="Open Tasks" {...a11yProps(0)} />
-                        <Tab label="My Tasks" {...a11yProps(1)} />
+                        <Tab label="My Tasks" {...a11yProps(0)} />
+                        <Tab label="Open Tasks" {...a11yProps(1)} />
                         <Tab label="All Tasks" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
                     <TabPanel value={value} index={0}>
-                        <OpenTasks style={styles.tabs}/>
+                        <MyTasks style={styles.tabs}/>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <MyTasks />
+                        <OpenTasks />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         <AllTasks />

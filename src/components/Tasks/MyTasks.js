@@ -7,7 +7,7 @@ import swal from "sweetalert";
 
 const styles = {
     container: {
-        marginTop: "12%",
+        marginTop: "40px",
     },
     paperCenter: {
         width: '100%',

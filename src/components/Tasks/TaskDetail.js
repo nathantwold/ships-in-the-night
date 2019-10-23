@@ -70,7 +70,7 @@ class TaskDetail extends Component {
     handleClaim = () => {
         this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
         swal({ text: 'The task is yours, Captain!', icon: 'success' });
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
     }
 
     handleComplete = (item) => {

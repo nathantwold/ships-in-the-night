@@ -16,6 +16,7 @@ const styles = {
         marginLeft: '40%',
         marginRight: '40%',
         marginTop: '5%',
+        marginBottom: '40px',
         width: '20%',
         fontSize: '8px',
         backgroundColor: 'lightgreen',
