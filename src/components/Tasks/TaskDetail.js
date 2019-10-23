@@ -4,8 +4,8 @@ import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
 import { Button, TextField, Grid, Paper } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ReplayIcon from '@material-ui/icons/Replay';
-import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import swal from 'sweetalert';
@@ -189,8 +189,8 @@ class TaskDetail extends Component {
                                 <Grid item xs={3}>
                                     <Paper style={styles.input}>
                                         <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                                            <ArrowBackIcon />
                                             Back
-                                            <SaveIcon />
                                         </Button>
                                     </Paper>
                                 </Grid>

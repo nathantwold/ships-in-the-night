@@ -10,12 +10,12 @@ const styles = {
     },
     paperCenter: {
         width: '100%',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#d4ff39',
     },
     paperRight: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        backgroundColor: 'lightblue',
     }
 };
 

@@ -92,15 +92,12 @@ class FleetView extends Component {
                         <Paper style={styles.div}>
                             {this.props.reduxStore.user.groupname}
                             <Button style={styles.crew} onClick={this.sendInvite} variant="contained">
+                                Invite
                                 <GroupAddIcon />
                             </Button>
                         </Paper>
                     </Grid>
                 </Grid>
-
-
-
-
                 {this.props.reduxStore.fleet.map(user => (
                     <div key={user.id}>
                         <Grid container spacing={0}>
@@ -124,37 +121,6 @@ class FleetView extends Component {
                         </Grid>
                     </div>
                 ))}
-
-
-
-
-
-
-
-                {/* {this.props.reduxStore.fleet.map(user => (
-                    <div key={user.id}>
-                        {user.id === this.props.reduxStore.user.id ?
-                            <div>
-                                <h4>{user.username}</h4>
-                                <Button variant="contained" onClick={() => { this.leaveFleet(user) }}>
-                                    Leave fleet
-                                </Button>
-                            </div> : ''
-                        }
-                    </div>
-                ))}
-                {this.props.reduxStore.fleet.map(user => (
-                    <div key={user.id}>
-                        {user.id !== this.props.reduxStore.user.id ?
-                            <div>
-                                <h4>{user.username}</h4>
-                                <Button variant="contained" onClick={() => { this.removeUser(user) }}>
-                                    Remove
-                                </Button>
-                            </div> : ''
-                        }
-                    </div>
-                ))} */}
             </div>
         )
     }

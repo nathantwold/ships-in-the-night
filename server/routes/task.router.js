@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route to display open tasks
  */
 router.get('/opentasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "groupname"=$1 AND "complete"=FALSE AND "username"='none' ORDER BY "id" ASC;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "groupname"=$1 AND "complete"=FALSE AND "username"='none' ORDER BY "due" ASC, "id" ASC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
@@ -16,7 +16,7 @@ router.get('/opentasks', (req, res) => {
  * GET route to display my tasks
  */
 router.get('/mytasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "username"=$1 AND "complete"=false ORDER BY "id" ASC;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "username"=$1 AND "complete"=false ORDER BY "due" ASC, "id" ASC;`;
     pool.query(queryText, [req.user.username])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
@@ -26,7 +26,7 @@ router.get('/mytasks', (req, res) => {
  * GET route to display all tasks
  */
 router.get('/alltasks', (req, res) => {
-    const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname=$1 ORDER BY "complete" DESC;`;
+    const queryText = `SELECT * FROM "tasks" WHERE "tasks".groupname=$1 ORDER BY "complete" DESC, "id" ASC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
         .catch(error => res.sendStatus(500))
@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
     const queryText = `INSERT INTO "tasks"("groupname", "title", "detail", "due") VALUES($1, $2, $3, $4);`;
     pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail, req.body.due])
         .then(() => res.sendStatus(201))
-        .catch(error => res.sendStatus(500))
+        .catch(error => console.log('Error in POST!:', error))
 });
 
 /**

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import swal from 'sweetalert';
 
 const styles = {
@@ -13,10 +13,10 @@ const styles = {
         width: '60%'
     },
     button: {
-        marginLeft: '35%',
-        marginRight: '35%',
+        marginLeft: '40%',
+        marginRight: '40%',
         marginTop: '5%',
-        width: '30%',
+        width: '20%',
         fontSize: '8px',
         backgroundColor: 'lightgreen',
     },
@@ -28,7 +28,7 @@ class NewTask extends Component {
         groupname: this.props.reduxStore.user.groupname,
         title: '',
         detail: '',
-        due: ''
+        due: null
     }
 
     handleInputChangeFor = (event, input) => {
@@ -84,8 +84,7 @@ class NewTask extends Component {
                     />
                     <br />
                     <Button style={styles.button} variant="contained" onClick={this.checkFields}>
-                        Add Task!
-                        <CheckCircleIcon />
+                        <PlaylistAddCheckIcon />
                     </Button>
                 </div>
             </Router>

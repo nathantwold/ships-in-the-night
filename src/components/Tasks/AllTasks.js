@@ -9,11 +9,11 @@ const styles = {
     },
     paperComplete: {
         width: '100%',
-        backgroundColor: 'lightgreen',
+        backgroundColor: 'lightgray',
     },
     paperOpen: {
         width: '100%',
-        backgroundColor: '#e4878d',
+        backgroundColor: 'yellow',
     },
 };
 
