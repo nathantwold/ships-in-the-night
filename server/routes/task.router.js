@@ -46,8 +46,8 @@ router.get('/detail/:id', (req, res) => {
  * POST route for new tasks
  */
 router.post('/', (req, res, next) => {
-    const queryText = `INSERT INTO "tasks"("groupname", "title", "detail", "due") VALUES($1, $2, $3, $4);`;
-    pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail, req.body.due])
+    const queryText = `INSERT INTO "tasks"("groupname", "title", "detail", "username", "due") VALUES($1, $2, $3, $4, $5);`;
+    pool.query(queryText, [req.body.groupname, req.body.title, req.body.detail, req.body.username, req.body.due])
         .then(() => res.sendStatus(201))
         .catch(error => console.log('Error in POST!:', error))
 });

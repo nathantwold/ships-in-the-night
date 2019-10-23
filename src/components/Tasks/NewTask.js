@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import swal from 'sweetalert';
 
@@ -24,10 +24,19 @@ const styles = {
 
 class NewTask extends Component {
 
+    componentDidMount = () => {
+        this.getFleet();
+    }
+
+    getFleet = () => {
+        this.props.dispatch({ type: 'FETCH_FLEET', payload: this.props.reduxStore.user });
+    }
+
     state = {
         groupname: this.props.reduxStore.user.groupname,
         title: '',
         detail: '',
+        username: 'none',
         due: null
     }
 
@@ -82,6 +91,21 @@ class NewTask extends Component {
                         }}
                         onChange={(event) => this.handleInputChangeFor(event, 'due')}
                     />
+                    <br />
+                    <FormControl variant="filled" style={styles.textField}>
+                        <InputLabel>
+                            Assignment
+                        </InputLabel>
+                        <Select
+                            value={this.state.username}
+                            onChange={(event) => this.handleInputChangeFor(event, 'username')}
+                        >
+                            <MenuItem value={'none'}>Open</MenuItem>
+                            {this.props.reduxStore.fleet.map(user => (
+                            <MenuItem key={user.id} value={user.username}>{user.username}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
                     <br />
                     <Button style={styles.button} variant="contained" onClick={this.checkFields}>
                         <PlaylistAddCheckIcon />
