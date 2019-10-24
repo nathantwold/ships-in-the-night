@@ -16,10 +16,10 @@ const styles = {
     width: "100%",
     position: "fixed",
     bottom: "0",
-    backgroundColor: "darkgreen",
+    backgroundColor: "#0a0f2d",
   },
   each: {
-    color: "lightgreen",
+    color: "#4480ed",
   },
   add: {
     color: "white",

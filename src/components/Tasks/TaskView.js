@@ -43,11 +43,13 @@ const TaskView = () => {
     const styles = {
         bar: {
             position: "fixed",
-            backgroundColor: "green",
+            backgroundColor: "#4480ed",
+            color: "#0a0f2d",
             width: "100%",
         },
         tabs: {
-            marginTop: "20px",
+            color: "blue",
+            backgroundColor: "blue",
         }
     }
 
@@ -70,7 +72,7 @@ const TaskView = () => {
                 </AppBar>
                 <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
                     <TabPanel value={value} index={0}>
-                        <MyTasks style={styles.tabs}/>
+                        <MyTasks />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
                         <OpenTasks />

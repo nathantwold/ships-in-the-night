@@ -6,7 +6,8 @@ const styles = {
         width: "100%",
         position: "fixed",
         bottom: "0",
-        backgroundColor: "darkgreen",
+        backgroundColor: "#0a0f2d",
+        color: "#4480ed",
     },
 };
 

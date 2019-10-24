@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Grid, Paper, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import { 
+    Button, 
+    Grid, 
+    Paper, 
+    ExpansionPanel, 
+    ExpansionPanelSummary, 
+    ExpansionPanelDetails 
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreIcon from '@material-ui/icons/More';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import swal from 'sweetalert';
 
 const styles = {
     container: {
@@ -13,11 +21,11 @@ const styles = {
     paperLeft: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'yellow',
+        backgroundColor: 'lightblue',
     },
     paperCenter: {
         width: '100%',
-        backgroundColor: '#d4ff39',
+        backgroundColor: '#93daf7',
         textAlign: 'center',
     },
     paperRight: {
@@ -40,7 +48,7 @@ class OpenTasks extends Component {
     handleClaim = (item) => {
         this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
         this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
-        // swal({ text: 'The task is yours, Captain!', icon: 'success' })
+        swal({ text: 'The task is yours, Captain!', icon: 'success' })
     }
 
     showDetail = (id) => {
@@ -57,17 +65,12 @@ class OpenTasks extends Component {
                                 <Paper>
                                     <ExpansionPanel style={styles.paperCenter}>
                                         <ExpansionPanelSummary
-                                            expandIcon={<ExpandMoreIcon />} 
+                                            expandIcon={<ExpandMoreIcon />}
                                         >
                                             {item.title}
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Grid container spacing={1}>
-                                                <Grid item xs={12}>
-                                                    <Paper>
-                                                        due: {item.due}
-                                                    </Paper>
-                                                </Grid>
                                                 <Grid item xs={12}>
                                                     <Paper>
                                                         {item.detail}
@@ -78,13 +81,11 @@ class OpenTasks extends Component {
                                                         <Button onClick={() => { this.showDetail(item.id) }}
                                                             style={styles.paperLeft} variant="contained">
                                                             <MoreIcon />
-                                                            Info
+                                                            Details
                                                         </Button>
                                                     </Paper>
                                                 </Grid>
                                                 <Grid item xs={4}>
-                                                    <Paper>
-                                                    </Paper>
                                                 </Grid>
                                                 <Grid item xs={4}>
                                                     <Paper>

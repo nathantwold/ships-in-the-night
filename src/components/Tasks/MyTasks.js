@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Grid, Paper } from '@material-ui/core';
+import { 
+    Button, 
+    Grid, 
+    Paper, 
+    ExpansionPanel, 
+    ExpansionPanelSummary, 
+    ExpansionPanelDetails 
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreIcon from '@material-ui/icons/More';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from "sweetalert";
 
@@ -9,9 +18,15 @@ const styles = {
     container: {
         marginTop: "40px",
     },
+    paperLeft: {
+        width: '100%',
+        fontSize: '8px',
+        backgroundColor: 'lightblue',
+    },
     paperCenter: {
         width: '100%',
-        backgroundColor: '#d4ff39',
+        backgroundColor: '#93daf7',
+        textAlign: 'center',
     },
     paperRight: {
         width: '100%',
@@ -40,32 +55,54 @@ class MyTasks extends Component {
     }
 
     render() {
-        return (
-            <div style={styles.container}>
-                {this.props.reduxStore.tasks.myTaskReducer.map(item => (
-                    <div key={item.id}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={9}>
-                                <Paper>
-                                    <Button onClick={() => { this.showDetail(item.id) }}
-                                        style={styles.paperCenter} variant="contained">
+        return (<div style={styles.container}>
+            {this.props.reduxStore.tasks.myTaskReducer.map(item => (
+                <div key={item.id}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Paper>
+                                <ExpansionPanel style={styles.paperCenter}>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                    >
                                         {item.title}
-                                    </Button>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Paper>
-                                    <Button onClick={() => { this.handleComplete(item) }}
-                                        style={styles.paperRight} variant="contained">
-                                        Done
-                                        <CheckCircleIcon />
-                                    </Button>
-                                </Paper>
-                            </Grid>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <Grid container spacing={1}>
+                                            <Grid item xs={12}>
+                                                <Paper>
+                                                    {item.detail}
+                                                </Paper>
+                                            </Grid>
+                                            <Grid item xs={4}>
+                                                <Paper>
+                                                    <Button onClick={() => { this.showDetail(item.id) }}
+                                                        style={styles.paperLeft} variant="contained">
+                                                        <MoreIcon />
+                                                        Details
+                                                    </Button>
+                                                </Paper>
+                                            </Grid>
+                                            <Grid item xs={4}>
+                                            </Grid>
+                                            <Grid item xs={4}>
+                                                <Paper>
+                                                    <Button onClick={() => { this.handleComplete(item) }}
+                                                        style={styles.paperRight} variant="contained">
+                                                        Complete
+                                                        <CheckCircleIcon />
+                                                    </Button>
+                                                </Paper>
+                                            </Grid>
+                                        </Grid>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                            </Paper>
                         </Grid>
-                    </div>
-                ))}
-            </div>
+                    </Grid>
+                </div>
+            ))}
+        </div>
         )
     }
 }
