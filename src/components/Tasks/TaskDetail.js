@@ -11,21 +11,37 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import swal from 'sweetalert';
 
 const styles = {
-    input: {
-        margin: '5px',
+    text: {
+        textAlign: 'center',
+        margin: '0',
+        padding: '0',
+        backgroundColor: '#e5f6f8',
     },
-    textField: {
+    input: {
         width: '100%',
+        margin: '5px',
+        backgroundColor: '#e5f6f8',
     },
     button: {
+        margin: '5px',
+    },
+    complete: {
         width: '100%',
         fontSize: '8px',
+        backgroundColor: 'lightgreen',
+    },
+    back: {
+        width: '100%',
+        fontSize: '8px',
+        backgroundColor: 'lightblue',
     },
     delete: {
         width: '100%',
+        fontSize: '8px',
+        backgroundColor: '#e4878d',
     },
-    text: {
-        textAlign: 'center',
+    textField: {
+        width: '100%',
     }
 }
 
@@ -118,23 +134,19 @@ class TaskDetail extends Component {
                         <div key={item.id}>
                             <Grid container spacing={0}>
                                 <Grid item xs={12}>
-                                    <Paper style={styles.text}>Entered on {moment(item.created).format("MMMM Do YYYY")}</Paper>
+                                    <Paper style={styles.text}>
+                                        Entered on {moment(item.created).format("MMMM Do YYYY")}
+                                        {item.due !== null ?
+                                            <p style={styles.text}>Due: {moment(item.due).format("MMMM Do YYYY")}</p> :
+                                            <p style={styles.text}>Due: </p>
+                                        }
+                                        {item.complete === false ?
+                                            <p style={styles.text}>Claimed by: {item.username}</p> :
+                                            <p style={styles.text}>Completed by: {item.username}</p>
+                                        }
+                                    </Paper>
                                 </Grid>
-                                <Grid item xs={6}>
-                                    {item.complete === false ?
-                                        <Paper style={styles.input}>Claimed by: {item.username}</Paper> :
-                                        <Paper style={styles.input}>Completed by: {item.username}</Paper>
-                                    }
-                                </Grid>
-                                <Grid item xs={6}>
-                                    {item.due !== null ?
-                                        <Paper style={styles.input}>Due: {moment(item.due).format("MMM Do YY")}</Paper> : 
-                                        <Paper style={styles.input}>Due: </Paper>
-                                    }
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
+                                <Grid item xs={3}></Grid>
                                 <Grid item xs={6}>
                                     <Paper style={styles.input}>
                                         <TextField
@@ -146,12 +158,8 @@ class TaskDetail extends Component {
                                         />
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
-                                <Grid item xs={1}>
-                                    <Paper></Paper>
-                                </Grid>
+                                <Grid item xs={3}></Grid>
+                                <Grid item xs={1}></Grid>
                                 <Grid item xs={10}>
                                     <Paper style={styles.input}>
                                         <TextField
@@ -164,12 +172,8 @@ class TaskDetail extends Component {
                                         />
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={1}>
-                                    <Paper></Paper>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
+                                <Grid item xs={1}></Grid>
+                                <Grid item xs={3}></Grid>
                                 <Grid item xs={6}>
                                     <Paper style={styles.input}>
                                         <TextField
@@ -184,26 +188,26 @@ class TaskDetail extends Component {
                                         />
                                     </Paper>
                                 </Grid>
+                                <Grid item xs={3}></Grid>
+                                <Grid item xs={1}></Grid>
                                 <Grid item xs={3}>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Paper style={styles.input}>
-                                        <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                                    <Paper style={styles.button}>
+                                        <Button style={styles.back} variant="contained" onClick={this.checkFields}>
                                             <ArrowBackIcon />
                                             Back
                                         </Button>
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={4}>
                                     {item.complete === false ?
-                                        <Paper style={styles.input}>
-                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                        <Paper style={styles.button}>
+                                            <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
                                                 Complete
                                                 <CheckCircleIcon />
                                             </Button>
                                         </Paper> :
-                                        <Paper style={styles.input}>
-                                            <Button style={styles.button} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                        <Paper style={styles.button}>
+                                            <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
                                                 Re-Open
                                                 <ReplayIcon />
                                             </Button>
@@ -211,27 +215,14 @@ class TaskDetail extends Component {
                                     }
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper style={styles.input}>
-                                        <Button style={styles.button} variant="contained" onClick={this.handleClaim}>
-                                            Claim
-                                            <GetAppIcon />
-                                        </Button>
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Paper style={styles.input}>
-                                        <Button style={styles.button} variant="contained" onClick={() => {this.handleDelete(item)}}>
+                                    <Paper style={styles.button}>
+                                        <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
                                             Delete
                                             <DeleteIcon />
                                         </Button>
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={3}>
-                                    <Paper></Paper>
-                                </Grid>
+                                <Grid item xs={1}></Grid>
                             </Grid>
                         </div>
                     ))}

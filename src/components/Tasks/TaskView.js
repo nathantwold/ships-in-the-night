@@ -64,7 +64,7 @@ const TaskView = () => {
     return (
             <div>
                 <AppBar position="static" style={styles.bar}>
-                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+                    <Tabs value={value} onChange={handleChange} indicatorColor="primary" centered>
                         <Tab label="My Tasks" {...a11yProps(0)} />
                         <Tab label="Open Tasks" {...a11yProps(1)} />
                         <Tab label="All Tasks" {...a11yProps(2)} />

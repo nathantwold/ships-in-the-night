@@ -10,6 +10,7 @@ const styles = {
         marginLeft: '20%',
         marginRight: '20%',
         marginTop: '5%',
+        backgroundColor: '#e5f6f8',
         width: '60%'
     },
     button: {

@@ -16,7 +16,7 @@ import swal from 'sweetalert';
 
 const styles = {
     container: {
-        marginTop: "40px",
+        marginTop: '40px',
     },
     paperLeft: {
         width: '100%',
@@ -27,6 +27,7 @@ const styles = {
         width: '100%',
         backgroundColor: '#93daf7',
         textAlign: 'center',
+        fontFamily: 'cursive',
     },
     paperRight: {
         width: '100%',
