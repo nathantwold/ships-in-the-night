@@ -37,7 +37,7 @@ const styles = {
     },
     paperOpen: {
         width: '100%',
-        backgroundColor: '#93daf7',
+        backgroundColor: '#93daf9',
         textAlign: 'center',
         fontFamily: 'cursive',
     },
@@ -45,7 +45,10 @@ const styles = {
         width: '100%',
         fontSize: '8px',
         backgroundColor: 'lightblue',
-    }
+    },
+    title: {
+        margin: '0',
+    },
 };
 
 class AllTasks extends Component {
@@ -66,9 +69,11 @@ class AllTasks extends Component {
         this.props.dispatch({ type: 'DELETE_TASK', payload: item });
         swal({ text: 'Task deleted!', icon: 'success' });
     }
-
+    
     handleClaim = (item) => {
-        console.log('claim: ', item);
+        this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
+        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
+        swal({ text: 'The task is yours, Captain!', icon: 'success' })
     }
 
     render() {
@@ -84,13 +89,13 @@ class AllTasks extends Component {
                                             <ExpansionPanelSummary
                                                 expandIcon={<ExpandMoreIcon />}
                                             >
-                                                {item.title} √
+                                                <h3 style={styles.title}>√  {item.title}</h3>
                                             </ExpansionPanelSummary>
                                             <ExpansionPanelDetails>
                                                 <Grid container spacing={1}>
                                                     <Grid item xs={12}>
                                                         <Paper>
-                                                            completed by: {item.username}
+                                                            <h3 style={styles.title}>completed by: {item.username}</h3>
                                                         </Paper>
                                                     </Grid>
                                                     <Grid item xs={4}>
@@ -120,13 +125,13 @@ class AllTasks extends Component {
                                             <ExpansionPanelSummary
                                                 expandIcon={<ExpandMoreIcon />}
                                             >
-                                                {item.title}
+                                                <h3 style={styles.title}>{item.title}</h3>
                                             </ExpansionPanelSummary>
                                             <ExpansionPanelDetails>
                                                 <Grid container spacing={1}>
                                                     <Grid item xs={12}>
                                                         <Paper>
-                                                            Claimed by: {item.username}
+                                                            <h3 style={styles.title}>Claimed by: {item.username}</h3>
                                                         </Paper>
                                                     </Grid>
                                                     <Grid item xs={4}>

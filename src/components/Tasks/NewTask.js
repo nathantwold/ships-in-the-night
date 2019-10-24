@@ -49,7 +49,8 @@ class NewTask extends Component {
         title: '',
         detail: '',
         username: 'none',
-        due: null
+        due: '',
+        random: false,
     }
 
     handleInputChangeFor = (event, input) => {
@@ -78,8 +79,7 @@ class NewTask extends Component {
         let max = this.props.reduxStore.fleet.length - 1;
         let randomNum = this.randomNumber(min, max)
         let randomUser = this.props.reduxStore.fleet[randomNum]
-        this.setState({ username: randomUser.username })
-        console.log(this.state);
+        this.setState({ username: randomUser.username, random: true })
     }
 
     randomNumber = (min, max) => {
@@ -129,7 +129,10 @@ class NewTask extends Component {
                         <Grid item xs={2}></Grid>
                         <Grid item xs={2}></Grid>
                         <Grid item xs={3} style={styles.div}>
-                            <Button variant="contained" style={styles.randomBut} onClick={this.randomPicker}>Assign random</Button>
+                            <Button variant="contained" style={styles.randomBut} disabled={this.state.random}
+                                onClick={this.randomPicker}>
+                                Assign random
+                            </Button>
                         </Grid>
                         <Grid item xs={5} style={styles.div}>
                             <Paper style={styles.user}>

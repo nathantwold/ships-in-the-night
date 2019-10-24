@@ -25,7 +25,7 @@ const styles = {
     },
     paperCenter: {
         width: '100%',
-        backgroundColor: '#93daf7',
+        backgroundColor: '#93daf9',
         textAlign: 'center',
         fontFamily: 'cursive',
     },
@@ -33,7 +33,10 @@ const styles = {
         width: '100%',
         fontSize: '8px',
         backgroundColor: 'lightgreen',
-    }
+    },
+    title: {
+        margin: '0',
+    },
 };
 
 class MyTasks extends Component {
@@ -66,13 +69,13 @@ class MyTasks extends Component {
                                     <ExpansionPanelSummary
                                         expandIcon={<ExpandMoreIcon />}
                                     >
-                                        {item.title}
+                                        <h3 style={styles.title}>{item.title}</h3>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <Grid container spacing={1}>
                                             <Grid item xs={12}>
                                                 <Paper>
-                                                    {item.detail}
+                                                <h3 style={styles.title}>{item.detail}</h3>
                                                 </Paper>
                                             </Grid>
                                             <Grid item xs={4}>
