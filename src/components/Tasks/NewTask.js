@@ -1,27 +1,37 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
-import { Button, TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
+import { Button, TextField, Grid, Paper } from '@material-ui/core';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import swal from 'sweetalert';
 
 const styles = {
-    textField: {
-        marginLeft: '20%',
-        marginRight: '20%',
-        marginTop: '5%',
+    user: {
         backgroundColor: '#e5f6f8',
-        width: '60%'
+        width: '100%',
+        height: '100%',
+        textAlign: 'center',
+        fontSize: '22px',
+    },
+    textField: {
+        backgroundColor: '#e5f6f8',
+        width: '100%',
     },
     button: {
-        marginLeft: '40%',
-        marginRight: '40%',
-        marginTop: '5%',
         marginBottom: '40px',
-        width: '20%',
+        width: '100%',
         fontSize: '8px',
         backgroundColor: 'lightgreen',
     },
+    randomBut: {
+        backgroundColor: '#e5f6f8',
+        fontSize: '8px',
+        width: '100%',
+    },
+    div: {
+        marginTop: '5px',
+        marginBottom: '5px',
+    }
 }
 
 class NewTask extends Component {
@@ -63,55 +73,78 @@ class NewTask extends Component {
             .then(this.props.history.push('/home'));
     }
 
+    randomPicker = () => {
+        let min = 0;
+        let max = this.props.reduxStore.fleet.length - 1;
+        let randomNum = this.randomNumber(min, max)
+        let randomUser = this.props.reduxStore.fleet[randomNum]
+        this.setState({ username: randomUser.username })
+        console.log(this.state);
+    }
+
+    randomNumber = (min, max) => {
+        return Math.floor(Math.random() * (1 + max - min) + min);
+    }
+
     render() {
         return (
             <Router>
                 <div>
-                    <TextField
-                        required
-                        style={styles.textField}
-                        label="Task Title"
-                        variant="filled"
-                        onChange={(event) => this.handleInputChangeFor(event, 'title')}
-                    />
-                    <br />
-                    <TextField
-                        style={styles.textField}
-                        label="Task Details"
-                        variant="filled"
-                        multiline rows="6"
-                        onChange={(event) => this.handleInputChangeFor(event, 'detail')}
-                    />
-                    <br />
-                    <TextField
-                        style={styles.textField}
-                        label="Due date"
-                        variant="filled"
-                        type="date"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={(event) => this.handleInputChangeFor(event, 'due')}
-                    />
-                    <br />
-                    <FormControl variant="filled" style={styles.textField}>
-                        <InputLabel>
-                            Assignment
-                        </InputLabel>
-                        <Select
-                            value={this.state.username}
-                            onChange={(event) => this.handleInputChangeFor(event, 'username')}
-                        >
-                            <MenuItem value={'none'}>Open</MenuItem>
-                            {this.props.reduxStore.fleet.map(user => (
-                            <MenuItem key={user.id} value={user.username}>{user.username}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <br />
-                    <Button style={styles.button} variant="contained" onClick={this.checkFields}>
-                        <PlaylistAddCheckIcon />
-                    </Button>
+                    <Grid container spacing={0}>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={8} style={styles.div}>
+                            <TextField
+                                required
+                                style={styles.textField}
+                                label="Task Title"
+                                variant="filled"
+                                onChange={(event) => this.handleInputChangeFor(event, 'title')}
+                            />
+                        </Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={8} style={styles.div}>
+                            <TextField
+                                style={styles.textField}
+                                label="Task Details"
+                                variant="filled"
+                                multiline rows="6"
+                                onChange={(event) => this.handleInputChangeFor(event, 'detail')}
+                            />
+                        </Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={8} style={styles.div}>
+                            <TextField
+                                style={styles.textField}
+                                label="Due date"
+                                variant="filled"
+                                type="date"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={(event) => this.handleInputChangeFor(event, 'due')}
+                            />
+                        </Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={3} style={styles.div}>
+                            <Button variant="contained" style={styles.randomBut} onClick={this.randomPicker}>Assign random</Button>
+                        </Grid>
+                        <Grid item xs={5} style={styles.div}>
+                            <Paper style={styles.user}>
+                                {this.state.username}
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={2}></Grid>
+                        <Grid item xs={4}></Grid>
+                        <Grid item xs={4} style={styles.div}>
+                            <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                                <PlaylistAddCheckIcon />
+                            </Button>
+                        </Grid>
+                        <Grid item xs={4}></Grid>
+                    </Grid>
                 </div>
             </Router>
         )

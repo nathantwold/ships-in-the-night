@@ -7,7 +7,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ReplayIcon from '@material-ui/icons/Replay';
 import DeleteIcon from '@material-ui/icons/Delete';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import swal from 'sweetalert';
 
 const styles = {
@@ -194,7 +193,7 @@ class TaskDetail extends Component {
                                     <Paper style={styles.button}>
                                         <Button style={styles.back} variant="contained" onClick={this.checkFields}>
                                             <ArrowBackIcon />
-                                            Back
+                                            Save
                                         </Button>
                                     </Paper>
                                 </Grid>

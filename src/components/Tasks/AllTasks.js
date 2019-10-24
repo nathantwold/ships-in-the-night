@@ -84,7 +84,7 @@ class AllTasks extends Component {
                                             <ExpansionPanelSummary
                                                 expandIcon={<ExpandMoreIcon />}
                                             >
-                                                {item.title}
+                                                {item.title} √
                                             </ExpansionPanelSummary>
                                             <ExpansionPanelDetails>
                                                 <Grid container spacing={1}>
