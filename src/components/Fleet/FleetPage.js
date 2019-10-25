@@ -63,9 +63,9 @@ class FleetPage extends Component {
                 type: 'NEW_FLEET',
                 payload: this.state.fleet
             })
+            swal(`You are now the commander of ${this.state.fleet.groupname} fleet!`)
+            .then(this.props.history.push('/home'));
             this.props.dispatch({ type: 'GET_TASKS' })
-            swal(`You are now the commander of ${this.state.fleet.groupname}!`)
-                .then(this.props.history.push('/home'));
         } else {
             this.props.dispatch({
                 type: 'JOIN_FLEET',

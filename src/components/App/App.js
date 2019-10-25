@@ -8,7 +8,6 @@ import FooterEmpty from '../Footer/FooterEmpty';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-// import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import InfoPage from '../InfoPage/InfoPage';
 import FleetPage from '../Fleet/FleetPage';
@@ -34,13 +33,10 @@ class App extends Component {
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
-              {/* Visiting localhost:3000/about will show the about page.
-            This is a route anyone can see, no login necessary */}
-              {/* <Route
-                exact
-                path="/about"
-                component={AboutPage}
-              /> */}
+              {/* If the user is not in a fleet, they will be redirected to FleetPage upon navigating to Fleetview*/}
+              {this.props.user.groupname === "0" ?
+                <Redirect exact from="/fleetview" to="/fleet" /> : ''
+              }
               {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the HomePage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
