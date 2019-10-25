@@ -16,7 +16,7 @@ const styles = {
         backgroundColor: '#4df95b',
     },
     randomBut: {
-        backgroundColor: '#e5f6f8',
+        backgroundColor: '#4480ed',
         fontSize: '12px',
         padding: '10%',
         width: '90%',

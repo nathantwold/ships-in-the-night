@@ -16,11 +16,16 @@ const styles = {
         marginBottom: '40px',
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#4df95b',
     },
     div: {
         marginTop: '5px',
         marginBottom: '5px',
+    },
+    ///--- populate fields button for presentation ---\\\
+    populate: {
+        width: '100%',
+        textAlign: 'center',
     }
 }
 
@@ -76,6 +81,16 @@ class GroupInvite extends Component {
         })
     }
 
+    ///--- auto populate fields for presentation ---\\\
+    populate = () => {
+        this.setState({
+            senderName: 'Megan',
+            recipiantName: 'Nathan',
+            recipiantEmail: 'natew79@gmail.com',
+            groupname: this.props.reduxStore.user.groupname,
+        })
+    }
+
     render() {
         return (
             <div>
@@ -84,6 +99,7 @@ class GroupInvite extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             required
+                            value={this.state.senderName}
                             style={styles.textField}
                             label="Your Name"
                             variant="filled"
@@ -91,10 +107,17 @@ class GroupInvite extends Component {
                         />
                     </Grid>
                     <Grid item xs={2}></Grid>
+
+                    {/* ONCLICK EVENT TO POPULATE FIELDS - DELETE THIS AFTER PRESENTATION */}
+                    <Grid item xs={12} >
+                        <button style={styles.populate} onClick={this.populate}></button>
+                    </Grid>  
+
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             required
+                            value={this.state.recipiantName}
                             style={styles.textField}
                             label="Recipiant Name"
                             variant="filled"
@@ -106,6 +129,7 @@ class GroupInvite extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             required
+                            value={this.state.recipiantEmail}
                             type="email"
                             autoComplete="email"
                             style={styles.textField}

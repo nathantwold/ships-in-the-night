@@ -6,9 +6,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import swal from 'sweetalert';
 
 const styles = {
-    main: {
-        textAlign: "center",
-    },
     fleet: {
         margin: "10px",
     },
@@ -99,7 +96,7 @@ class FleetView extends Component {
 
     render() {
         return (
-            <div style={styles.main}>
+            <div>
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
                         <Paper style={styles.container}>
@@ -115,6 +112,7 @@ class FleetView extends Component {
                                 <Divider />
                                 {this.props.reduxStore.fleet.map(user => (
                                     <div key={user.id}>
+                                        <Divider />
                                         <ListItem button>
                                             <ListItemText >
                                                 <h3 style={styles.each}>{user.username}</h3>
