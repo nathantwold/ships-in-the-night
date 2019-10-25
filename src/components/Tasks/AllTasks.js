@@ -22,7 +22,7 @@ const styles = {
     paperLeft: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#4480ed',
     },
     paperComplete: {
         width: '100%',
@@ -44,7 +44,7 @@ const styles = {
     paperRight: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#4480ed',
     },
     title: {
         margin: '0',

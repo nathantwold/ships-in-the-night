@@ -21,7 +21,7 @@ const styles = {
     paperLeft: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#4480ed',
     },
     paperCenter: {
         width: '100%',

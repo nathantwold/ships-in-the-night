@@ -18,19 +18,25 @@ const styles = {
         marginLeft: "10%",
         marginRight: "10%",
         marginTop: "20px",
-        fontSize: "26px",
+        fontSize: "28px",
         fontFamily: "cursive",
     },
     each: {
         fontFamily: "cursive",
-        fontSize: "22px",
+        fontSize: "24px",
         margin: "0",
+    },
+    invite: {
+        margin: "5px",
+        float: "right",
+        fontSize: "10px",
+        backgroundColor: "#4df95b",
     },
     button: {
         margin: "5px",
         float: "right",
         fontSize: "10px",
-        backgroundColor: "#4df95b",
+        backgroundColor: "#e4878d",
     },
 }
 
@@ -99,12 +105,13 @@ class FleetView extends Component {
                         <Paper style={styles.container}>
                             <div style={styles.fleet}>
                                 {this.props.reduxStore.user.groupname}
-                                <Button style={styles.button} onClick={this.sendInvite} variant="contained">
+                                <Button style={styles.invite} onClick={this.sendInvite} variant="contained">
                                     Invite
                                     <GroupAddIcon />
                                 </Button>
                             </div>
                             <List>
+                                <Divider />
                                 <Divider />
                                 {this.props.reduxStore.fleet.map(user => (
                                     <div key={user.id}>
@@ -115,7 +122,7 @@ class FleetView extends Component {
                                             {user.id === this.props.reduxStore.user.id ?
                                                 <Button onClick={() => { this.leaveFleet(user) }}
                                                     style={styles.button} variant="contained" >
-                                                    Leave fleet
+                                                    Leave
                                                     <CancelIcon />
                                                 </Button> :
                                                 <Button onClick={() => { this.removeUser(user) }}

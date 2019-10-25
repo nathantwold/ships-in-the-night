@@ -26,12 +26,12 @@ const styles = {
     complete: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#4df95b',
     },
     back: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#4480ed',
     },
     delete: {
         width: '100%',
