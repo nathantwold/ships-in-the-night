@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
 import moment from 'moment';
 import { Button, TextField, Grid, Paper } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -52,7 +51,7 @@ class TaskDetail extends Component {
         detail: '',
         id: '',
         username: '',
-        due: '',
+        due: null,
     }
 
     componentDidMount = () => {
@@ -127,7 +126,6 @@ class TaskDetail extends Component {
 
     render() {
         return (
-            <Router>
                 <div>
                     {this.props.reduxStore.tasks.setDetailReducer.map(item => (
                         <div key={item.id}>
@@ -137,7 +135,7 @@ class TaskDetail extends Component {
                                         Entered on {moment(item.created).format("MMMM Do YYYY")}
                                         {item.due !== null ?
                                             <p style={styles.text}>Due: {moment(item.due).format("MMMM Do YYYY")}</p> :
-                                            <p style={styles.text}>Due: </p>
+                                            <p style={styles.text}>Due: ASAP</p>
                                         }
                                         {item.complete === false ?
                                             <p style={styles.text}>Claimed by: {item.username}</p> :
@@ -226,7 +224,6 @@ class TaskDetail extends Component {
                         </div>
                     ))}
                 </div>
-            </Router>
         )
     }
 }

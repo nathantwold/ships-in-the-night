@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Button, TextField, Grid } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 import swal from 'sweetalert';
+
+const styles = {
+    textField: {
+        marginTop: '10px',
+        backgroundColor: '#e5f6f8',
+        width: '100%',
+    },
+    button: {
+        marginTop: '10px',
+        marginBottom: '40px',
+        width: '100%',
+        fontSize: '8px',
+        backgroundColor: 'lightgreen',
+    },
+    div: {
+        marginTop: '5px',
+        marginBottom: '5px',
+    }
+}
 
 class GroupInvite extends Component {
 
@@ -58,17 +79,50 @@ class GroupInvite extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSend}>
-                    <div className="form-group">
-                        <label>Your name</label>
-                        <input type="text" onChange={(event) => {this.handleInputChangeFor(event, 'senderName')}} />
-                        <label>Recipiant name</label>
-                        <input type="text" onChange={(event) => {this.handleInputChangeFor(event, 'recipiantName')}} />
-                        <label>Recipiant email address</label>
-                        <input type="email" onChange={(event) => {this.handleInputChangeFor(event, 'recipiantEmail')}} aria-describedby="emailHelp" />
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+                <Grid container spacing={0}>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
+                        <TextField
+                            required
+                            style={styles.textField}
+                            label="Your Name"
+                            variant="filled"
+                            onChange={(event) => this.handleInputChangeFor(event, 'senderName')}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
+                        <TextField
+                            required
+                            style={styles.textField}
+                            label="Recipiant Name"
+                            variant="filled"
+                            onChange={(event) => this.handleInputChangeFor(event, 'recipiantName')}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
+                        <TextField
+                            required
+                            type="email"
+                            autoComplete="email"
+                            style={styles.textField}
+                            label="Recipiant Email"
+                            variant="filled"
+                            onChange={(event) => this.handleInputChangeFor(event, 'recipiantEmail')}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={4}></Grid>
+                    <Grid item xs={4} style={styles.div}>
+                        <Button style={styles.button} variant="contained" onClick={this.handleSend}>
+                            <SendIcon />
+                        </Button>
+                    </Grid>
+                    <Grid item xs={4}></Grid>
+                </Grid>
             </div>
         );
     }

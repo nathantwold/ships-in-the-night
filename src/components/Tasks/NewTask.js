@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
 import { Button, TextField, Grid } from '@material-ui/core';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import swal from 'sweetalert';
@@ -44,7 +43,7 @@ class NewTask extends Component {
         title: '',
         detail: '',
         username: 'none',
-        due: '',
+        due: null,
         random: false,
     }
 
@@ -83,71 +82,69 @@ class NewTask extends Component {
 
     render() {
         return (
-            <Router>
-                <div>
-                    <Grid container spacing={0}>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={8} style={styles.div}>
-                            <TextField
-                                required
-                                style={styles.textField}
-                                label="Task Title"
-                                variant="filled"
-                                onChange={(event) => this.handleInputChangeFor(event, 'title')}
-                            />
-                        </Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={8} style={styles.div}>
-                            <TextField
-                                style={styles.textField}
-                                label="Task Details"
-                                variant="filled"
-                                multiline rows="6"
-                                onChange={(event) => this.handleInputChangeFor(event, 'detail')}
-                            />
-                        </Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={8} style={styles.div}>
-                            <TextField
-                                style={styles.textField}
-                                label="Due date"
-                                variant="filled"
-                                type="date"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={(event) => this.handleInputChangeFor(event, 'due')}
-                            />
-                        </Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={3} style={styles.div}>
-                            <Button variant="contained" style={styles.randomBut} disabled={this.state.random}
-                                onClick={this.randomPicker}>
-                                Assign random
-                            </Button>
-                        </Grid>
-                        <Grid item xs={5} style={styles.div}>
+            <div>
+                <Grid container spacing={0}>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
                         <TextField
-                                label="Assign to"
-                                style={styles.textField}
-                                variant="filled"
-                                value={this.state.username}
-                            />
-                        </Grid>
-                        <Grid item xs={2}></Grid>
-                        <Grid item xs={4}></Grid>
-                        <Grid item xs={4} style={styles.div}>
-                            <Button style={styles.button} variant="contained" onClick={this.checkFields}>
-                                <PlaylistAddCheckIcon />
-                            </Button>
-                        </Grid>
-                        <Grid item xs={4}></Grid>
+                            required
+                            style={styles.textField}
+                            label="Task Title"
+                            variant="filled"
+                            onChange={(event) => this.handleInputChangeFor(event, 'title')}
+                        />
                     </Grid>
-                </div>
-            </Router>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
+                        <TextField
+                            style={styles.textField}
+                            label="Task Details"
+                            variant="filled"
+                            multiline rows="6"
+                            onChange={(event) => this.handleInputChangeFor(event, 'detail')}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8} style={styles.div}>
+                        <TextField
+                            style={styles.textField}
+                            label="Due date"
+                            variant="filled"
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={(event) => this.handleInputChangeFor(event, 'due')}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={3} style={styles.div}>
+                        <Button variant="contained" style={styles.randomBut} disabled={this.state.random}
+                            onClick={this.randomPicker}>
+                            Assign random
+                            </Button>
+                    </Grid>
+                    <Grid item xs={5} style={styles.div}>
+                        <TextField
+                            label="Assign to"
+                            style={styles.textField}
+                            variant="filled"
+                            value={this.state.username}
+                        />
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={4}></Grid>
+                    <Grid item xs={4} style={styles.div}>
+                        <Button style={styles.button} variant="contained" onClick={this.checkFields}>
+                            <PlaylistAddCheckIcon />
+                        </Button>
+                    </Grid>
+                    <Grid item xs={4}></Grid>
+                </Grid>
+            </div>
         )
     }
 }
