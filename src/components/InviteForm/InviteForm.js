@@ -1,62 +1,74 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-let aws = require('aws-sdk');
-const nodemailer = require('nodemailer');
+import axios from 'axios';
+import swal from 'sweetalert';
 
-aws.config.loadFromPath('config.json');
+class GroupInvite extends Component {
 
-// create Nodemailer SES transporter
-let transporter = nodemailer.createTransport({
-    SES: new aws.SES({
-        apiVersion: '2010-12-01'
-    })
-});
-
-// send some mail
-transporter.sendMail({
-    from: REACT_APP_EMAIL_USER,
-    to: this.state.email.recipiant,
-    subject: 'You have been invited to join a fleet!',
-    text: `${this.state.email.sender} has invited you to join ${this.props.reduxStore.fleet.name} fleet!
-            Once you create an account, you may join ${this.props.reduxStore.fleet.name} 
-            with password '${this.props.reduxStore.fleet.password}'`,
-    ses: { // optional extra arguments for SendRawEmail
-        Tags: [{
-            Name: 'tag name',
-            Value: 'tag value'
-        }]
+    componentDidMount = () => {
+        this.getFleet();
     }
-}, (err, info) => {
-    console.log(info.envelope);
-    console.log(info.messageId);
-});
 
-class InviteForm extends Component {
+    getFleet = () => {
+        this.props.dispatch({ type: 'FETCH_FLEET', payload: this.props.reduxStore.user });
+    }
+
     state = {
-        email: {
-            sender: '',
-            recipiant: '',
-        }
+        senderName: '',
+        recipiantName: '',
+        recipiantEmail: '',
+        groupname: this.props.reduxStore.user.groupname,
     }
 
     handleInputChangeFor = (event, input) => {
         this.setState({
-            ...this.state.email,
+            ...this.state,
             [input]: event.target.value,
         });
     }
 
-    handleClick = () => {
-        console.log(this.state.email);
+    handleSend = () => {
+        const email = this.state;
+        axios({
+            method: "POST",
+            url: "/api/invite",
+            data: {
+                email: email
+            }
+        }).then((response) => {
+            if (response.data.msg === 'success') {
+                swal({ text: 'Message sent!', icon: 'success' });
+                this.resetForm()
+                this.props.history.push('/fleetview');
+            } else if (response.data.msg === 'fail') {
+                swal({ text: 'Message failed to send.', icon: 'warning' })
+            }
+        })
+    }
+
+    resetForm = () => {
+        this.setState({
+            senderName: '',
+            recipiantName: '',
+            recipiantEmail: '',
+            groupname: this.props.reduxStore.user.groupname,
+        })
     }
 
     render() {
         return (
-            <div className="Test">
-                <h1>In Test</h1>
-                <input placeholder="recipiant email" onChange={(event) => this.handleChange(event, 'recipiant')} />
-                <input placeholder="sender's email" onChange={(event) => this.handleChange(event, 'sender')} />
-                <button onClick={this.handleClick}>submit</button>
+            <div>
+                <form onSubmit={this.handleSend}>
+                    <div className="form-group">
+                        <label>Your name</label>
+                        <input type="text" onChange={(event) => {this.handleInputChangeFor(event, 'senderName')}} />
+                        <label>Recipiant name</label>
+                        <input type="text" onChange={(event) => {this.handleInputChangeFor(event, 'recipiantName')}} />
+                        <label>Recipiant email address</label>
+                        <input type="email" onChange={(event) => {this.handleInputChangeFor(event, 'recipiantEmail')}} aria-describedby="emailHelp" />
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         );
     }
@@ -66,4 +78,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore,
 });
 
-export default connect(mapStateToProps)(InviteForm);
+export default connect(mapStateToProps)(GroupInvite);

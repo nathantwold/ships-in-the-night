@@ -81,7 +81,7 @@ class FleetView extends Component {
     }
 
     sendInvite = () => {
-        console.log('sending invite');
+        this.props.history.push('/invite');
     }
 
     render() {

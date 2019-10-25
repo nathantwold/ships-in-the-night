@@ -8,13 +8,14 @@ import FooterEmpty from '../Footer/FooterEmpty';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
+// import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../HomePage/HomePage';
 import InfoPage from '../InfoPage/InfoPage';
 import FleetPage from '../Fleet/FleetPage';
 import FleetView from '../Fleet/FleetView';
 import NewTask from '../Tasks/NewTask';
 import TaskDetail from '../Tasks/TaskDetail';
+import InviteForm from '../InviteForm/InviteForm';
 
 import './App.css';
 
@@ -35,11 +36,11 @@ class App extends Component {
               <Redirect exact from="/" to="/home" />
               {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
-              <Route
+              {/* <Route
                 exact
                 path="/about"
                 component={AboutPage}
-              />
+              /> */}
               {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the HomePage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -75,6 +76,11 @@ class App extends Component {
                 exact
                 path="/detail/:id"
                 component={TaskDetail}
+              />
+              <ProtectedRoute
+                exact
+                path="/invite"
+                component={InviteForm}
               />
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />

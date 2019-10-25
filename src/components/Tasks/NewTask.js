@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
-import { Button, TextField, Grid, Paper } from '@material-ui/core';
+import { Button, TextField, Grid } from '@material-ui/core';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import swal from 'sweetalert';
 
 const styles = {
-    user: {
-        backgroundColor: '#e5f6f8',
-        width: '100%',
-        height: '100%',
-        textAlign: 'center',
-        fontSize: '22px',
-    },
     textField: {
         backgroundColor: '#e5f6f8',
         width: '100%',
@@ -25,8 +18,10 @@ const styles = {
     },
     randomBut: {
         backgroundColor: '#e5f6f8',
-        fontSize: '8px',
-        width: '100%',
+        fontSize: '12px',
+        padding: '10%',
+        width: '90%',
+        height: '90%',
     },
     div: {
         marginTop: '5px',
@@ -135,9 +130,12 @@ class NewTask extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={5} style={styles.div}>
-                            <Paper style={styles.user}>
-                                {this.state.username}
-                            </Paper>
+                        <TextField
+                                label="Assign to"
+                                style={styles.textField}
+                                variant="filled"
+                                value={this.state.username}
+                            />
                         </Grid>
                         <Grid item xs={2}></Grid>
                         <Grid item xs={4}></Grid>

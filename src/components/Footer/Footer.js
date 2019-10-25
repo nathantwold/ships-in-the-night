@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import HomeIcon from '@material-ui/icons/Home';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import GroupIcon from '@material-ui/icons/Group';
 import PersonIcon from '@material-ui/icons/Person';
@@ -34,7 +34,7 @@ class Footer extends Component {
       <div>
         <BottomNavigation showLabels style={styles.bar} >
           <BottomNavigationAction onClick={() => this.props.history.push('/home')}
-            label="Home" style={styles.each} icon={<HomeIcon />} />
+            label="Home" style={styles.each} icon={<FormatListBulletedIcon />} />
           <BottomNavigationAction
             label="Info" style={styles.each} icon={<PersonIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
