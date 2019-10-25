@@ -13,7 +13,7 @@ const styles = {
         marginBottom: '40px',
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#4df95b',
     },
     randomBut: {
         backgroundColor: '#e5f6f8',
@@ -23,7 +23,7 @@ const styles = {
         height: '90%',
     },
     div: {
-        marginTop: '5px',
+        marginTop: '10px',
         marginBottom: '5px',
     }
 }

@@ -1,30 +1,37 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Button, Grid, Paper } from '@material-ui/core';
+import { Button, Grid, Paper, List, ListItem, ListItemText, Divider } from '@material-ui/core';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import CancelIcon from '@material-ui/icons/Cancel';
 import swal from 'sweetalert';
 
 const styles = {
     main: {
-        textAlign: "left",
+        textAlign: "center",
     },
-    crew: {
-        margin: "5px",
-        float: "right",
-        fontSize: "10px",
-        backgroundColor: "green",
+    fleet: {
+        margin: "10px",
+    },
+    container: {
+        width: "80%",
+        height: "100%",
+        marginLeft: "10%",
+        marginRight: "10%",
+        marginTop: "20px",
+        fontSize: "26px",
+        fontFamily: "cursive",
+    },
+    each: {
+        fontFamily: "cursive",
+        fontSize: "22px",
+        margin: "0",
     },
     button: {
         margin: "5px",
         float: "right",
         fontSize: "10px",
-        backgroundColor: "#e4878d",
+        backgroundColor: "#4df95b",
     },
-    div: {
-        margin: "10px",
-        height: "45px",
-    }
 }
 
 class FleetView extends Component {
@@ -89,38 +96,41 @@ class FleetView extends Component {
             <div style={styles.main}>
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
-                        <Paper style={styles.div}>
-                            {this.props.reduxStore.user.groupname}
-                            <Button style={styles.crew} onClick={this.sendInvite} variant="contained">
-                                Invite
-                                <GroupAddIcon />
-                            </Button>
+                        <Paper style={styles.container}>
+                            <div style={styles.fleet}>
+                                {this.props.reduxStore.user.groupname}
+                                <Button style={styles.button} onClick={this.sendInvite} variant="contained">
+                                    Invite
+                                    <GroupAddIcon />
+                                </Button>
+                            </div>
+                            <List>
+                                <Divider />
+                                {this.props.reduxStore.fleet.map(user => (
+                                    <div key={user.id}>
+                                        <ListItem button>
+                                            <ListItemText >
+                                                <h3 style={styles.each}>{user.username}</h3>
+                                            </ListItemText>
+                                            {user.id === this.props.reduxStore.user.id ?
+                                                <Button onClick={() => { this.leaveFleet(user) }}
+                                                    style={styles.button} variant="contained" >
+                                                    Leave fleet
+                                                    <CancelIcon />
+                                                </Button> :
+                                                <Button onClick={() => { this.removeUser(user) }}
+                                                    style={styles.button} variant="contained" >
+                                                    Remove
+                                                    <CancelIcon />
+                                                </Button>
+                                            }
+                                        </ListItem>
+                                    </div>
+                                ))}
+                            </List>
                         </Paper>
                     </Grid>
                 </Grid>
-                {this.props.reduxStore.fleet.map(user => (
-                    <div key={user.id}>
-                        <Grid container spacing={0}>
-                            <Grid item xs={12}>
-                                <Paper style={styles.div}>
-                                    {user.username}
-                                    {user.id === this.props.reduxStore.user.id ?
-                                        <Button onClick={() => { this.leaveFleet(user) }}
-                                            style={styles.button} variant="contained" >
-                                            Leave fleet
-                                            <CancelIcon />
-                                        </Button> :
-                                        <Button onClick={() => { this.removeUser(user) }}
-                                            style={styles.button} variant="contained" >
-                                            Remove
-                                            <CancelIcon />
-                                        </Button>
-                                    }
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </div>
-                ))}
             </div>
         )
     }
@@ -131,3 +141,37 @@ const mapStateToProps = reduxStore => ({
 });
 
 export default connect(mapStateToProps)(FleetView);
+
+
+// <Paper style={styles.div}>
+//                         <Grid item xs={12}>
+//                             <Paper style={styles.each}>
+//                                 {this.props.reduxStore.user.groupname}
+//                                 <Button style={styles.button} onClick={this.sendInvite} variant="contained">
+//                                     Invite
+//                                 <GroupAddIcon />
+//                                 </Button>
+//                             </Paper>
+//                         </Grid>
+//                         {this.props.reduxStore.fleet.map(user => (
+//                             <div key={user.id}>
+//                                 <Grid item xs={12}>
+//                                     <Paper style={styles.each}>
+//                                         {user.username}
+//                                         {user.id === this.props.reduxStore.user.id ?
+//                                             <Button onClick={() => { this.leaveFleet(user) }}
+//                                                 style={styles.button} variant="contained" >
+//                                                 Leave fleet
+//                                             <CancelIcon />
+//                                             </Button> :
+//                                             <Button onClick={() => { this.removeUser(user) }}
+//                                                 style={styles.button} variant="contained" >
+//                                                 Remove
+//                                             <CancelIcon />
+//                                             </Button>
+//                                         }
+//                                     </Paper>
+//                                 </Grid>
+//                             </div>
+//                         ))}
+//                     </Paper>

@@ -17,7 +17,7 @@ const styles = {
     },
     input: {
         width: '100%',
-        margin: '5px',
+        margin: '10px',
         backgroundColor: '#e5f6f8',
     },
     button: {

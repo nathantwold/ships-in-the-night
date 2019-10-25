@@ -32,7 +32,7 @@ const styles = {
     paperRight: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#4df95b',
     },
     title: {
         margin: '0',

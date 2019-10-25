@@ -41,6 +41,15 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
+        <center>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+          >
+            Login
+          </button>
+        </center>
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
@@ -74,15 +83,6 @@ class RegisterPage extends Component {
             />
           </div>
         </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </button>
-        </center>
       </div>
     );
   }
