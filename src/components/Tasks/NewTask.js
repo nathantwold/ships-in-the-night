@@ -88,6 +88,7 @@ class NewTask extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             required
+                            defaultValue={this.state.title}
                             style={styles.textField}
                             label="Title"
                             variant="filled"
@@ -98,6 +99,7 @@ class NewTask extends Component {
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8} style={styles.div}>
                         <TextField
+                            defaultValue={this.state.detail}
                             style={styles.textField}
                             label="Details"
                             variant="filled"
@@ -110,7 +112,7 @@ class NewTask extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             style={styles.textField}
-                            label="Due date"
+                            label="Due"
                             variant="filled"
                             type="date"
                             InputLabelProps={{

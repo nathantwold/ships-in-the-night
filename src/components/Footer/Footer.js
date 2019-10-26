@@ -28,6 +28,11 @@ const styles = {
 
 class Footer extends Component {
 
+  logOut = () => {
+    this.props.dispatch({ type: 'LOGOUT' });
+    this.props.history.push('/home');
+  }
+
   render() {
 
     return (
@@ -41,7 +46,7 @@ class Footer extends Component {
             label="New Task" style={styles.add} icon={<AddCircleIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/fleetview')}
             label="Fleet" style={styles.each} icon={<GroupIcon />} />
-          <BottomNavigationAction onClick={() => this.props.dispatch({ type: 'LOGOUT' })}
+          <BottomNavigationAction onClick={this.logOut}
             label="Log Out" style={styles.each} icon={<ExitToAppIcon />} />
         </BottomNavigation>
       </div>

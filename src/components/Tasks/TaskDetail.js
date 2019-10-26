@@ -11,12 +11,12 @@ import swal from 'sweetalert';
 const styles = {
     text: {
         textAlign: 'center',
+        fontFamily: 'cursive',
         margin: '0',
         padding: '0',
         backgroundColor: '#e5f6f8',
     },
     input: {
-        width: '100%',
         margin: '10px',
         backgroundColor: '#e5f6f8',
     },
@@ -81,25 +81,19 @@ class TaskDetail extends Component {
         this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
     }
 
-    handleClaim = () => {
-        this.props.dispatch({ type: 'CLAIM_TASK', payload: this.state })
-        swal({ text: 'The task is yours, Captain!', icon: 'success' });
-        // this.props.history.push('/home');
-    }
-
     handleComplete = (item) => {
         this.props.dispatch({ type: 'COMPLETE_TASK', payload: item });
         if (item.complete === false) {
-            swal({ text: 'Nice work, Captain!', icon: 'success' })
+            swal({ text: 'Nice work, Captain!', icon: 'success' });
         } else {
-            swal({ text: 'Task has been re-opened!', icon: 'success' })
+            swal({ text: 'Task has been re-opened!', icon: 'success' });
         }
         this.props.history.push('/home');
     }
 
     handleDelete = (item) => {
         this.props.dispatch({ type: 'DELETE_TASK', payload: item });
-        swal({ text: 'Task deleted!', icon: 'success' })
+        swal({ text: 'Task deleted!', icon: 'success' });
         this.props.history.push('/home');
     }
 
@@ -119,9 +113,8 @@ class TaskDetail extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'EDIT_TASK', payload: this.state })
-        this.props.history.push('/home')
-        // swal('Success', 'Your task has been updated!', 'success');
+        this.props.dispatch({ type: 'EDIT_TASK', payload: this.state });
+        this.props.history.push('/home');
     }
 
     render() {
@@ -175,7 +168,7 @@ class TaskDetail extends Component {
                                     <Paper style={styles.input}>
                                         <TextField
                                             style={styles.textField}
-                                            label="Due date"
+                                            label="Due"
                                             variant="filled"
                                             type="date"
                                             InputLabelProps={{
