@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { 
-    Button, 
-    Grid, 
-    Paper, 
-    ExpansionPanel, 
-    ExpansionPanelSummary, 
-    ExpansionPanelDetails 
+import moment from 'moment';
+import {
+    Button,
+    Grid,
+    Paper,
+    ExpansionPanel,
+    ExpansionPanelSummary,
+    ExpansionPanelDetails,
+    Divider
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreIcon from '@material-ui/icons/More';
@@ -75,7 +77,18 @@ class MyTasks extends Component {
                                         <Grid container spacing={1}>
                                             <Grid item xs={12}>
                                                 <Paper>
-                                                <h3 style={styles.title}>{item.detail}</h3>
+                                                    {item.due === null ?
+                                                        <h3 style={styles.title}>
+                                                            due: ASAP
+                                                            <Divider />
+                                                            {item.detail}
+                                                        </h3> :
+                                                        <h3 style={styles.title}>
+                                                            due: {moment(item.due).format("MMM Do YY")}
+                                                            <Divider />
+                                                            {item.detail}
+                                                        </h3>
+                                                    }
                                                 </Paper>
                                             </Grid>
                                             <Grid item xs={4}>
