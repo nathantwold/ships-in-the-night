@@ -149,7 +149,7 @@ class TaskDetail extends Component {
                                         <TextField
                                             defaultValue={item.title}
                                             style={styles.textField}
-                                            label="Task Title*"
+                                            label="Title*"
                                             variant="filled"
                                             onChange={(event) => this.handleInputChangeFor(event, 'title')}
                                         />
@@ -162,7 +162,7 @@ class TaskDetail extends Component {
                                         <TextField
                                             defaultValue={item.detail}
                                             style={styles.textField}
-                                            label="Task Details"
+                                            label="Details"
                                             variant="filled"
                                             multiline rows="6"
                                             onChange={(event) => this.handleInputChangeFor(event, 'detail')}

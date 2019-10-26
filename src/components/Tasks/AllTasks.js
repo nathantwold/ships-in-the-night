@@ -50,6 +50,7 @@ const styles = {
     },
     title: {
         margin: '0',
+        fontSize: '22px',
     },
 };
 

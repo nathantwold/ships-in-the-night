@@ -89,7 +89,7 @@ class NewTask extends Component {
                         <TextField
                             required
                             style={styles.textField}
-                            label="Task Title"
+                            label="Title"
                             variant="filled"
                             onChange={(event) => this.handleInputChangeFor(event, 'title')}
                         />
@@ -99,7 +99,7 @@ class NewTask extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             style={styles.textField}
-                            label="Task Details"
+                            label="Details"
                             variant="filled"
                             multiline rows="6"
                             onChange={(event) => this.handleInputChangeFor(event, 'detail')}
@@ -129,7 +129,7 @@ class NewTask extends Component {
                     </Grid>
                     <Grid item xs={5} style={styles.div}>
                         <TextField
-                            label="Assign to"
+                            label="Assign to: "
                             style={styles.textField}
                             variant="filled"
                             value={this.state.username}
