@@ -8,6 +8,7 @@ const styles = {
         bottom: "0",
         backgroundColor: "#0a0f2d",
         color: "#4480ed",
+        borderTop: '2px solid #4480ed',
     },
 };
 

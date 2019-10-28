@@ -10,10 +10,10 @@ import swal from 'sweetalert';
 const styles = {
     fleet: {
         margin: "10px",
+        padding: "10px",
     },
     container: {
         width: "80%",
-        height: "100%",
         marginLeft: "10%",
         marginRight: "10%",
         marginTop: "20px",

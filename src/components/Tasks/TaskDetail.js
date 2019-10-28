@@ -57,6 +57,10 @@ class TaskDetail extends Component {
     componentDidMount = () => {
         this.getDetail();
     }
+    
+    getDetail = () => {
+        this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
+    }
 
     componentDidUpdate(preProps) {
         if (this.props.reduxStore.tasks.setDetailReducer !== preProps.reduxStore.tasks.setDetailReducer) {
@@ -75,10 +79,6 @@ class TaskDetail extends Component {
                 due: item.due,
             })
         })
-    }
-
-    getDetail = () => {
-        this.props.dispatch({ type: 'GET_DETAIL', payload: this.props.match.params });
     }
 
     handleComplete = (item) => {
@@ -119,104 +119,104 @@ class TaskDetail extends Component {
 
     render() {
         return (
-                <div>
-                    {this.props.reduxStore.tasks.setDetailReducer.map(item => (
-                        <div key={item.id}>
-                            <Grid container spacing={0}>
-                                <Grid item xs={12}>
-                                    <Paper style={styles.text}>
-                                        Entered on {moment(item.created).format("MMMM Do YYYY")}
-                                        {item.due !== null ?
-                                            <p style={styles.text}>Due: {moment(item.due).format("MMMM Do YYYY")}</p> :
-                                            <p style={styles.text}>Due: ASAP</p>
-                                        }
-                                        {item.complete === false ?
-                                            <p style={styles.text}>Claimed by: {item.username}</p> :
-                                            <p style={styles.text}>Completed by: {item.username}</p>
-                                        }
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={3}></Grid>
-                                <Grid item xs={6}>
-                                    <Paper style={styles.input}>
-                                        <TextField
-                                            defaultValue={item.title}
-                                            style={styles.textField}
-                                            label="Title*"
-                                            variant="filled"
-                                            onChange={(event) => this.handleInputChangeFor(event, 'title')}
-                                        />
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={3}></Grid>
-                                <Grid item xs={1}></Grid>
-                                <Grid item xs={10}>
-                                    <Paper style={styles.input}>
-                                        <TextField
-                                            defaultValue={item.detail}
-                                            style={styles.textField}
-                                            label="Details"
-                                            variant="filled"
-                                            multiline rows="6"
-                                            onChange={(event) => this.handleInputChangeFor(event, 'detail')}
-                                        />
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={1}></Grid>
-                                <Grid item xs={3}></Grid>
-                                <Grid item xs={6}>
-                                    <Paper style={styles.input}>
-                                        <TextField
-                                            style={styles.textField}
-                                            label="Due"
-                                            variant="filled"
-                                            type="date"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={(event) => this.handleInputChangeFor(event, 'due')}
-                                        />
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={3}></Grid>
-                                <Grid item xs={1}></Grid>
-                                <Grid item xs={3}>
-                                    <Paper style={styles.button}>
-                                        <Button style={styles.back} variant="contained" onClick={this.checkFields}>
-                                            <ArrowBackIosIcon />
-                                            Save
-                                        </Button>
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    {item.complete === false ?
-                                        <Paper style={styles.button}>
-                                            <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                                Complete
-                                                <CheckCircleIcon />
-                                            </Button>
-                                        </Paper> :
-                                        <Paper style={styles.button}>
-                                            <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                                Re-Open
-                                                <ReplayIcon />
-                                            </Button>
-                                        </Paper>
+            <div>
+                {this.props.reduxStore.tasks.setDetailReducer.map(item => (
+                    <div key={item.id}>
+                        <Grid container spacing={0}>
+                            <Grid item xs={12}>
+                                <Paper style={styles.text}>
+                                    Entered on {moment(item.created).format("MMMM Do YYYY")}
+                                    {item.due !== null ?
+                                        <p style={styles.text}>Due: {moment(item.due).format("MMMM Do YYYY")}</p> :
+                                        <p style={styles.text}>Due: ASAP</p>
                                     }
-                                </Grid>
-                                <Grid item xs={3}>
+                                    {item.complete === false ?
+                                        <p style={styles.text}>Claimed by: {item.username}</p> :
+                                        <p style={styles.text}>Completed by: {item.username}</p>
+                                    }
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={6}>
+                                <Paper style={styles.input}>
+                                    <TextField
+                                        defaultValue={item.title}
+                                        style={styles.textField}
+                                        label="Title*"
+                                        variant="filled"
+                                        onChange={(event) => this.handleInputChangeFor(event, 'title')}
+                                    />
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={1}></Grid>
+                            <Grid item xs={10}>
+                                <Paper style={styles.input}>
+                                    <TextField
+                                        defaultValue={item.detail}
+                                        style={styles.textField}
+                                        label="Details"
+                                        variant="filled"
+                                        multiline rows="6"
+                                        onChange={(event) => this.handleInputChangeFor(event, 'detail')}
+                                    />
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={1}></Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={6}>
+                                <Paper style={styles.input}>
+                                    <TextField
+                                        style={styles.textField}
+                                        label="Due"
+                                        variant="filled"
+                                        type="date"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={(event) => this.handleInputChangeFor(event, 'due')}
+                                    />
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={1}></Grid>
+                            <Grid item xs={3}>
+                                <Paper style={styles.button}>
+                                    <Button style={styles.back} variant="contained" onClick={this.checkFields}>
+                                        <ArrowBackIosIcon />
+                                        Save
+                                        </Button>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={4}>
+                                {item.complete === false ?
                                     <Paper style={styles.button}>
-                                        <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
-                                            Delete
-                                            <DeleteIcon />
+                                        <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                            Complete
+                                                <CheckCircleIcon />
+                                        </Button>
+                                    </Paper> :
+                                    <Paper style={styles.button}>
+                                        <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
+                                            Re-Open
+                                                <ReplayIcon />
                                         </Button>
                                     </Paper>
-                                </Grid>
-                                <Grid item xs={1}></Grid>
+                                }
                             </Grid>
-                        </div>
-                    ))}
-                </div>
+                            <Grid item xs={3}>
+                                <Paper style={styles.button}>
+                                    <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
+                                        Delete
+                                            <DeleteIcon />
+                                    </Button>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={1}></Grid>
+                        </Grid>
+                    </div>
+                ))}
+            </div>
         )
     }
 }

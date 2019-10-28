@@ -90,8 +90,6 @@ class App extends Component {
 }
 
 // Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
 });

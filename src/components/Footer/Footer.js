@@ -17,6 +17,7 @@ const styles = {
     position: "fixed",
     bottom: "0",
     backgroundColor: "#0a0f2d",
+    borderTop: '2px solid #4480ed',
   },
   each: {
     color: "#4480ed",
@@ -28,11 +29,6 @@ const styles = {
 
 class Footer extends Component {
 
-  logOut = () => {
-    this.props.dispatch({ type: 'LOGOUT' });
-    this.props.history.push('/home');
-  }
-
   render() {
 
     return (
@@ -40,13 +36,13 @@ class Footer extends Component {
         <BottomNavigation showLabels style={styles.bar} >
           <BottomNavigationAction onClick={() => this.props.history.push('/home')}
             label="Home" style={styles.each} icon={<FormatListBulletedIcon />} />
-          <BottomNavigationAction
+          <BottomNavigationAction onClick={() => this.props.history.push('/info')}
             label="Info" style={styles.each} icon={<PersonIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
             label="New Task" style={styles.add} icon={<AddCircleIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/fleetview')}
             label="Fleet" style={styles.each} icon={<GroupIcon />} />
-          <BottomNavigationAction onClick={this.logOut}
+          <BottomNavigationAction onClick={() => this.props.dispatch({ type: 'LOGOUT' })}
             label="Log Out" style={styles.each} icon={<ExitToAppIcon />} />
         </BottomNavigation>
       </div>
