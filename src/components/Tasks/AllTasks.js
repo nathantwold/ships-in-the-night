@@ -35,7 +35,7 @@ const styles = {
     paperDelete: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: '#e4878d',
+        backgroundColor: '#ff3d3d',
     },
     paperOpen: {
         width: '100%',

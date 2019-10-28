@@ -19,6 +19,7 @@ const styles = {
         marginTop: "20px",
         fontSize: "28px",
         fontFamily: "cursive",
+        backgroundColor: '#e5f6f8',
     },
     each: {
         fontFamily: "cursive",
@@ -35,7 +36,7 @@ const styles = {
         margin: "5px",
         float: "right",
         fontSize: "10px",
-        backgroundColor: "#e4878d",
+        backgroundColor: "#ff3d3d",
     },
 }
 

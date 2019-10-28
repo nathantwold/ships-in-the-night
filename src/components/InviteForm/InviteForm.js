@@ -86,7 +86,7 @@ class GroupInvite extends Component {
         this.setState({
             senderName: 'Megan',
             recipiantName: 'Nathan',
-            recipiantEmail: 'natew79@gmail.com',
+            recipiantEmail: 'shipsinthenightapp@gmail.com',
             groupname: this.props.reduxStore.user.groupname,
         })
     }

@@ -9,7 +9,7 @@ import FooterEmpty from '../Footer/FooterEmpty';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import HomePage from '../HomePage/HomePage';
-import InfoPage from '../InfoPage/InfoPage';
+// import InfoPage from '../InfoPage/InfoPage';  // incomplete component, save for user profile
 import FleetPage from '../Fleet/FleetPage';
 import FleetView from '../Fleet/FleetView';
 import NewTask from '../Tasks/NewTask';
@@ -46,13 +46,11 @@ class App extends Component {
                 path="/home"
                 component={HomePage}
               />
-              {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
-              <ProtectedRoute
+              {/* <ProtectedRoute
                 exact
                 path="/info"
                 component={InfoPage}
-              />
+              /> */}
               <ProtectedRoute
                 exact
                 path="/fleet"

@@ -1,11 +1,11 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-color: #d9f7f6;
+    background-color: #d9f7e7;
 }
 
 .alert {
-    background-color: #c92e2e;
+    background-color: #ff3d3d;
     margin: 50px;
     text-align: center;
     border-radius: 10px;
@@ -18,7 +18,7 @@ body {
 
 form {
     text-align: center;
-    background-color: #dbd5d5;
+    background-color: #a3c3ff;
     width: 60%;
     height: 250px;
     margin: 10px auto;

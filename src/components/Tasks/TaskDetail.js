@@ -36,7 +36,7 @@ const styles = {
     delete: {
         width: '100%',
         fontSize: '8px',
-        backgroundColor: '#e4878d',
+        backgroundColor: '#ff3d3d',
     },
     textField: {
         width: '100%',

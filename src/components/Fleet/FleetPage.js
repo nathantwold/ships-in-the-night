@@ -26,7 +26,8 @@ class FleetPage extends Component {
             marginLeft: '20%',
             marginRight: '20%',
             marginTop: '5%',
-            width: '60%'
+            width: '60%',
+            backgroundColor: '#e5f6f8',
         },
         button: {
             marginLeft: '35%',

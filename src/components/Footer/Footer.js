@@ -36,7 +36,7 @@ class Footer extends Component {
         <BottomNavigation showLabels style={styles.bar} >
           <BottomNavigationAction onClick={() => this.props.history.push('/home')}
             label="Home" style={styles.each} icon={<FormatListBulletedIcon />} />
-          <BottomNavigationAction onClick={() => this.props.history.push('/info')}
+          <BottomNavigationAction onClick={() => console.log('clicked info')}
             label="Info" style={styles.each} icon={<PersonIcon />} />
           <BottomNavigationAction onClick={() => this.props.history.push('/newtask')}
             label="New Task" style={styles.add} icon={<AddCircleIcon />} />
