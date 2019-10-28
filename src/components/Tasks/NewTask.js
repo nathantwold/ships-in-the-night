@@ -25,6 +25,11 @@ const styles = {
     div: {
         marginTop: '10px',
         marginBottom: '5px',
+    },
+    // hidden on click event to populate fields for presentation
+    fill: {
+        width: '100%',
+        height: '100%',
     }
 }
 
@@ -80,6 +85,14 @@ class NewTask extends Component {
         return Math.floor(Math.random() * (1 + max - min) + min);
     }
 
+    // populates text fields for presentation
+    populate = () => {
+        this.setState({
+            title: 'clean the bathroom',
+            detail: 'dont forget to scrub the shower and toilet!',
+        })
+    }
+
     render() {
         return (
             <div>
@@ -88,7 +101,7 @@ class NewTask extends Component {
                     <Grid item xs={8} style={styles.div}>
                         <TextField
                             required
-                            defaultValue={this.state.title}
+                            value={this.state.title}
                             style={styles.textField}
                             label="Title"
                             variant="filled"
@@ -99,7 +112,7 @@ class NewTask extends Component {
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8} style={styles.div}>
                         <TextField
-                            defaultValue={this.state.detail}
+                            value={this.state.detail}
                             style={styles.textField}
                             label="Details"
                             variant="filled"
@@ -138,7 +151,12 @@ class NewTask extends Component {
                         />
                     </Grid>
                     <Grid item xs={2}></Grid>
-                    <Grid item xs={4}></Grid>
+                    <Grid item xs={4}>
+
+                        {/* hidden button to populate fields */}
+                        <button onClick={this.populate}></button>
+
+                    </Grid>
                     <Grid item xs={4} style={styles.div}>
                         <Button style={styles.button} variant="contained" onClick={this.checkFields}>
                             <PlaylistAddCheckIcon />

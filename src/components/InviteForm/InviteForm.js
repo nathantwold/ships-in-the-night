@@ -22,6 +22,7 @@ const styles = {
         marginTop: '5px',
         marginBottom: '5px',
     },
+
     ///--- populate fields button for presentation ---\\\
     populate: {
         width: '100%',
@@ -112,7 +113,6 @@ class GroupInvite extends Component {
                     <Grid item xs={12} >
                         <button style={styles.populate} onClick={this.populate}></button>
                     </Grid>  
-                    {/* ONCLICK EVENT TO POPULATE FIELDS - DELETE THIS AFTER PRESENTATION */}
 
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8} style={styles.div}>

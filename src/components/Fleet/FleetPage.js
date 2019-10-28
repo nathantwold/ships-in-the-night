@@ -5,6 +5,37 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
 
+const styles = {
+    textField: {
+        marginLeft: '20%',
+        marginRight: '20%',
+        marginTop: '5%',
+        width: '60%',
+        backgroundColor: '#e5f6f8',
+    },
+    toggle: {
+        marginLeft: '30%',
+        marginRight: '30%',
+        marginTop: '5%',
+        width: '40%',
+    },
+    button: {
+        marginLeft: '35%',
+        marginRight: '35%',
+        marginTop: '5%',
+        width: '30%',
+        backgroundColor: "#4df95b",
+    },
+    header: {
+        textAlign: 'center',
+    },
+    text: {
+        fontFamily: 'cursive',
+        fontSize: '24px',
+        margin: '0',
+    }
+}
+
 class FleetPage extends Component {
 
     componentDidMount() {
@@ -20,25 +51,6 @@ class FleetPage extends Component {
             newFleet: true
         }
     };
-
-    styles = {
-        textField: {
-            marginLeft: '20%',
-            marginRight: '20%',
-            marginTop: '5%',
-            width: '60%',
-            backgroundColor: '#e5f6f8',
-        },
-        button: {
-            marginLeft: '35%',
-            marginRight: '35%',
-            marginTop: '5%',
-            width: '30%'
-        },
-        header: {
-            textAlign: "center",
-        }
-    }
 
     handleInputChangeFor = (event, input) => {
         this.setState({
@@ -65,7 +77,7 @@ class FleetPage extends Component {
                 payload: this.state.fleet
             })
             swal(`You are now the commander of ${this.state.fleet.groupname} fleet!`)
-            .then(this.props.history.push('/home'));
+                .then(this.props.history.push('/home'));
             this.props.dispatch({ type: 'GET_TASKS' })
         } else {
             this.props.dispatch({
@@ -94,24 +106,17 @@ class FleetPage extends Component {
 
         return (
             <Router>
-                <div style={this.styles.header}>
-                    {this.state.fleet.newFleet === true ?
-                        <Button onClick={this.toggleFleet} size="small"
-                            style={this.styles.button} variant="contained"
-                        >
-                            Join a fleet
-                        </Button> :
-                        <Button onClick={this.toggleFleet} size="small"
-                            style={this.styles.button} variant="contained"
-                        >
-                            Create a new fleet
-                        </Button>
-                    }
-                    <h5>Create or join a fleet to get started!</h5>
+                <div style={styles.header}>
+                    <Button onClick={this.toggleFleet} size="small"
+                        style={styles.toggle} variant="contained"
+                    >
+                        Create / Join
+                    </Button>
+                    <h5 style={styles.text}>Create or join a fleet to get started!</h5>
                     <br />
                     <TextField
                         id="fleetName"
-                        style={this.styles.textField}
+                        style={styles.textField}
                         label="Fleet Name"
                         value={this.state.fleet.groupname}
                         onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
@@ -119,7 +124,7 @@ class FleetPage extends Component {
                     />
                     <TextField
                         id="password"
-                        style={this.styles.textField}
+                        style={styles.textField}
                         label="Password"
                         type="password"
                         value={this.state.fleet.password}
@@ -129,12 +134,12 @@ class FleetPage extends Component {
                     <br />
                     {this.state.fleet.newFleet === true ?
                         <Button onClick={this.checkFields}
-                            style={this.styles.button} variant="contained"
+                            style={styles.button} variant="contained"
                         >
                             Create!
                         </Button> :
                         <Button onClick={this.checkFields}
-                            style={this.styles.button} variant="contained"
+                            style={styles.button} variant="contained"
                         >
                             Join!
                         </Button>

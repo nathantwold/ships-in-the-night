@@ -23,10 +23,11 @@ router.post('/', (req, res, next) => {
     let recipiant = req.body.email.recipiantName;
     let fleet = req.body.email.groupname;
     let email = req.body.email.recipiantEmail
-    let message = `Ahoy, ${recipiant}! ${sender} has invited you to join the fleet, ${fleet}!  
-        Please proceed to www.shipsinthenightapp.beta and register an account.
+    let message = ` Ahoy, ${recipiant}! ${sender} has invited you to join the fleet, ${fleet}!  
+        Please proceed to http://localhost:3000/#/home and register an account.
         Once registered, you may join ${fleet} with the following credentials: 
-        Fleet Name: ${fleet},  Password: 6390.
+        Fleet Name: ${fleet},  
+        Password: 6390.
         Safe travels! ~Ships in the Night Team `;
     let mail = {
       from: 'Ships in the Night',
