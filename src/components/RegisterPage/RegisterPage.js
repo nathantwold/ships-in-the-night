@@ -22,7 +22,7 @@ class RegisterPage extends Component {
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
-  } // end registerUser
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({

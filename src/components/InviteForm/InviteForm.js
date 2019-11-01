@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 import { Button, TextField, Grid } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import swal from 'sweetalert';
@@ -22,12 +22,6 @@ const styles = {
         marginTop: '5px',
         marginBottom: '5px',
     },
-
-    ///--- populate fields button for presentation ---\\\
-    populate: {
-        width: '100%',
-        textAlign: 'center',
-    }
 }
 
 class GroupInvite extends Component {
@@ -55,22 +49,23 @@ class GroupInvite extends Component {
     }
 
     handleSend = () => {
-        const email = this.state;
-        axios({
-            method: "POST",
-            url: "/api/invite",
-            data: {
-                email: email
-            }
-        }).then((response) => {
-            if (response.data.msg === 'success') {
-                swal({ text: 'Message sent!', icon: 'success' });
-                this.resetForm()
-                this.props.history.push('/fleetview');
-            } else if (response.data.msg === 'fail') {
-                swal({ text: 'Message failed to send.', icon: 'warning' })
-            }
-        })
+        swal({ text: 'Email invite is currently disabled', icon: 'warning' });
+        // const email = this.state;
+        // axios({
+        //     method: "POST",
+        //     url: "/api/invite",
+        //     data: {
+        //         email: email
+        //     }
+        // }).then((response) => {
+        //     if (response.data.msg === 'success') {
+        //         swal({ text: 'Message sent!', icon: 'success' });
+        //         this.resetForm()
+        //         this.props.history.push('/fleetview');
+        //     } else if (response.data.msg === 'fail') {
+        //         swal({ text: 'Message failed to send.', icon: 'warning' })
+        //     }
+        // })
     }
 
     resetForm = () => {
@@ -78,16 +73,6 @@ class GroupInvite extends Component {
             senderName: '',
             recipiantName: '',
             recipiantEmail: '',
-            groupname: this.props.reduxStore.user.groupname,
-        })
-    }
-
-    ///--- auto populate fields for presentation ---\\\
-    populate = () => {
-        this.setState({
-            senderName: 'Megan',
-            recipiantName: 'Nathan',
-            recipiantEmail: 'shipsinthenightapp@gmail.com',
             groupname: this.props.reduxStore.user.groupname,
         })
     }
@@ -108,12 +93,6 @@ class GroupInvite extends Component {
                         />
                     </Grid>
                     <Grid item xs={2}></Grid>
-
-                    {/* ONCLICK EVENT TO POPULATE FIELDS - DELETE THIS AFTER PRESENTATION */}
-                    <Grid item xs={12} >
-                        <button style={styles.populate} onClick={this.populate}></button>
-                    </Grid>  
-
                     <Grid item xs={2}></Grid>
                     <Grid item xs={8} style={styles.div}>
                         <TextField

@@ -38,7 +38,6 @@ function a11yProps(index) {
 }
 
 const TaskView = () => {
-
     const [value, setValue] = React.useState(0);
     const styles = {
         bar: {
