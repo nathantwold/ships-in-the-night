@@ -1,9 +1,9 @@
 # Ships in the Night
-A household task managent and sharing app.
+A household chore management and delegation app.
 
 # Base Functionality
 
-This app will allow users to create private groups and invite members to share in household chore and task management.
+This app will allow users to create private groups and invite members to share in household chores and task management.
 Tasks may have due dates, comments or details, and the ability to be grabbed by a user and marked 'claimed' or 'complete'.
 Users may randomly assign an owner on task creation for those tasks that no-one likes to tackle.
 The group owner or "fleet commander" (the user that created the group) has the ability to remove users from the group.
