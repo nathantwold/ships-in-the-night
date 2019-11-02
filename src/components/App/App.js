@@ -9,7 +9,7 @@ import FooterEmpty from '../Footer/FooterEmpty';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import HomePage from '../HomePage/HomePage';
-import InfoPage from '../InfoPage/InfoPage';  // incomplete component, save for user profile
+import InfoPage from '../InfoPage/InfoPage';  
 import FleetPage from '../Fleet/FleetPage';
 import FleetView from '../Fleet/FleetView';
 import NewTask from '../Tasks/NewTask';
