@@ -11,24 +11,24 @@ const styles = {
     fleet: {
         margin: "10px",
         padding: "10px",
+        textAlign: "center",
     },
     container: {
         width: "80%",
         marginLeft: "10%",
         marginRight: "10%",
         marginTop: "20px",
-        fontSize: "28px",
+        fontSize: "24px",
         fontFamily: "garamond",
         backgroundColor: '#e5f6f8',
     },
     each: {
         fontFamily: "garamond",
-        fontSize: "24px",
+        fontSize: "20px",
         margin: "0",
     },
     invite: {
         margin: "5px",
-        float: "right",
         fontSize: "10px",
         backgroundColor: "#4df95b",
     },
@@ -105,6 +105,7 @@ class FleetView extends Component {
                         <Paper style={styles.container}>
                             <div style={styles.fleet}>
                                 {this.props.reduxStore.user.groupname}
+                                <br />
                                 <Button style={styles.invite} onClick={this.sendInvite} variant="contained">
                                     Invite
                                     <GroupAddIcon />
