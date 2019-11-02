@@ -18,11 +18,11 @@ const styles = {
         marginRight: "10%",
         marginTop: "20px",
         fontSize: "28px",
-        fontFamily: "cursive",
+        fontFamily: "garamond",
         backgroundColor: '#e5f6f8',
     },
     each: {
-        fontFamily: "cursive",
+        fontFamily: "garamond",
         fontSize: "24px",
         margin: "0",
     },

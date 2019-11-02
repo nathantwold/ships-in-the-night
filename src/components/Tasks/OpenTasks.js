@@ -29,7 +29,7 @@ const styles = {
         width: '100%',
         backgroundColor: '#93daf9',
         textAlign: 'center',
-        fontFamily: 'cursive',
+        fontFamily: 'garamond',
     },
     paperRight: {
         width: '100%',
@@ -38,7 +38,7 @@ const styles = {
     },
     title: {
         margin: '0',
-        fontSize: '22px',
+        fontSize: '20px',
     },
 };
 

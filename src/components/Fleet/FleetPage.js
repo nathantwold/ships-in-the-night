@@ -30,7 +30,7 @@ const styles = {
         textAlign: 'center',
     },
     text: {
-        fontFamily: 'cursive',
+        fontFamily: 'garamond',
         fontSize: '24px',
         margin: '0',
     }

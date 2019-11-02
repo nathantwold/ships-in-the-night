@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 const styles = {
     text: {
         textAlign: 'center',
-        fontFamily: 'cursive',
+        fontFamily: 'garamond',
         margin: '0',
         padding: '0',
         backgroundColor: '#e5f6f8',
@@ -149,20 +149,20 @@ class TaskDetail extends Component {
                                 </Paper>
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={1}></Grid>
-                            <Grid item xs={10}>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={8}>
                                 <Paper style={styles.input}>
                                     <TextField
                                         defaultValue={item.detail}
                                         style={styles.textField}
                                         label="Details"
                                         variant="filled"
-                                        multiline rows="6"
+                                        multiline rows="5"
                                         onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                                     />
                                 </Paper>
                             </Grid>
-                            <Grid item xs={1}></Grid>
+                            <Grid item xs={2}></Grid>
                             <Grid item xs={3}></Grid>
                             <Grid item xs={6}>
                                 <Paper style={styles.input}>
