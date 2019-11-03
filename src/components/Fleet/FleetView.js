@@ -18,6 +18,7 @@ const styles = {
         marginLeft: "10%",
         marginRight: "10%",
         marginTop: "20px",
+        marginBottom: "15px",
         fontSize: "24px",
         fontFamily: "garamond",
         backgroundColor: '#e5f6f8',

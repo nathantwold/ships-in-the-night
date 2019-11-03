@@ -17,11 +17,12 @@ const styles = {
         backgroundColor: '#e5f6f8',
     },
     input: {
-        margin: '10px',
+        margin: '5px',
         backgroundColor: '#e5f6f8',
     },
     button: {
         margin: '5px',
+        marginBottom: '15px',
     },
     complete: {
         width: '100%',
@@ -157,7 +158,7 @@ class TaskDetail extends Component {
                                         style={styles.textField}
                                         label="Details"
                                         variant="filled"
-                                        multiline rows="5"
+                                        multiline rows="4"
                                         onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                                     />
                                 </Paper>

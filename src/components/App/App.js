@@ -37,6 +37,9 @@ class App extends Component {
               {this.props.user.groupname === "0" ?
                 <Redirect exact from="/fleetview" to="/fleet" /> : ''
               }
+              {this.props.user.groupname === "0" ?
+                <Redirect exact from="/newtask" to="/fleet" /> : ''
+              }
               {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the HomePage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.

@@ -7,23 +7,17 @@ import swal from 'sweetalert';
 
 const styles = {
     textField: {
-        marginLeft: '20%',
-        marginRight: '20%',
-        marginTop: '5%',
-        width: '60%',
+        marginTop: '10px',
+        width: '240px',
         backgroundColor: '#e5f6f8',
     },
     toggle: {
-        marginLeft: '30%',
-        marginRight: '30%',
-        marginTop: '5%',
-        width: '40%',
+        marginTop: '10px',
+        width: '150px',
     },
     button: {
-        marginLeft: '35%',
-        marginRight: '35%',
-        marginTop: '5%',
-        width: '30%',
+        marginTop: '10px',
+        width: '150px',
         backgroundColor: "#4df95b",
     },
     header: {
@@ -32,7 +26,10 @@ const styles = {
     text: {
         fontFamily: 'garamond',
         fontSize: '24px',
-        margin: '0',
+        marginBottom: '0',
+        marginTop: '10px',
+        marginLeft: '20px',
+        marginRight: '20px',
     }
 }
 
@@ -122,6 +119,7 @@ class FleetPage extends Component {
                         onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
                         variant="filled"
                     />
+                    <br />
                     <TextField
                         id="password"
                         style={styles.textField}
