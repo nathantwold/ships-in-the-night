@@ -81,9 +81,9 @@ class FleetPage extends Component {
                 type: 'JOIN_FLEET',
                 payload: this.state.fleet
             })
-            this.props.dispatch({ type: 'GET_TASKS' })
             swal(`Welcome to the fleet, Captain ${this.state.fleet.username}!`)
                 .then(this.props.history.push('/home'));
+            this.props.dispatch({ type: 'GET_TASKS' })
         }
     }
 
