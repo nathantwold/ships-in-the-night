@@ -1,11 +1,12 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
  * GET route 
  */
-router.get('/view', (req, res) => {
+router.get('/view', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "users" WHERE "groupname"=$1 ORDER BY "admin_level" DESC;`;
     pool.query(queryText, [req.user.groupname])
         .then((result) => res.send(result.rows))
@@ -15,7 +16,7 @@ router.get('/view', (req, res) => {
 /**
  * POST route to create new fleet
  */
-router.post('/create', (req, res, next) => {
+router.post('/create', rejectUnauthenticated, (req, res, next) => {
     const groupname = req.body.groupname;
     const password = req.body.password;
     const queryText = `INSERT INTO "public"."groups"("name", "password") VALUES($1, $2) RETURNING "public"."groups".name;`;
@@ -27,7 +28,7 @@ router.post('/create', (req, res, next) => {
 /**
  * PUT route for tagging fleet creator as admin
  */
-router.put('/create/:id', (req, res) => {
+router.put('/create/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=1 WHERE "id"=$2;`;
     pool.query(queryText, [req.body.name, req.params.id])
         .then(() => res.sendStatus(201))
@@ -37,7 +38,7 @@ router.put('/create/:id', (req, res) => {
 /**
  * PUT route for tagging fleet id to user on fleet join
  */
-router.put('/join', (req, res) => {
+router.put('/join', rejectUnauthenticated, (req, res) => {
     const queryText = `UPDATE "public"."users" SET "groupname"=$1, "admin_level"=0 WHERE "id"=$2`
     pool.query(queryText, [req.body.groupname, req.body.currentUser])
         .then(() => res.sendStatus(201))
@@ -47,7 +48,7 @@ router.put('/join', (req, res) => {
 /**
  * PUT route for removing user from fleet
  */
-router.put('/remove', (req, res) => {
+router.put('/remove', rejectUnauthenticated, (req, res) => {
     const queryText = `UPDATE "users" SET "groupname"=0, "admin_level"=0 WHERE "id" = $1;`;
     pool.query(queryText, [req.body.id])
         .then(() => res.sendStatus(201))

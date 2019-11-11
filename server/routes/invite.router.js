@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const nodemailer = require('nodemailer');
 let transport = {
   host: 'smtp.gmail.com',
@@ -18,7 +19,7 @@ transporter.verify((error, success) => {
   }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', rejectUnauthenticated, (req, res, next) => {
     let sender = req.body.email.senderName;
     let recipiant = req.body.email.recipiantName;
     let fleet = req.body.email.groupname;
