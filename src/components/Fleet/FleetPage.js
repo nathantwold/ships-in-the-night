@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
@@ -102,48 +101,46 @@ class FleetPage extends Component {
     render() {
 
         return (
-            <Router>
-                <div style={styles.header}>
-                    <Button onClick={this.toggleFleet} size="small"
-                        style={styles.toggle} variant="contained"
-                    >
-                        Create / Join
+            <div style={styles.header}>
+                <Button onClick={this.toggleFleet} size="small"
+                    style={styles.toggle} variant="contained"
+                >
+                    Create / Join
                     </Button>
-                    <h5 style={styles.text}>Create or join a fleet to get started!</h5>
-                    <br />
-                    <TextField
-                        id="fleetName"
-                        style={styles.textField}
-                        label="Fleet Name"
-                        value={this.state.fleet.groupname}
-                        onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
-                        variant="filled"
-                    />
-                    <br />
-                    <TextField
-                        id="password"
-                        style={styles.textField}
-                        label="Password"
-                        type="password"
-                        value={this.state.fleet.password}
-                        onChange={(event) => this.handleInputChangeFor(event, 'password')}
-                        variant="filled"
-                    />
-                    <br />
-                    {this.state.fleet.newFleet === true ?
-                        <Button onClick={this.checkFields}
-                            style={styles.button} variant="contained"
-                        >
-                            Create!
-                        </Button> :
-                        <Button onClick={this.checkFields}
-                            style={styles.button} variant="contained"
-                        >
-                            Join!
-                        </Button>
-                    }
-                </div>
-            </Router>
+                <h5 style={styles.text}>Create or join a fleet to get started!</h5>
+                <br />
+                <TextField
+                    id="fleetName"
+                    style={styles.textField}
+                    label="Fleet Name"
+                    value={this.state.fleet.groupname}
+                    onChange={(event) => this.handleInputChangeFor(event, 'groupname')}
+                    variant="filled"
+                />
+                <br />
+                <TextField
+                    id="password"
+                    style={styles.textField}
+                    label="Password"
+                    type="password"
+                    value={this.state.fleet.password}
+                    onChange={(event) => this.handleInputChangeFor(event, 'password')}
+                    variant="filled"
+                />
+                <br />
+                {this.state.fleet.newFleet === true ?
+                    <Button onClick={this.checkFields}
+                        style={styles.button} variant="contained"
+                    >
+                        Create!
+                    </Button> :
+                    <Button onClick={this.checkFields}
+                        style={styles.button} variant="contained"
+                    >
+                        Join!
+                    </Button>
+                }
+            </div>
         )
     }
 }
