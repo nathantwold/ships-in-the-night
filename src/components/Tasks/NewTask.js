@@ -73,7 +73,10 @@ class NewTask extends Component {
         let max = this.props.reduxStore.fleet.length - 1;
         let randomNum = this.randomNumber(min, max)
         let randomUser = this.props.reduxStore.fleet[randomNum]
-        this.setState({ username: randomUser.username, random: true })
+        this.setState({ 
+            ...this.state,
+            username: randomUser.username, 
+            random: true })
     }
 
     randomNumber = (min, max) => {

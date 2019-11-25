@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route 
+ * GET route to show your fleet
  */
 router.get('/view', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "users" WHERE "groupname"=$1 ORDER BY "admin_level" DESC;`;
