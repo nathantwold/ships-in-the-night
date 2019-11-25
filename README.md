@@ -13,6 +13,7 @@ The group owner or "fleet commander" (the user that created the group) has the a
 The ability to send a task as a request to another user in the group.
 A point system for completing tasks to keep things fair.
 The ability to upload a photo avatar to more easily see who task owners are.
+Responsive design for a better layout on a tablet or computer as it's currently best viewed on mobile.
 
 # Spin up
 
