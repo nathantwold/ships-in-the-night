@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
-import { 
-    Button, 
-    Grid, 
-    Paper, 
-    ExpansionPanel, 
-    ExpansionPanelSummary, 
+import {
+    Button,
+    Grid,
+    Paper,
+    ExpansionPanel,
+    ExpansionPanelSummary,
     ExpansionPanelDetails,
     Divider
 } from '@material-ui/core';
@@ -54,8 +54,8 @@ class OpenTasks extends Component {
 
     handleClaim = (item) => {
         this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
-        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
         swal({ text: 'The task is yours, Captain!', icon: 'success' })
+            .then(this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user }))
     }
 
     showDetail = (id) => {
@@ -80,18 +80,18 @@ class OpenTasks extends Component {
                                             <Grid container spacing={1}>
                                                 <Grid item xs={12}>
                                                     <Paper>
-                                                    {item.due === null ?
-                                                        <h3 style={styles.title}>
-                                                            due: ASAP
+                                                        {item.due === null ?
+                                                            <h3 style={styles.title}>
+                                                                due: ASAP
                                                             <Divider />
-                                                            {item.detail}
-                                                        </h3> :
-                                                        <h3 style={styles.title}>
-                                                            due: {moment(item.due).format("MMM Do YY")}
-                                                            <Divider />
-                                                            {item.detail}
-                                                        </h3>
-                                                    }
+                                                                {item.detail}
+                                                            </h3> :
+                                                            <h3 style={styles.title}>
+                                                                due: {moment(item.due).format("MMM Do YY")}
+                                                                <Divider />
+                                                                {item.detail}
+                                                            </h3>
+                                                        }
                                                     </Paper>
                                                 </Grid>
                                                 <Grid item xs={4}>

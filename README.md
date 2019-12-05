@@ -7,11 +7,11 @@ This app will allow users to create private groups and invite members to share i
 Tasks may have due dates, comments or details, and the ability to be grabbed by a user and marked 'claimed' or 'complete'.
 Users may randomly assign an owner on task creation for those tasks that no-one likes to tackle.
 The group owner or "fleet commander" (the user that created the group) has the ability to remove users from the group.
+Users may send email invite to others to join their crew (currently disabled on Heroku. You will need to create a .env file and include your email credentials from which the invite will send)
 
 # Future Functionality
 
 The ability to send a task as a request to another user in the group.
-A point system for completing tasks to keep things fair.
 The ability to upload a photo avatar to more easily see who task owners are.
 Responsive design for a better layout on a tablet or computer as it's currently best viewed on mobile.
 

@@ -68,7 +68,6 @@ function* getDetail(action) {
 
 function* deleteTask(action) {
     try {
-        yield console.log(action.payload);
         yield axios.delete('/api/task/delete/' + action.payload.id);
         yield getOpenTasks(action);
         yield getMyTasks(action);
