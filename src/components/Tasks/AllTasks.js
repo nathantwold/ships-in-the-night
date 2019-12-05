@@ -75,8 +75,8 @@ class AllTasks extends Component {
 
     handleClaim = (item) => {
         this.props.dispatch({ type: 'CLAIM_TASK', payload: item });
-        this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user });
         swal({ text: 'The task is yours, Captain!', icon: 'success' })
+            .then(this.props.dispatch({ type: 'GET_TASKS', payload: this.props.user }))
     }
 
     render() {
