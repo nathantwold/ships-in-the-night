@@ -7,16 +7,11 @@ class RegisterPage extends Component {
     password: '',
   };
 
-  registerUser = (event) => {
-    event.preventDefault();
-
+  registerUser = () => {
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'REGISTER',
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-        },
+        payload: this.state
       });
       this.props.history.push('/fleet')
     } else {
