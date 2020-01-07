@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, TextField } from '@material-ui/core';
+
+const styles = {
+  inputs: {
+    margin: '10px',
+  },
+  login: {
+    margin: '10px',
+    backgroundColor: '#4df95b',
+  },
+  register: {
+    marginBottom: '20px',
+    width: '100%',
+    backgroundColor: '#4480ed'
+  }
+}
 
 class LoginPage extends Component {
   state = {
@@ -7,16 +23,11 @@ class LoginPage extends Component {
     password: '',
   };
 
-  login = (event) => {
-    event.preventDefault();
-
+  login = () => {
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-        },
+        payload: this.state
       });
       this.props.history.push('/home');
     } else {
@@ -32,7 +43,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -41,56 +52,35 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </button>
-        </center>
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-          </div>
-        </form>
+        <Button variant="contained" style={styles.register}
+          onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
+          Register New User
+        </Button>
+        <TextField
+          style={styles.inputs}
+          variant="outlined"
+          label="username"
+          type="text"
+          value={this.state.username}
+          onChange={this.handleInputChangeFor('username')}
+        />
+        <br />
+        <TextField
+          style={styles.inputs}
+          variant="outlined"
+          label="password"
+          type="password"
+          value={this.state.password}
+          onChange={this.handleInputChangeFor('password')}
+        />
+        <br />
+        <Button style={styles.login} variant="contained" onClick={this.login}>Log in</Button>
       </div>
     );
   }
 }
 
 // Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
