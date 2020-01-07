@@ -20,7 +20,7 @@ const styles = {
 class LoginPage extends Component {
   state = {
     username: '',
-    password: '',
+    password: ''
   };
 
   login = () => {

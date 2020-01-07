@@ -18,9 +18,9 @@ Responsive design for a better layout on a tablet or computer as it's currently 
 # Spin up
 
 - clone or download a the project into a folder.
-- run npm install
-- in one tab run npm run server
-- in another run npm run client
+- run 'npm install'
+- in one terminal run 'npm run server'
+- in another terminal run 'npm run client'
 
 the project will open in a new tab running on localhost:3000
 
