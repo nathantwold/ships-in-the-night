@@ -56,35 +56,31 @@ class LoginPage extends Component {
           onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
           Register New User
         </Button>
-        <div>
-          <TextField
-            style={styles.inputs}
-            variant="outlined"
-            label="username"
-            type="text"
-            value={this.state.username}
-            onChange={this.handleInputChangeFor('username')}
-          />
-          <br />
-          <TextField
-            style={styles.inputs}
-            variant="outlined"
-            label="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChangeFor('password')}
-          />
-          <br />
-          <Button style={styles.login} variant="contained" onClick={this.login}>Log in</Button>
-        </div>
+        <TextField
+          style={styles.inputs}
+          variant="outlined"
+          label="username"
+          type="text"
+          value={this.state.username}
+          onChange={this.handleInputChangeFor('username')}
+        />
+        <br />
+        <TextField
+          style={styles.inputs}
+          variant="outlined"
+          label="password"
+          type="password"
+          value={this.state.password}
+          onChange={this.handleInputChangeFor('password')}
+        />
+        <br />
+        <Button style={styles.login} variant="contained" onClick={this.login}>Log in</Button>
       </div>
     );
   }
 }
 
 // Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
