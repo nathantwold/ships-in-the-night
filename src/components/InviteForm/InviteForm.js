@@ -48,6 +48,7 @@ class GroupInvite extends Component {
         });
     }
 
+    // uncomment the below code to enable email invite function (see README)
     handleSend = () => {
         swal({ text: 'Email invite is currently disabled', icon: 'warning' });
         // const email = this.state;
