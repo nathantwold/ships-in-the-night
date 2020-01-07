@@ -18,12 +18,11 @@ const styles = {
     randomBut: {
         backgroundColor: '#4480ed',
         fontSize: '12px',
-        padding: '10%',
         width: '90%',
         height: '90%',
     },
     div: {
-        marginTop: '10px',
+        marginTop: '5px',
         marginBottom: '5px',
     },
 }
@@ -106,7 +105,7 @@ class NewTask extends Component {
                             style={styles.textField}
                             label="Details"
                             variant="filled"
-                            multiline rows="6"
+                            multiline rows="5"
                             onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                         />
                     </Grid>

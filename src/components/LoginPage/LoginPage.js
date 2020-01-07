@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, TextField } from '@material-ui/core';
 
+const styles = {
+  inputs: {
+    margin: '10px',
+  },
+  login: {
+    margin: '10px',
+    backgroundColor: '#4df95b',
+  },
+  register: {
+    marginBottom: '20px',
+    width: '100%',
+    backgroundColor: '#4480ed'
+  }
+}
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -37,11 +52,13 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <Button variant="contained" onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
-          Register
+        <Button variant="contained" style={styles.register}
+          onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
+          Register New User
         </Button>
         <div>
           <TextField
+            style={styles.inputs}
             variant="outlined"
             label="username"
             type="text"
@@ -50,6 +67,7 @@ class LoginPage extends Component {
           />
           <br />
           <TextField
+            style={styles.inputs}
             variant="outlined"
             label="password"
             type="password"
@@ -57,7 +75,7 @@ class LoginPage extends Component {
             onChange={this.handleInputChangeFor('password')}
           />
           <br />
-          <Button variant="contained" onClick={this.login}>Log in</Button>
+          <Button style={styles.login} variant="contained" onClick={this.login}>Log in</Button>
         </div>
       </div>
     );
