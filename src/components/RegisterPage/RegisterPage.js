@@ -44,14 +44,6 @@ class RegisterPage extends Component {
   render() {
     return (
       <div style={{ textAlign: "center" }}>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
         <Button variant="contained" style={styles.login}
           onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}>
           Back To Login
@@ -74,7 +66,16 @@ class RegisterPage extends Component {
           onChange={this.handleInputChangeFor('password')}
         />
         <br />
-        <Button style={styles.register} variant="contained" onClick={this.registerUser}>Register</Button>
+        <Button style={styles.register} variant="contained"
+          onClick={this.registerUser}>Register</Button>
+        {this.props.errors.registrationMessage && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.errors.registrationMessage}
+          </h2>
+        )}
       </div >
     );
   }

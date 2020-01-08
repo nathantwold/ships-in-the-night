@@ -44,14 +44,6 @@ class LoginPage extends Component {
   render() {
     return (
       <div style={{ textAlign: "center" }}>
-        {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
         <Button variant="contained" style={styles.register}
           onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
           Register New User
@@ -75,6 +67,14 @@ class LoginPage extends Component {
         />
         <br />
         <Button style={styles.login} variant="contained" onClick={this.login}>Log in</Button>
+        {this.props.errors.loginMessage && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.errors.loginMessage}
+          </h2>
+        )}
       </div>
     );
   }
