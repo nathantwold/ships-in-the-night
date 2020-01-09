@@ -5,6 +5,7 @@ const styles = {
   main: {
     textAlign: 'center',
     margin: '5px',
+    padding: '10px'
   },
 }
 
