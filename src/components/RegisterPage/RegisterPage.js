@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, TextField } from '@material-ui/core';
+import swal from 'sweetalert';
 
 const styles = {
   inputs: {
@@ -20,18 +21,24 @@ const styles = {
 class RegisterPage extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   };
 
   registerUser = () => {
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: this.state
-      });
-      this.props.history.push('/fleet')
-    } else {
-      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+    if (this.state.password !== this.state.confirmPassword) {
+      swal({ text: 'Please confirm password', icon: 'warning' });
+    }
+    else {
+      if (this.state.username && this.state.password) {
+        this.props.dispatch({
+          type: 'REGISTER',
+          payload: this.state
+        });
+        this.props.history.push('/fleet')
+      } else {
+        this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+      }
     }
   }
 
@@ -66,12 +73,20 @@ class RegisterPage extends Component {
           onChange={this.handleInputChangeFor('password')}
         />
         <br />
+        <TextField
+          style={styles.inputs}
+          variant="outlined"
+          label="confirm password"
+          type="password"
+          value={this.state.confirmPassword}
+          onChange={this.handleInputChangeFor('confirmPassword')}
+        />
+        <br />
         <Button style={styles.register} variant="contained"
           onClick={this.registerUser}>Register</Button>
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
-            role="alert"
           >
             {this.props.errors.registrationMessage}
           </h2>

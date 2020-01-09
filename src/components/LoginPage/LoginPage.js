@@ -70,7 +70,6 @@ class LoginPage extends Component {
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
-            role="alert"
           >
             {this.props.errors.loginMessage}
           </h2>
