@@ -8,12 +8,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import swal from 'sweetalert';
 
 const styles = {
-    fleet: {
-        margin: "10px",
-        padding: "10px",
-        textAlign: "center",
-    },
     container: {
+        textAlign: "center",
         width: "80%",
         marginLeft: "10%",
         marginRight: "10%",
@@ -21,7 +17,6 @@ const styles = {
         marginBottom: "15px",
         fontSize: "24px",
         fontFamily: "garamond",
-        backgroundColor: '#e5f6f8',
     },
     each: {
         fontFamily: "garamond",
@@ -29,12 +24,11 @@ const styles = {
         margin: "0",
     },
     invite: {
-        margin: "5px",
+        margin: "10px",
         fontSize: "10px",
         backgroundColor: "#4df95b",
     },
     button: {
-        margin: "5px",
         float: "right",
         fontSize: "10px",
         backgroundColor: "#ff3d3d",
@@ -103,18 +97,9 @@ class FleetView extends Component {
             <div>
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
-                        <Paper style={styles.container}>
-                            <div style={styles.fleet}>
-                                {this.props.reduxStore.user.groupname}
-                                <br />
-                                <Button style={styles.invite} onClick={this.sendInvite} variant="contained">
-                                    Invite
-                                    <GroupAddIcon />
-                                </Button>
-                            </div>
+                        <div style={styles.container}>
+                            <p>{this.props.reduxStore.user.groupname} Fleet</p>
                             <List>
-                                <Divider />
-                                <Divider />
                                 {this.props.reduxStore.fleet.map(user => (
                                     <div key={user.id}>
                                         <Divider />
@@ -145,8 +130,13 @@ class FleetView extends Component {
                                         </ListItem>
                                     </div>
                                 ))}
+                                <Divider />
+                                <Button style={styles.invite} onClick={this.sendInvite} variant="contained">
+                                    Invite
+                                        <GroupAddIcon />
+                                </Button>
                             </List>
-                        </Paper>
+                        </div>
                     </Grid>
                 </Grid>
             </div>
