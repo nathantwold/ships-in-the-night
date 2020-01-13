@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Button, Grid, Paper, List, ListItem, ListItemText, Divider } from '@material-ui/core';
+import { Button, Grid, List, ListItem, ListItemText, Divider } from '@material-ui/core';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import CancelIcon from '@material-ui/icons/Cancel';
 import StarsIcon from '@material-ui/icons/Stars';
@@ -51,17 +51,16 @@ class FleetView extends Component {
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        this.props.dispatch({ type: 'REMOVE_USER', payload: user });
-                        swal(`${user.username} has left the fleet!`, {
-                            icon: "success",
-                        });
-                    } else {
-                        swal('Cancelled!');
-                    }
-                });
+            }).then((willDelete) => {
+                if (willDelete) {
+                    this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+                    swal(`${user.username} has left the fleet!`, {
+                        icon: "success",
+                    });
+                } else {
+                    swal('Cancelled!');
+                }
+            });
             this.getFleet();
         } else {
             swal('Request denied', 'Only the fleet commander can remove a user.', 'warning');
@@ -74,18 +73,17 @@ class FleetView extends Component {
             icon: 'warning',
             buttons: true,
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    this.props.dispatch({ type: 'REMOVE_USER', payload: user });
-                    swal('You have left the fleet!', {
-                        icon: "success",
-                    });
-                    this.props.history.push('/fleet');
-                } else {
-                    swal('Cancelled!');
-                }
-            });
+        }).then((willDelete) => {
+            if (willDelete) {
+                this.props.dispatch({ type: 'REMOVE_USER', payload: user });
+                swal('You have left the fleet!', {
+                    icon: "success",
+                });
+                this.props.history.push('/fleet');
+            } else {
+                swal('Cancelled!');
+            }
+        });
     }
 
     sendInvite = () => {
@@ -133,7 +131,7 @@ class FleetView extends Component {
                                 <Divider />
                                 <Button style={styles.invite} onClick={this.sendInvite} variant="contained">
                                     Invite
-                                        <GroupAddIcon />
+                                    <GroupAddIcon />
                                 </Button>
                             </List>
                         </div>

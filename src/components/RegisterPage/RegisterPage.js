@@ -55,6 +55,11 @@ class RegisterPage extends Component {
           onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}>
           Back To Login
         </Button>
+        {this.props.errors.registrationMessage && (
+          <h2 className="alert">
+            {this.props.errors.registrationMessage}
+          </h2>
+        )}
         <TextField
           style={styles.inputs}
           variant="outlined"
@@ -84,13 +89,6 @@ class RegisterPage extends Component {
         <br />
         <Button style={styles.register} variant="contained"
           onClick={this.registerUser}>Register</Button>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
       </div >
     );
   }
