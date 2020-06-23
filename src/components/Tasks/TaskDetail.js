@@ -137,8 +137,8 @@ class TaskDetail extends Component {
                                     }
                                 </Paper>
                             </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={8}>
                                 <Paper style={styles.input}>
                                     <TextField
                                         defaultValue={item.title}
@@ -149,7 +149,7 @@ class TaskDetail extends Component {
                                     />
                                 </Paper>
                             </Grid>
-                            <Grid item xs={3}></Grid>
+                            <Grid item xs={2}></Grid>
                             <Grid item xs={2}></Grid>
                             <Grid item xs={8}>
                                 <Paper style={styles.input}>
@@ -158,14 +158,14 @@ class TaskDetail extends Component {
                                         style={styles.textField}
                                         label="Details"
                                         variant="filled"
-                                        multiline rows="4"
+                                        multiline rows="5"
                                         onChange={(event) => this.handleInputChangeFor(event, 'detail')}
                                     />
                                 </Paper>
                             </Grid>
                             <Grid item xs={2}></Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={8}>
                                 <Paper style={styles.input}>
                                     <TextField
                                         style={styles.textField}
@@ -179,41 +179,39 @@ class TaskDetail extends Component {
                                     />
                                 </Paper>
                             </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={1}></Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={2}>
                                 <Paper style={styles.button}>
                                     <Button style={styles.back} variant="contained" onClick={this.checkFields}>
                                         <ArrowBackIosIcon />
-                                        Save
-                                        </Button>
+                                    </Button>
                                 </Paper>
                             </Grid>
                             <Grid item xs={4}>
                                 {item.complete === false ?
                                     <Paper style={styles.button}>
                                         <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                            Complete
-                                                <CheckCircleIcon />
+                                            Done!
+                                            <CheckCircleIcon />
                                         </Button>
                                     </Paper> :
                                     <Paper style={styles.button}>
                                         <Button style={styles.complete} variant="contained" onClick={() => { this.handleComplete(item) }}>
-                                            Re-Open
-                                                <ReplayIcon />
+                                            Open
+                                            <ReplayIcon />
                                         </Button>
                                     </Paper>
                                 }
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <Paper style={styles.button}>
                                     <Button style={styles.delete} variant="contained" onClick={() => { this.handleDelete(item) }}>
-                                        Delete
-                                            <DeleteIcon />
+                                        <DeleteIcon />
                                     </Button>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={1}></Grid>
+                            <Grid item xs={2}></Grid>
                         </Grid>
                     </div>
                 ))}
